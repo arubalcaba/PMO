@@ -2,5 +2,5 @@ package com.parago.pmo
 
 class ProjectTypeController {
 
-    def scaffold = ProjectType;
+    static scaffold = true
 }
