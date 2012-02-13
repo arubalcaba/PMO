@@ -1,7 +1,7 @@
 import com.parago.pmo.Person;
 import com.parago.pmo.ProjectCode;
 import com.parago.pmo.ProjectType;
-import com.parago.pmo.Status
+import com.parago.pmo.ProjectStatus
 
 class BootStrap {
 
@@ -14,14 +14,14 @@ class BootStrap {
 			new ProjectType(type: "Reporting").save(failOnError: true);
 			new ProjectType(type: "Corporate").save(failOnError: true);
 		}
-		if(!Status.count())
+		if(!ProjectStatus.count())
 		{
-			new Status(status:"Active").save(failOnError: true);
-			new Status(status:"Pending Approval").save(failOnError: true);
-			new Status(status:"On Hold").save(failOnError: true);
-			new Status(status:"90 day").save(failOnError: true);
-			new Status(status:"Complete").save(failOnError: true);
-			new Status(status:"Cancelled").save(failOnError: true);
+			new ProjectStatus(status:"Active").save(failOnError: true);
+			new ProjectStatus(status:"Pending Approval").save(failOnError: true);
+			new ProjectStatus(status:"On Hold").save(failOnError: true);
+			new ProjectStatus(status:"90 day").save(failOnError: true);
+			new ProjectStatus(status:"Complete").save(failOnError: true);
+			new ProjectStatus(status:"Cancelled").save(failOnError: true);
 			
 		}
 		if(!Person.count())

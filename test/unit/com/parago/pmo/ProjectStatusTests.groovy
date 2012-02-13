@@ -8,8 +8,8 @@ import org.junit.*
 /**
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
-@TestFor(DeliveryManager)
-class DeliveryManagerTests {
+@TestFor(ProjectStatus)
+class ProjectStatusTests {
 
     void testSomething() {
        fail "Implement me"
