@@ -31,5 +31,7 @@ class ProjectInfo {
 		overallRating(nullable: true)
 		ratingValue(nullable: true)
 		closeDate(nullable: true)
+		budget(nullable: true)
+		schedule(nullable: true)
     }
 }

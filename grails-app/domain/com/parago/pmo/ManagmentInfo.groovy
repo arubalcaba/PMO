@@ -9,8 +9,9 @@ class ManagmentInfo {
 	double marginCost;
 	double marginPercent;
 	double anticipatedClientGP;
-	String invoiceStatus;
+	InvoiceStatus invoiceStatus;
 	String invoiceNote;
+	ProjectInfo projectInfo;
 
     static constraints = {
 		category(blank: false)

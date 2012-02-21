@@ -8,7 +8,7 @@ class ChangeOrder {
 
     static constraints = {
 		changeOrderName(blank:false, maxSize:120)
-		link(blank:false, maxSize:2000,url:true)
+		link(blank:false, maxSize:2000)
 		
     }
 }

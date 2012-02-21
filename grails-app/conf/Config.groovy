@@ -59,6 +59,10 @@ grails.exceptionresolver.params.exclude = ['password']
 // enable query caching by default
 grails.hibernate.cache.queries = true
 
+jqueryUi.minified = true
+
+jqueryUi.cdn = 'googlecode'
+
 // set per-environment serverURL stem for creating absolute links
 environments {
     development {
@@ -91,3 +95,7 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+
+
+
