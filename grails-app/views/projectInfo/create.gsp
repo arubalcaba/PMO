@@ -14,14 +14,7 @@
           $("#datepicker").datepicker({dateFormat: 'yy/mm/dd'});
         })
     </script>
-		
-		
-		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7/themes/smoothness/jquery-ui.css"></script>	-->	
-		
-     
-		
+			
 	</head>
 	<body>
 		<a href="#create-projectInfo" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>

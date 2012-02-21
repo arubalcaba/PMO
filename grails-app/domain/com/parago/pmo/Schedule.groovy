@@ -11,6 +11,7 @@ class Schedule {
 	double schedueRating;
 	String overallSchedueRating;
 	ProjectInfo projectInfo;
+	static belongsTo = [projectInfo:ProjectInfo]
 
     static constraints = {
 		startDate(blank: false)

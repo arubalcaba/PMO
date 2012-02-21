@@ -7,6 +7,8 @@ class Quality {
 	double qualityRating;
 	String overallQualityRating;	
 	ProjectInfo projectInfo;
+	
+	static belongsTo = [projectInfo:ProjectInfo]
 
     static constraints = {
 		numberOfQualityMeasures(blank: false)

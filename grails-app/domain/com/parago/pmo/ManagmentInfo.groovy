@@ -11,7 +11,7 @@ class ManagmentInfo {
 	double anticipatedClientGP;
 	InvoiceStatus invoiceStatus;
 	String invoiceNote;
-	ProjectInfo projectInfo;
+	static belongsTo = [projectInfo:ProjectInfo]
 
     static constraints = {
 		category(blank: false)

@@ -9,14 +9,11 @@ class ProjectInfo {
 	Person scrumMaster;
 	ProjectStatus status;
 	Date closeDate;
-	ProjectStatus auditStatus;
+	AuditStatus auditStatus;
 	double overallRating;
 	String ratingValue;
 	String link;
-	List risks = new ArrayList();
-	List impediments = new ArrayList();
-	List changeOrders = new ArrayList();
-	static hasOne = [budget:Budget,schedule:Schedule];
+	static hasOne = [budget:Budget,schedule:Schedule,managmentInfo:ManagmentInfo];
 	static hasMany =[risks:Risk,impediments:Impediment,changeOrders:ChangeOrder];
 	
 	static constraints = {
@@ -33,5 +30,9 @@ class ProjectInfo {
 		closeDate(nullable: true)
 		budget(nullable: true)
 		schedule(nullable: true)
+		managmentInfo(nullable: true)
+		risks(nullable: true)
+		impediments(nullable: true)
+		changeOrders(nullable: true)
     }
 }

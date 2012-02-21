@@ -13,8 +13,8 @@ class Budget {
 	double actualHours;
 	double budgetRating;
 	String overallBudgetRating;
-	ProjectInfo projectInfo;
-
+	static belongsTo = [projectInfo:ProjectInfo]
+	
     static constraints = {
 		budget(blank: false)
 		actualCost(nullable: true,blank:true)
