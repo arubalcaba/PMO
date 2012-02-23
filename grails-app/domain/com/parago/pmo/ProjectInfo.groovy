@@ -3,34 +3,58 @@ package com.parago.pmo
 class ProjectInfo {
 
     String projectName;
-	ProjectType projectType;
-	ProjectCode projectCode;
+	String projectType;
+	String projectCode;
 	Person deliveryManager;
-	Person scrumMaster;
+	String scrumMaster;
 	ProjectStatus status;
-	Date closeDate;
 	AuditStatus auditStatus;
 	double overallRating;
 	String ratingValue;
 	String link;
-	static hasOne = [budget:Budget,schedule:Schedule,managmentInfo:ManagmentInfo];
-	static hasMany =[risks:Risk,impediments:Impediment,changeOrders:ChangeOrder];
+	double budgetWithContractors;
+	double actualCost;
+	double estimateToComplete;
+	double loeHours;
+	double anticipatedClientGP;
+	double billableAmount;
+	double numberOfQualityMeasures;
+	double numberOfQualityMeasuresNotMet;
+	Date startDate;
+	Date closeDate;
+	Date actualReleaseDate;
+	Date plannedReleaseDate;
+	String category;
+	String invoiceStatus;
+	String invoiceNote;
+	static hasMany =[risks:Risk,impediments:Impediment,changeOrders:ChangeOrder,qualityTargets:QualityTarget];
 	
 	static constraints = {
 		projectName(blank: false)
 		projectType(blank: false)
 		projectCode(blank: false)
 		deliveryManager(blank: false)
-		scrumMaster(blank: false)
-		status(blank: false)
-		auditStatus(blank: false)
-		link(blank: false)
+		scrumMaster(nullable: true)
+		status(nullable: true)
+		auditStatus(nullable: true)
+		link(nullable: true)
+		budgetWithContractors(nullable: true)
+		actualCost(nullable:true)
+		estimateToComplete(nullable: true)
+		loeHours(nullable: true)
+		anticipatedClientGP(nullable: true)
+		billableAmount(nullable: true)
+		numberOfQualityMeasures(nullable: true)
+		numberOfQualityMeasuresNotMet(nullable: true)
+		startDate(nullable: true)
+		closeDate(nullable: true)
+		actualReleaseDate(nullable: true)
+		plannedReleaseDate(nullable: true)
 		overallRating(nullable: true)
 		ratingValue(nullable: true)
-		closeDate(nullable: true)
-		budget(nullable: true)
-		schedule(nullable: true)
-		managmentInfo(nullable: true)
+		category(nullable: true)
+		invoiceStatus(nullable: true)
+		invoiceNote(nullable: true)
 		risks(nullable: true)
 		impediments(nullable: true)
 		changeOrders(nullable: true)

@@ -5,16 +5,6 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'projectInfo.label', default: 'ProjectInfo')}" />
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
-	
-	     
-    
-    <script type="text/javascript">
-        $(document).ready(function()
-        {
-          $("#datepicker").datepicker({dateFormat: 'yy/mm/dd'});
-        })
-    </script>
-			
 	</head>
 	<body>
 		<a href="#create-projectInfo" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>

@@ -26,13 +26,13 @@
 					
 						<g:sortableColumn property="projectName" title="${message(code: 'projectInfo.projectName.label', default: 'Project Name')}" />
 					
-						<th><g:message code="projectInfo.projectType.label" default="Project Type" /></th>
+						<g:sortableColumn property="projectType" title="${message(code: 'projectInfo.projectType.label', default: 'Project Type')}" />
 					
-						<th><g:message code="projectInfo.projectCode.label" default="Project Code" /></th>
+						<g:sortableColumn property="projectCode" title="${message(code: 'projectInfo.projectCode.label', default: 'Project Code')}" />
 					
 						<th><g:message code="projectInfo.deliveryManager.label" default="Delivery Manager" /></th>
 					
-						<th><g:message code="projectInfo.scrumMaster.label" default="Scrum Master" /></th>
+						<g:sortableColumn property="scrumMaster" title="${message(code: 'projectInfo.scrumMaster.label', default: 'Scrum Master')}" />
 					
 						<th><g:message code="projectInfo.status.label" default="Status" /></th>
 					
