@@ -8,4 +8,6 @@ class Risk {
 
     static constraints = {
     }
+			
+		
 }

@@ -3,6 +3,7 @@ import com.parago.pmo.InvoiceStatus
 import com.parago.pmo.Person;
 import com.parago.pmo.ProjectInfo;
 import com.parago.pmo.ProjectStatus
+import com.parago.pmo.Risk;
 
 class BootStrap {
 
@@ -43,6 +44,10 @@ class BootStrap {
 		if(!ProjectInfo.count())
 		{
 			new ProjectInfo(projectName: "Project BAM",projectType: "Top Secret",projectCode: "123",deliveryManager: Person.getAll().get(0)).save(failOnError: true);
+		}
+		if(!Risk.count)
+		{
+			new Risk(risk:"Herpes Risk", riskMigrationStragety: "Something",projectInfo:ProjectInfo.getAll().get(0)).save(failOnError: true);
 		}
 		
 		
