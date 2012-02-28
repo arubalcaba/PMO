@@ -583,3 +583,13 @@ a.skip {
 	position: absolute;
 	left: -9999px;
 }
+td.last-updated-cell {
+    background-color: yellow !important;
+    border: medium solid;
+}
+tr.last-added-row {
+    border: medium solid;
+}
+tr.last-added-row td {
+    background-color: green !important;
+}

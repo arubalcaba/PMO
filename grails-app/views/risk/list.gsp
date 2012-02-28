@@ -28,7 +28,7 @@
 					
 						<g:sortableColumn property="risk" title="${message(code: 'risk.risk.label', default: 'Risk')}" />
 					
-						<g:sortableColumn property="riskMigrationStragety" title="${message(code: 'risk.riskMigrationStragety.label', default: 'Risk Migration Stragety')}" />
+						<g:sortableColumn property="riskMigrationStrategy" title="${message(code: 'risk.riskMigrationStrategy.label', default: 'Risk Migration Strategy')}" />
 					
 					</tr>
 				</thead>
@@ -40,7 +40,7 @@
 					
 						<td>${fieldValue(bean: riskInstance, field: "risk")}</td>
 					
-						<td>${fieldValue(bean: riskInstance, field: "riskMigrationStragety")}</td>
+						<td>${fieldValue(bean: riskInstance, field: "riskMigrationStrategy")}</td>
 					
 					</tr>
 				</g:each>

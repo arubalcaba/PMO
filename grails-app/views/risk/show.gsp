@@ -41,11 +41,11 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${riskInstance?.riskMigrationStragety}">
+				<g:if test="${riskInstance?.riskMigrationStrategy}">
 				<li class="fieldcontain">
-					<span id="riskMigrationStragety-label" class="property-label"><g:message code="risk.riskMigrationStragety.label" default="Risk Migration Stragety" /></span>
+					<span id="riskMigrationStrategy-label" class="property-label"><g:message code="risk.riskMigrationStrategy.label" default="Risk Migration Strategy" /></span>
 					
-						<span class="property-value" aria-labelledby="riskMigrationStragety-label"><g:fieldValue bean="${riskInstance}" field="riskMigrationStragety"/></span>
+						<span class="property-value" aria-labelledby="riskMigrationStrategy-label"><g:fieldValue bean="${riskInstance}" field="riskMigrationStrategy"/></span>
 					
 				</li>
 				</g:if>

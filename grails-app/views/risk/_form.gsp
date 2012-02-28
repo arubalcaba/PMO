@@ -18,11 +18,11 @@
 	<g:textField name="risk" value="${riskInstance?.risk}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: riskInstance, field: 'riskMigrationStragety', 'error')} ">
-	<label for="riskMigrationStragety">
-		<g:message code="risk.riskMigrationStragety.label" default="Risk Migration Stragety" />
+<div class="fieldcontain ${hasErrors(bean: riskInstance, field: 'riskMigrationStrategy', 'error')} ">
+	<label for="riskMigrationStrategy">
+		<g:message code="risk.riskMigrationStrategy.label" default="Risk Migration Strategy" />
 		
 	</label>
-	<g:textField name="riskMigrationStragety" value="${riskInstance?.riskMigrationStragety}"/>
+	<g:textField name="riskMigrationStrategy" value="${riskInstance?.riskMigrationStrategy}"/>
 </div>
 
