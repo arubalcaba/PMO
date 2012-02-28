@@ -42,7 +42,7 @@ class BootStrap {
 		}
 		if(!ProjectInfo.count())
 		{
-			new ProjectInfo(projectName: "Project BAM",projectType: "Top Secret",projectCode: "123",deliveryManager: Person.getAll().get(0)).save(failOnError: true);
+			new ProjectInfo(projectName: "Project BAM",projectType: "Top Secret",projectCode: "123", startDate: new Date(), closeDate: new Date(), actualReleaseDate: new Date(), category: "test", scrumMaster: "Malcolm",    ).save(failOnError: true);
 		}
 		
 		

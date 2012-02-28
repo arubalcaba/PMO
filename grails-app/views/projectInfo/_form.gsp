@@ -7,7 +7,7 @@
 		<g:message code="projectInfo.projectName.label" default="Project Name" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="projectName" required="" value="${projectInfoInstance?.projectName}"/>
+	<g:textField name="projectName" required="" value="${projectInfoInstance?.projectName}" readonly="readonly"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'projectType', 'error')} required">
@@ -15,7 +15,7 @@
 		<g:message code="projectInfo.projectType.label" default="Project Type" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="projectType" required="" value="${projectInfoInstance?.projectType}"/>
+	<g:textField name="projectType" required="" value="${projectInfoInstance?.projectType}" readonly="readonly"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'projectCode', 'error')} required">
@@ -23,7 +23,7 @@
 		<g:message code="projectInfo.projectCode.label" default="Project Code" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="projectCode" required="" value="${projectInfoInstance?.projectCode}"/>
+	<g:textField name="projectCode" required="" value="${projectInfoInstance?.projectCode}" readonly="readonly"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'deliveryManager', 'error')} required">
@@ -39,7 +39,7 @@
 		<g:message code="projectInfo.scrumMaster.label" default="Scrum Master" />
 		<span class="required-indicator">*</span>
 	</label>
-	<g:textField name="scrumMaster" required="" value="${projectInfoInstance?.scrumMaster}"/>
+	<g:textField name="scrumMaster" required="" value="${projectInfoInstance?.scrumMaster}" readonly="readonly"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'status', 'error')} required">
@@ -135,7 +135,7 @@
 		<g:message code="projectInfo.startDate.label" default="Start Date" />
 		
 	</label>
-	<g:datePicker name="startDate" precision="day"  value="${projectInfoInstance?.startDate}" default="none" noSelection="['': '']" />
+	<g:textField name="startDate" value="${formatDate(format:'dd-MM-yyyy',date:projectInfoInstance?.startDate)}" readonly="readonly" id="startDate"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'closeDate', 'error')} ">
@@ -143,15 +143,14 @@
 		<g:message code="projectInfo.closeDate.label" default="Close Date" />
 		
 	</label>
-	<g:datePicker name="closeDate" precision="day"  value="${projectInfoInstance?.closeDate}" default="none" noSelection="['': '']" />
+	<g:textField name="closeDate" value="${projectInfoInstance?.closeDate}" precision="day" id="closeDate" readonly="readonly"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'actualReleaseDate', 'error')} ">
 	<label for="actualReleaseDate">
 		<g:message code="projectInfo.actualReleaseDate.label" default="Actual Release Date" />
-		
 	</label>
-	<g:datePicker name="actualReleaseDate" precision="day"  value="${projectInfoInstance?.actualReleaseDate}" default="none" noSelection="['': '']" />
+	<g:textField name="actualReleaseDate" id="actualReleaseDate" value="${projectInfoInstance?.actualReleaseDate}" precision="day" readonly="readonly" id="actualReleaseDate"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'plannedReleaseDate', 'error')} ">
@@ -159,31 +158,16 @@
 		<g:message code="projectInfo.plannedReleaseDate.label" default="Planned Release Date" />
 		
 	</label>
-	<g:datePicker name="plannedReleaseDate" precision="day"  value="${projectInfoInstance?.plannedReleaseDate}" default="none" noSelection="['': '']" />
+	<g:textField name="plannedReleaseDate" alue="${formatDate(format:'dd-MM-yyyy',date:projectInfoInstance?.plannedReleaseDate)}" id="plannedReleaseDate"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'overallRating', 'error')} required">
-	<label for="overallRating">
-		<g:message code="projectInfo.overallRating.label" default="Overall Rating" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:field type="number" name="overallRating" required="" value="${fieldValue(bean: projectInfoInstance, field: 'overallRating')}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'ratingValue', 'error')} ">
-	<label for="ratingValue">
-		<g:message code="projectInfo.ratingValue.label" default="Rating Value" />
-		
-	</label>
-	<g:textField name="ratingValue" value="${projectInfoInstance?.ratingValue}"/>
-</div>
 
 <div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'category', 'error')} ">
 	<label for="category">
 		<g:message code="projectInfo.category.label" default="Category" />
 		
 	</label>
-	<g:textField name="category" value="${projectInfoInstance?.category}"/>
+	<g:textField name="category" value="${projectInfoInstance?.category}" readonly="readonly"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'invoiceStatus', 'error')} ">
@@ -200,73 +184,5 @@
 		
 	</label>
 	<g:textField name="invoiceNote" value="${projectInfoInstance?.invoiceNote}"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'risks', 'error')} ">
-	<label for="risks">
-		<g:message code="projectInfo.risks.label" default="Risks" />
-		
-	</label>
-	
-<ul class="one-to-many">
-<g:each in="${projectInfoInstance?.risks?}" var="r">
-    <li><g:link controller="risk" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="risk" action="create" params="['projectInfo.id': projectInfoInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'risk.label', default: 'Risk')])}</g:link>
-</li>
-</ul>
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'impediments', 'error')} ">
-	<label for="impediments">
-		<g:message code="projectInfo.impediments.label" default="Impediments" />
-		
-	</label>
-	
-<ul class="one-to-many">
-<g:each in="${projectInfoInstance?.impediments?}" var="i">
-    <li><g:link controller="impediment" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="impediment" action="create" params="['projectInfo.id': projectInfoInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'impediment.label', default: 'Impediment')])}</g:link>
-</li>
-</ul>
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'changeOrders', 'error')} ">
-	<label for="changeOrders">
-		<g:message code="projectInfo.changeOrders.label" default="Change Orders" />
-		
-	</label>
-	
-<ul class="one-to-many">
-<g:each in="${projectInfoInstance?.changeOrders?}" var="c">
-    <li><g:link controller="changeOrder" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="changeOrder" action="create" params="['projectInfo.id': projectInfoInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'changeOrder.label', default: 'ChangeOrder')])}</g:link>
-</li>
-</ul>
-
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'qualityTargets', 'error')} ">
-	<label for="qualityTargets">
-		<g:message code="projectInfo.qualityTargets.label" default="Quality Targets" />
-		
-	</label>
-	
-<ul class="one-to-many">
-<g:each in="${projectInfoInstance?.qualityTargets?}" var="q">
-    <li><g:link controller="qualityTarget" action="show" id="${q.id}">${q?.encodeAsHTML()}</g:link></li>
-</g:each>
-<li class="add">
-<g:link controller="qualityTarget" action="create" params="['projectInfo.id': projectInfoInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'qualityTarget.label', default: 'QualityTarget')])}</g:link>
-</li>
-</ul>
-
 </div>
 

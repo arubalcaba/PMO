@@ -171,7 +171,7 @@
 				<li class="fieldcontain">
 					<span id="startDate-label" class="property-label"><g:message code="projectInfo.startDate.label" default="Start Date" /></span>
 					
-						<span class="property-value" aria-labelledby="startDate-label"><g:formatDate date="${projectInfoInstance?.startDate}" /></span>
+						<span class="property-value" aria-labelledby="startDate-label"><g:formatDate format="yyyy-MM-dd" style="MEDIUM" date="${projectInfoInstance?.startDate}" /></span>
 					
 				</li>
 				</g:if>
@@ -180,7 +180,7 @@
 				<li class="fieldcontain">
 					<span id="closeDate-label" class="property-label"><g:message code="projectInfo.closeDate.label" default="Close Date" /></span>
 					
-						<span class="property-value" aria-labelledby="closeDate-label"><g:formatDate date="${projectInfoInstance?.closeDate}" /></span>
+						<span class="property-value" aria-labelledby="closeDate-label"><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.closeDate}" /></span>
 					
 				</li>
 				</g:if>
@@ -189,7 +189,7 @@
 				<li class="fieldcontain">
 					<span id="actualReleaseDate-label" class="property-label"><g:message code="projectInfo.actualReleaseDate.label" default="Actual Release Date" /></span>
 					
-						<span class="property-value" aria-labelledby="actualReleaseDate-label"><g:formatDate date="${projectInfoInstance?.actualReleaseDate}" /></span>
+						<span class="property-value" aria-labelledby="actualReleaseDate-label"><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.actualReleaseDate}" /></span>
 					
 				</li>
 				</g:if>
@@ -198,28 +198,11 @@
 				<li class="fieldcontain">
 					<span id="plannedReleaseDate-label" class="property-label"><g:message code="projectInfo.plannedReleaseDate.label" default="Planned Release Date" /></span>
 					
-						<span class="property-value" aria-labelledby="plannedReleaseDate-label"><g:formatDate date="${projectInfoInstance?.plannedReleaseDate}" /></span>
+						<span class="property-value" aria-labelledby="plannedReleaseDate-label"><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.plannedReleaseDate}" /></span>
 					
 				</li>
-				</g:if>
-			
-				<g:if test="${projectInfoInstance?.overallRating}">
-				<li class="fieldcontain">
-					<span id="overallRating-label" class="property-label"><g:message code="projectInfo.overallRating.label" default="Overall Rating" /></span>
-					
-						<span class="property-value" aria-labelledby="overallRating-label"><g:fieldValue bean="${projectInfoInstance}" field="overallRating"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${projectInfoInstance?.ratingValue}">
-				<li class="fieldcontain">
-					<span id="ratingValue-label" class="property-label"><g:message code="projectInfo.ratingValue.label" default="Rating Value" /></span>
-					
-						<span class="property-value" aria-labelledby="ratingValue-label"><g:fieldValue bean="${projectInfoInstance}" field="ratingValue"/></span>
-					
-				</li>
-				</g:if>
+				</g:if>			
+				
 			
 				<g:if test="${projectInfoInstance?.category}">
 				<li class="fieldcontain">

@@ -5,6 +5,7 @@
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'projectInfo.label', default: 'ProjectInfo')}" />
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
+        <script src='/PMO_Dashboard/js/edit.js' type='text/javascript'></script>
 	</head>
 	<body>
 		<a href="#edit-projectInfo" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -27,17 +28,32 @@
 				</g:eachError>
 			</ul>
 			</g:hasErrors>
-			<g:form method="post" >
-				<g:hiddenField name="id" value="${projectInfoInstance?.id}" />
-				<g:hiddenField name="version" value="${projectInfoInstance?.version}" />
-				<fieldset class="form">
-					<g:render template="form"/>
-				</fieldset>
-				<fieldset class="buttons">
-					<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" formnovalidate="" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
+		<div id="accordion">
+    		<h3><a href="#">Project</a></h3>
+                  <div>
+                    <g:form method="post" >
+						<g:hiddenField name="id" value="${projectInfoInstance?.id}" />
+						<g:hiddenField name="version" value="${projectInfoInstance?.version}" />
+						<fieldset class="form">
+							<g:render template="form"/>
+						</fieldset>
+						<fieldset class="buttons">
+							<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />							
+						</fieldset>
+					</g:form>
+                  </div>
+    <h3><a href="#">Quality Target</a></h3>
+        <div>Quality Target Info</div>
+     <h3><a href="#">Risks</a></h3>
+        <div>Quality Risk Info</div>
+         <h3><a href="#">Impediments</a></h3>
+        <div>Impediments Info</div>
+         <h3><a href="#">Change Order</a></h3>
+        <div>Change Order Info</div>
+      
+</div>
+			
+			
 		</div>
 	</body>
 </html>

@@ -8,9 +8,7 @@ class ProjectInfo {
 	Person deliveryManager;
 	String scrumMaster;
 	ProjectStatus status;
-	AuditStatus auditStatus;
-	double overallRating;
-	String ratingValue;
+	AuditStatus auditStatus;	
 	String link;
 	double budgetWithContractors;
 	double actualCost;
@@ -33,7 +31,7 @@ class ProjectInfo {
 		projectName(blank: false)
 		projectType(blank: false)
 		projectCode(blank: false)
-		deliveryManager(blank: false)
+		deliveryManager(nullable: true)
 		scrumMaster(nullable: true)
 		status(nullable: true)
 		auditStatus(nullable: true)
@@ -49,9 +47,7 @@ class ProjectInfo {
 		startDate(nullable: true)
 		closeDate(nullable: true)
 		actualReleaseDate(nullable: true)
-		plannedReleaseDate(nullable: true)
-		overallRating(nullable: true)
-		ratingValue(nullable: true)
+		plannedReleaseDate(nullable: true)		
 		category(nullable: true)
 		invoiceStatus(nullable: true)
 		invoiceNote(nullable: true)
