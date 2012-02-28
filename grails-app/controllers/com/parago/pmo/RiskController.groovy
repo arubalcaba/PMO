@@ -93,7 +93,9 @@ class RiskController {
 				redirect(action: "show", id: riskInstance.id)
 			}
 			json{
+				println params
 				def riskInstance = Risk.get(params.id)
+				println riskInstance
 				if (!riskInstance) {
 					response.status = 405;
 					render "Risk ${params.id} not found";
@@ -122,6 +124,7 @@ class RiskController {
 				}
 					
 				response.status = 200;
+				render "${message(code: 'default.updated.message', args: [message(code: 'risk.label', default: 'Risk'), riskInstance.id])}"
 			}
 		}
     }
@@ -149,7 +152,6 @@ class RiskController {
 			}
 			json{
 				def riskInstance = Risk.get(params.id)
-				println riskInstance;
 				if (!riskInstance) {
 					response.status = 405;
 					message = "Risk ${params.id} not found"
