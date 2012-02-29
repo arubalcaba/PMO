@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-     createAccordion();
+    // createAccordion();
      createDatePicker();
      createRiskTabel();
 });
@@ -35,13 +35,13 @@ function createRiskTabel()
                     "bJQueryUI": true,
                     "bProcessing": true,
                     "bAutoWidth" : true,
-                    "sAjaxSource": "#",
-                    "aoColumns": [{"bSearchable": false,"bSortable":false},{"bSearchable": false,"bSortable":false},null,null]
+                    "sAjaxSource": "/PMO_Dashboard/risk/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
+                    "aoColumns": [{"bVisible": false,"bSearchable": false,"bSortable":false},{"bVisible": false,"bSearchable": false,"bSortable":false},null,null]
 
                 }).makeEditable({
-                                    sUpdateURL: "#",
-                                    sAddURL: "#",
-                                    sDeleteURL: "#",
+                                    sUpdateURL: "/PMO_Dashboard/risk/update.json",
+                                    sAddURL: "/PMO_Dashboard/risk/save.json",
+                                    sDeleteURL: "/PMO_Dashboard/risk/delete.json",
                                     sAddNewRowFormId: "formAddRisk",
                                     sAddNewRowButtonId: "btnAddRisk",
                                     sDeleteRowButtonId: "btnDelRisk",
@@ -67,11 +67,7 @@ function createRiskTabel()
                                     oAddNewRowFormOptions: {    title: 'Add a new Risk - form',
                                                     show: "blind",
                                                     hide: "explode"
-                                    },
-                                    "aoColumns": [
-                                                   null,null,{cssclass:"requried"},{cssclass:"requried"}
-
-                                                             ]
+                                    }
                                         });
 
 

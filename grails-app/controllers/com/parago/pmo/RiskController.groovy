@@ -35,7 +35,7 @@ class RiskController {
 		flash.message = message(code: 'default.created.message', args: [message(code: 'risk.label', default: 'Risk'), riskInstance.id])
 		withFormat{
 			html{redirect(action: "show", id: riskInstance.id)}
-			json{response.status = 200;render riskInstance.id as JSON}
+			json{println riskInstance.id; response.status = 200;render text: riskInstance.id}
 		}
     }
 
@@ -124,7 +124,7 @@ class RiskController {
 				}
 					
 				response.status = 200;
-				render params.value
+				render text:params.value
 			}
 		}
     }

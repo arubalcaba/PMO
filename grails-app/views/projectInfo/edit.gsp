@@ -7,13 +7,14 @@
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.dataTables_themeroller.css')}" type="text/css">
      
-        <script src='/PMO_Dashboard/js/jquery.dataTables.min.js' type='text/javascript'></script>
+       
          <script src='/PMO_Dashboard/js/jquery.dataTables.editable.js' type='text/javascript'></script>
         <script src='/PMO_Dashboard/js/jquery.jeditable.js' type='text/javascript'></script>
         <script src='/PMO_Dashboard/js/edit.js' type='text/javascript'></script>
         
 	</head>
 	<body>
+	<g:hiddenField name="projectInfo" id="projectInfo" value="${projectInfoInstance?.id}" rel="1" />
 		<a href="#edit-projectInfo" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>
@@ -40,12 +41,13 @@
                     <g:form method="post" >
 						<g:hiddenField name="id" value="${projectInfoInstance?.id}" />
 						<g:hiddenField name="version" value="${projectInfoInstance?.version}" />
-						<fieldset class="form">
+						<!-- <fieldset class="form">
 							<g:render template="form"/>
 						</fieldset>
 						<fieldset class="buttons">
 							<g:actionSubmit class="save" action="update" value="${message(code: 'default.button.update.label', default: 'Update')}" />							
 						</fieldset>
+						-->
 					</g:form>
                   </div>
     <h3><a href="#">Quality Target</a></h3>
@@ -67,7 +69,7 @@
 	
  <form id="formAddRisk" action="#" title="Add New Risk">
 	<input type="hidden" name="id" id="id" rel="0" value="DATAROWID" />
-	<g:hiddenField name="projectInfoId" value="${projectInfoInstance?.id}" rel="1" />
+	<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />
 	<label for="riskt">Risk</label><br />
 	<input type="text" name="risk" id="risk" rel="2" class="required" /><br />
 	<label for="riskt">Risk Migration Strategy</label><br />

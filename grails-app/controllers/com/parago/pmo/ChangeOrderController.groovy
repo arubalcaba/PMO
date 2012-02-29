@@ -53,33 +53,45 @@ class ChangeOrderController {
     }
 
     def update() {
-        def changeOrderInstance = ChangeOrder.get(params.id)
-        if (!changeOrderInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'changeOrder.label', default: 'ChangeOrder'), params.id])
-            redirect(action: "list")
-            return
-        }
-
-        if (params.version) {
-            def version = params.version.toLong()
-            if (changeOrderInstance.version > version) {
-                changeOrderInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'changeOrder.label', default: 'ChangeOrder')] as Object[],
-                          "Another user has updated this ChangeOrder while you were editing")
-                render(view: "edit", model: [changeOrderInstance: changeOrderInstance])
-                return
-            }
-        }
-
-        changeOrderInstance.properties = params
-
-        if (!changeOrderInstance.save(flush: true)) {
-            render(view: "edit", model: [changeOrderInstance: changeOrderInstance])
-            return
-        }
-
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'changeOrder.label', default: 'ChangeOrder'), changeOrderInstance.id])
-        redirect(action: "show", id: changeOrderInstance.id)
+		withFormat{
+			html{
+				def changeOrderInstance = ChangeOrder.get(params.id)
+				if (!changeOrderInstance) {
+					flash.message = message(code: 'default.not.found.message', args: [message(code: 'changeOrder.label', default: 'ChangeOrder'), params.id])
+					redirect(action: "list")
+					return
+				}
+		
+				if (params.version) {
+					def version = params.version.toLong()
+					if (changeOrderInstance.version > version) {
+						changeOrderInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
+								  [message(code: 'changeOrder.label', default: 'ChangeOrder')] as Object[],
+								  "Another user has updated this ChangeOrder while you were editing")
+						render(view: "edit", model: [changeOrderInstance: changeOrderInstance])
+						return
+					}
+				}
+		
+				changeOrderInstance.properties = params
+		
+				if (!changeOrderInstance.save(flush: true)) {
+					render(view: "edit", model: [changeOrderInstance: changeOrderInstance])
+					return
+				}
+		
+				flash.message = message(code: 'default.updated.message', args: [message(code: 'changeOrder.label', default: 'ChangeOrder'), changeOrderInstance.id])
+				redirect(action: "show", id: changeOrderInstance.id)
+			}
+			json{
+				def changeOrderInstance = ChangeOrder.get(params.id)
+				if (!changeOrderInstance) {
+					response.status = 405;
+					render "Change Order ${params.id} not found"
+				}
+			}	
+		}
+       
     }
 
     def delete() {
