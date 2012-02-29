@@ -178,6 +178,16 @@ class RiskController {
 		def projectInfo = ProjectInfo.get(params.projectInfoId);
 		println projectInfo;
 		def riskList = projectInfo ? Risk.findAllByProjectInfo(projectInfo) : [];
-		render riskList as JSON
+		def jsonRiskResponse = []
+		//jsonRiskResponse.aaData=[];
+		
+		riskList?.each{ risk ->
+			jsonRiskResponse << [risk.id,
+										risk.projectInfo.id,
+										risk.risk,
+										risk.riskMigrationStrategy]
+		}
+
+		render jsonRiskResponse as JSON
 	}
 }
