@@ -124,7 +124,7 @@ class RiskController {
 				}
 					
 				response.status = 200;
-				render "${message(code: 'default.updated.message', args: [message(code: 'risk.label', default: 'Risk'), riskInstance.id])}"
+				render params.value
 			}
 		}
     }
@@ -178,11 +178,11 @@ class RiskController {
 		def projectInfo = ProjectInfo.get(params.projectInfoId);
 		println projectInfo;
 		def riskList = projectInfo ? Risk.findAllByProjectInfo(projectInfo) : [];
-		def jsonRiskResponse = []
-		//jsonRiskResponse.aaData=[];
+		def jsonRiskResponse = [:]
+		jsonRiskResponse.aaData=[];
 		
 		riskList?.each{ risk ->
-			jsonRiskResponse << [risk.id,
+			jsonRiskResponse.aaData << [risk.id,
 										risk.projectInfo.id,
 										risk.risk,
 										risk.riskMigrationStrategy]
