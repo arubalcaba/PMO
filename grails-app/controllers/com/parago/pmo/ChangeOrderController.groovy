@@ -29,9 +29,14 @@ class ChangeOrderController {
 
 		flash.message = message(code: 'default.created.message', args: [message(code: 'changeOrder.label', default: 'ChangeOrder'), changeOrderInstance.id])
 		withFormat{
-			
+			html{
+				redirect(action: "show", id: changeOrderInstance.id)
+			}
+			json{
+				response.status = 200;render text:changeOrderInstance.id
+			}
 		}
-        redirect(action: "show", id: changeOrderInstance.id)
+        
     }
 
     def show() {

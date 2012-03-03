@@ -161,7 +161,7 @@ class RiskController {
 				try {
 					riskInstance.delete(flush: true)
 					response.status = 200;
-					render "${message(code: 'default.deleted.message', args: [message(code: 'risk.label', default: 'Risk'), params.id])}"
+					render text:"ok";
 				}
 				catch (DataIntegrityViolationException e) {
 					message = message(code: 'default.not.deleted.message', args: [message(code: 'risk.label', default: 'Risk'), params.id])

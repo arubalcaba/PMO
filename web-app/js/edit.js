@@ -1,8 +1,9 @@
 $(document).ready(function() {
 
-    // createAccordion();
+     createAccordion();
      createDatePicker();
      createRiskTabel();
+     createImpedimentTable();
 });
 
 function createAccordion()
@@ -15,7 +16,8 @@ function createAccordion()
         $( "#accordion" ).accordion({
             icons: icons,
             collapsible: true,
-            active: false
+            active: false,
+            autoHeight: false
 
         });
         $( "#toggle" ).button().toggle(function() {
@@ -28,15 +30,62 @@ function createDatePicker ()
 {
       $( "#plannedReleaseDate" ).datepicker();
 }
+function createImpedimentTable(){
+     $('#impedimentTable').dataTable( {
+                    "bPaginate": true,
+                    "bJQueryUI": true,
+                    "bProcessing": true,
+                    "bAutoWidth" : false,
+                    "sAjaxSource": "/PMO_Dashboard/impediment/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
+                    "aoColumns": [{"bVisible": false,"bSearchable": false,"bSortable":false},{"bVisible": false,"bSearchable": false,"bSortable":false},{"bSortable":false},{"bSortable":false}]
+
+                }).makeEditable({
+                                    sUpdateURL: "/PMO_Dashboard/impediment/update.json",
+                                    sAddURL: "/PMO_Dashboard/impediment/save.json",
+                                    sDeleteURL: "/PMO_Dashboard/impediment/delete.json",
+                                    sAddNewRowFormId: "formAddImpediment",
+                                    sAddNewRowButtonId: "btnAddImpediment",
+                                    sDeleteRowButtonId: "btnDelImpediment",
+                                    sAddNewRowOkButtonId: "btnAddImpedimentOk",
+                                    sAddNewRowCancelButtonId: "btnAddImpedimentCancel",
+                                    oAddNewRowButtonOptions: {  label: "Add...",
+                                                    icons: {primary:'ui-icon-plus'}
+                                    },
+                                    oDeleteRowButtonOptions: {  label: "Remove",
+                                                    icons: {primary:'ui-icon-trash'}
+                                    },
+                                    oAddNewRowOkButtonOptions: {    label: "Confirm",
+                                                    icons: {primary:'ui-icon-check'},
+                                                    name:"action",
+                                                    value:"add-new"
+                                    },
+                                    oAddNewRowCancelButtonOptions: { label: "Close",
+                                                     "class": "back-class",
+                                                     name:"action",
+                                                     value:"cancel-add",
+                                                     icons: {primary:'ui-icon-close'}
+                                    },
+                                    oAddNewRowFormOptions: {    title: 'Add a new Risk - form',
+                                                    show: "blind",
+                                                    hide: "explode"
+                                    }
+                                        });
+    
+}
 function createRiskTabel()
 {
     $('#riskTable').dataTable( {
                     "bPaginate": true,
                     "bJQueryUI": true,
                     "bProcessing": true,
-                    "bAutoWidth" : true,
+                    "bAutoWidth" : false,
                     "sAjaxSource": "/PMO_Dashboard/risk/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
-                    "aoColumns": [{"bVisible": false,"bSearchable": false,"bSortable":false},{"bVisible": false,"bSearchable": false,"bSortable":false},null,null]
+                    "aoColumns": [
+                    {"bVisible": false,"bSearchable": false,"bSortable":false},
+                    {"bVisible": false,"bSearchable": false,"bSortable":false},
+                    {"bSortable":false},
+                    {"bSortable":false}
+                    ]
 
                 }).makeEditable({
                                     sUpdateURL: "/PMO_Dashboard/risk/update.json",

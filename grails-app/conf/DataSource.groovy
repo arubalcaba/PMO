@@ -14,7 +14,7 @@ environments {
     development {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-            url = "jdbc:h2:pmoDev;MVCC=TRUE"
+            url = "jdbc:h2:mem:pmoDev;MVCC=TRUE"
         }
     }
     test {

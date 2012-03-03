@@ -53,7 +53,7 @@
     <h3><a href="#">Quality Target</a></h3>
         <div>Quality Target Info</div>
      <h3><a href="#">Risks</a></h3>
-        <div>Quality Risk Info
+        <div>
         	<button id="btnAddRisk">Add Risk</button>
         	<button id="btnDelRisk">Delete Risk</button>
 				<table  width="100%" cellpadding="0" cellspacing="0" border="0" class="display" id="riskTable">
@@ -76,12 +76,37 @@
 	<input type="text" name="riskMigrationStrategy" id="riskMigrationStrategy" rel="3" class="required" /><br />
 	<br />
 	<button id="btnAddRiskCancel" value="cancel">Cancel</button>
-	<button id="btnAddRiskOk" value="Ok">Add User</button>	
+	<button id="btnAddRiskOk" value="Ok">Add Risk</button>	
 </form>
         
-        </div>
+     	</div>
          <h3><a href="#">Impediments</a></h3>
-        <div>Impediments Info</div>
+        <div>
+        	<button id="btnAddImpediment">Add Impediment</button>
+        	<button id="btnDelImpediment">Delete Impediment</button>
+				<table  width="100%" cellpadding="0" cellspacing="0" border="0" class="display" id="impedimentTable">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>ProjectInfoId</th>
+							<th>Impediment</th>
+							<th>Remediation Plan</th>
+						</tr>
+					</thead>
+					</table>
+	
+ <form id="formAddImpediment" action="#" title="Add New Impediment">
+	<input type="hidden" name="id" id="id" rel="0" value="DATAROWID" />
+	<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />
+	<label for="riskt">Impediment</label><br />
+	<input type="text" name="impediment" id="impediment" rel="2" class="required" /><br />
+	<label for="riskt">Remediation Plan</label><br />
+	<input type="text" name="remediationPlan" id="remediationPlan" rel="3" class="required" /><br />
+	<br />
+	<button id="btnAddImpedimentCancel" value="cancel">Cancel</button>
+	<button id="btnAddImpedimentOk" value="Ok">Add Impediment</button>	
+</form>
+        </div>
          <h3><a href="#">Change Order</a></h3>
         <div>Change Order Info</div>
       
