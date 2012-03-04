@@ -23,6 +23,15 @@
 			</g:if>
 			<ol class="property-list qualityTarget">
 			
+				<g:if test="${qualityTargetInstance?.projectInfo}">
+				<li class="fieldcontain">
+					<span id="projectInfo-label" class="property-label"><g:message code="qualityTarget.projectInfo.label" default="Project Info" /></span>
+					
+						<span class="property-value" aria-labelledby="projectInfo-label"><g:link controller="projectInfo" action="show" id="${qualityTargetInstance?.projectInfo?.id}">${qualityTargetInstance?.projectInfo?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${qualityTargetInstance?.qualityMeasurementProcess}">
 				<li class="fieldcontain">
 					<span id="qualityMeasurementProcess-label" class="property-label"><g:message code="qualityTarget.qualityMeasurementProcess.label" default="Quality Measurement Process" /></span>

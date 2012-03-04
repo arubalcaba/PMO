@@ -24,6 +24,8 @@
 				<thead>
 					<tr>
 					
+						<th><g:message code="qualityTarget.projectInfo.label" default="Project Info" /></th>
+					
 						<g:sortableColumn property="qualityMeasurementProcess" title="${message(code: 'qualityTarget.qualityMeasurementProcess.label', default: 'Quality Measurement Process')}" />
 					
 						<g:sortableColumn property="qualityTarget" title="${message(code: 'qualityTarget.qualityTarget.label', default: 'Quality Target')}" />
@@ -34,7 +36,9 @@
 				<g:each in="${qualityTargetInstanceList}" status="i" var="qualityTargetInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${qualityTargetInstance.id}">${fieldValue(bean: qualityTargetInstance, field: "qualityMeasurementProcess")}</g:link></td>
+						<td><g:link action="show" id="${qualityTargetInstance.id}">${fieldValue(bean: qualityTargetInstance, field: "projectInfo")}</g:link></td>
+					
+						<td>${fieldValue(bean: qualityTargetInstance, field: "qualityMeasurementProcess")}</td>
 					
 						<td>${fieldValue(bean: qualityTargetInstance, field: "qualityTarget")}</td>
 					

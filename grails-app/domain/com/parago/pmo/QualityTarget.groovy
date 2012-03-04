@@ -4,7 +4,7 @@ class QualityTarget {
 	
 	String qualityTarget;
 	String qualityMeasurementProcess;
-	static belongsTo = [projectInfo:ProjectInfo]
+	static belongsTo = [projectInfo:ProjectInfo];
 
     static constraints = {
     }
