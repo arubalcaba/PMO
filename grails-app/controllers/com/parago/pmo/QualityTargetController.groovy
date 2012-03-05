@@ -94,6 +94,7 @@ class QualityTargetController {
 				redirect(action: "show", id: qualityTargetInstance.id)
 			}
 			json{
+				println params;
 				def qualityTargetInstance = QualityTarget.get(params.id)
 				if (!qualityTargetInstance) {
 					response.status = 405;
@@ -116,7 +117,7 @@ class QualityTargetController {
 				else
 					qualityTargetInstance.qualityMeasurementProcess = params.value;
 					
-				(!qualityTargetInstance.save(flush: true)) {
+				if (!qualityTargetInstance.save(flush: true)) {
 						response.status = 404;
 						message = "an error occurred";
 						render message as JSON;
@@ -166,6 +167,20 @@ class QualityTargetController {
 				}
 			}
 		}
-       
     }
+	def dataTablesSource(){
+		def projectInfo = ProjectInfo.get(params.projectInfoId);
+		def qualityTargetList = projectInfo ? QualityTarget.findAllByProjectInfo(projectInfo):[];
+		def jsonResponse = [:];
+		jsonResponse.aaData=[];
+		
+		qualityTargetList?.each{ qualityTarget ->
+			jsonResponse.aaData << [qualityTarget.id,
+									qualityTarget.projectInfo.id,
+									qualityTarget.qualityTarget,
+									qualityTarget.qualityMeasurementProcess]
+		}
+		
+		render jsonResponse as JSON;
+	}
 }

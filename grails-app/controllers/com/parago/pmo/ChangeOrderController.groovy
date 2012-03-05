@@ -186,11 +186,5 @@ class ChangeOrderController {
 		}
 		
 		render jsonResponse as JSON;
-		
-		
-		
-		
-		
-		
 	}
 }

@@ -131,11 +131,14 @@
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'startDate', 'error')} ">
-	<label for="startDate">
-		<g:message code="projectInfo.startDate.label" default="Start Date" />
-		
-	</label>
-	<g:textField name="startDate" value="${formatDate(format:'dd-MM-yyyy',date:projectInfoInstance?.startDate)}" readonly="readonly" id="startDate"/>
+	<g:if test="${projectInfoInstance?.startDate}">
+				<li class="fieldcontain">
+					<span id="startDate-label" class="property-label"><g:message code="projectInfo.startDate.label" default="Start Date" /></span>
+					
+						<span class="property-value" aria-labelledby="startDate-label"><g:formatDate format="yyyy-MM-dd" style="MEDIUM" date="${projectInfoInstance?.startDate}" /></span>
+					
+				</li>
+				</g:if>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'closeDate', 'error')} ">
