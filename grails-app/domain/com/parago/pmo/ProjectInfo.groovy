@@ -23,7 +23,7 @@ class ProjectInfo {
 	Date actualReleaseDate;
 	Date plannedReleaseDate;
 	String category;
-	String invoiceStatus;
+	InvoiceStatus invoiceStatus;
 	String invoiceNote;
 	static hasMany =[risks:Risk,impediments:Impediment,changeOrders:ChangeOrder,qualityTargets:QualityTarget];
 	

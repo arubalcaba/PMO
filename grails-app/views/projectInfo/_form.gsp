@@ -1,30 +1,22 @@
 <%@ page import="com.parago.pmo.ProjectInfo" %>
-
-
-
-<div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'projectName', 'error')} required">
-	<label for="projectName">
-		<g:message code="projectInfo.projectName.label" default="Project Name" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="projectName" required="" value="${projectInfoInstance?.projectName}" readonly="readonly"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'projectType', 'error')} required">
-	<label for="projectType">
-		<g:message code="projectInfo.projectType.label" default="Project Type" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="projectType" required="" value="${projectInfoInstance?.projectType}" readonly="readonly"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'projectCode', 'error')} required">
-	<label for="projectCode">
-		<g:message code="projectInfo.projectCode.label" default="Project Code" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="projectCode" required="" value="${projectInfoInstance?.projectCode}" readonly="readonly"/>
-</div>
+<g:if test="${projectInfoInstance?.projectName}">
+				<li class="fieldcontain">
+					<span id="projectName-label" class="property-label"><g:message code="projectInfo.projectName.label" default="Project Name" /></span>					
+						<span class="property-value" aria-labelledby="projectName-label"><g:fieldValue bean="${projectInfoInstance}" field="projectName"/></span>
+				</li>
+</g:if>
+<g:if test="${projectInfoInstance?.projectType}">
+				<li class="fieldcontain">
+					<span id="projectType-label" class="property-label"><g:message code="projectInfo.projectType.label" default="Project Type" /></span>					
+					<span class="property-value" aria-labelledby="projectType-label"><g:fieldValue bean="${projectInfoInstance}" field="projectType"/></span>					
+				</li>
+</g:if>
+<g:if test="${projectInfoInstance?.projectCode}">
+				<li class="fieldcontain">
+					<span id="projectCode-label" class="property-label"><g:message code="projectInfo.projectCode.label" default="Project Code" /></span>					
+						<span class="property-value" aria-labelledby="projectCode-label"><g:fieldValue bean="${projectInfoInstance}" field="projectCode"/></span>					
+				</li>
+</g:if>
 
 <div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'deliveryManager', 'error')} required">
 	<label for="deliveryManager">
@@ -33,14 +25,12 @@
 	</label>
 	<g:select id="deliveryManager" name="deliveryManager.id" from="${com.parago.pmo.Person.list()}" optionKey="id" required="" value="${projectInfoInstance?.deliveryManager?.id}" class="many-to-one"/>
 </div>
-
-<div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'scrumMaster', 'error')} required">
-	<label for="scrumMaster">
-		<g:message code="projectInfo.scrumMaster.label" default="Scrum Master" />
-		<span class="required-indicator">*</span>
-	</label>
-	<g:textField name="scrumMaster" required="" value="${projectInfoInstance?.scrumMaster}" readonly="readonly"/>
-</div>
+<g:if test="${projectInfoInstance?.scrumMaster}">
+				<li class="fieldcontain">
+					<span id="scrumMaster-label" class="property-label"><g:message code="projectInfo.scrumMaster.label" default="Scrum Master" /></span>					
+					<span class="property-value" aria-labelledby="scrumMaster-label"><g:fieldValue bean="${projectInfoInstance}" field="scrumMaster"/></span>	
+				</li>
+				</g:if>
 
 <div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'status', 'error')} required">
 	<label for="status">
@@ -130,31 +120,26 @@
 	<g:field type="number" name="numberOfQualityMeasuresNotMet" required="" value="${fieldValue(bean: projectInfoInstance, field: 'numberOfQualityMeasuresNotMet')}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'startDate', 'error')} ">
-	<g:if test="${projectInfoInstance?.startDate}">
+
+<g:if test="${projectInfoInstance?.startDate}">
 				<li class="fieldcontain">
-					<span id="startDate-label" class="property-label"><g:message code="projectInfo.startDate.label" default="Start Date" /></span>
-					
-						<span class="property-value" aria-labelledby="startDate-label"><g:formatDate format="yyyy-MM-dd" style="MEDIUM" date="${projectInfoInstance?.startDate}" /></span>
-					
+					<span id="startDate-label" class="property-label"><g:message code="projectInfo.startDate.label" default="Start Date" /></span>					
+						<span class="property-value" aria-labelledby="startDate-label"><g:formatDate format="yyyy-MM-dd" style="MEDIUM" date="${projectInfoInstance?.startDate}" /></span>					
 				</li>
 				</g:if>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'closeDate', 'error')} ">
-	<label for="closeDate">
-		<g:message code="projectInfo.closeDate.label" default="Close Date" />
-		
-	</label>
-	<g:textField name="closeDate" value="${projectInfoInstance?.closeDate}" precision="day" id="closeDate" readonly="readonly"/>
-</div>
-
-<div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'actualReleaseDate', 'error')} ">
-	<label for="actualReleaseDate">
-		<g:message code="projectInfo.actualReleaseDate.label" default="Actual Release Date" />
-	</label>
-	<g:textField name="actualReleaseDate" id="actualReleaseDate" value="${projectInfoInstance?.actualReleaseDate}" precision="day" readonly="readonly" id="actualReleaseDate"/>
-</div>
+			
+<g:if test="${projectInfoInstance?.closeDate}">
+	<li class="fieldcontain">
+	    <span id="closeDate-label" class="property-label"><g:message code="projectInfo.closeDate.label" default="Close Date" /></span>					
+						<span class="property-value" aria-labelledby="closeDate-label"><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.closeDate}" /></span>					
+				</li>
+</g:if>
+   <g:if test="${projectInfoInstance?.actualReleaseDate}">
+		<li class="fieldcontain">
+			<span id="actualReleaseDate-label" class="property-label"><g:message code="projectInfo.actualReleaseDate.label" default="Actual Release Date" /></span>					
+						<span class="property-value" aria-labelledby="actualReleaseDate-label"><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.actualReleaseDate}" /></span>					
+				</li>
+</g:if>
 
 <div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'plannedReleaseDate', 'error')} ">
 	<label for="plannedReleaseDate">
@@ -163,22 +148,18 @@
 	</label>
 	<g:textField name="plannedReleaseDate" alue="${formatDate(format:'dd-MM-yyyy',date:projectInfoInstance?.plannedReleaseDate)}" id="plannedReleaseDate"/>
 </div>
-
-
-<div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'category', 'error')} ">
-	<label for="category">
-		<g:message code="projectInfo.category.label" default="Category" />
-		
-	</label>
-	<g:textField name="category" value="${projectInfoInstance?.category}" readonly="readonly"/>
-</div>
+<g:if test="${projectInfoInstance?.category}">
+	<li class="fieldcontain">
+		<span id="category-label" class="property-label"><g:message code="projectInfo.category.label" default="Category" /></span>					
+						<span class="property-value" aria-labelledby="category-label"><g:fieldValue bean="${projectInfoInstance}" field="category"/></span>					
+				</li>
+</g:if>
 
 <div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'invoiceStatus', 'error')} ">
 	<label for="invoiceStatus">
-		<g:message code="projectInfo.invoiceStatus.label" default="Invoice Status" />
-		
+		<g:message code="projectInfo.invoiceStatus.label" default="Invoice Status" />		
 	</label>
-	<g:textField name="invoiceStatus" value="${projectInfoInstance?.invoiceStatus}"/>
+	<g:select id="invoiceStatus" name="invoiceStatus.id" from="${com.parago.pmo.InvoiceStatus.list()}" optionKey="id" value="${projectInfoInstance?.invoiceStatus?.id}" class="many-to-one" noSelection="['null': '']"/>
 </div>
 
 <div class="fieldcontain ${hasErrors(bean: projectInfoInstance, field: 'invoiceNote', 'error')} ">

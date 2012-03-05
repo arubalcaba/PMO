@@ -232,14 +232,23 @@
 				</g:if>
 			
 				<g:if test="${projectInfoInstance?.risks}">
-				<li class="fieldcontain">
-					<span id="risks-label" class="property-label"><g:message code="projectInfo.risks.label" default="Risks" /></span>
-					
-						<g:each in="${projectInfoInstance.risks}" var="r">
-						<span class="property-value" aria-labelledby="risks-label"><g:link controller="risk" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
+					<!--<span id="risks-label" class="property-label"><g:message code="projectInfo.risks.label" default="Risks" /></span>-->
+						<div id="riskTable" class="fieldcontain">
+						    <table border="1">
+								  <caption>Risks</caption>
+								  <tr>
+								    <th>Risk</th>
+								    <th>riskMigrationStrategy</th>
+								  </tr>
+								  <g:each in="${projectInfoInstance.risks}" var="r">
+								  	<tr>
+								    	<td>${r.risk}</td>
+								    	<td>${r.riskMigrationStrategy}</td>
+								  </tr>
+						<!--  <span class="property-value" aria-labelledby="risks-label"><g:link controller="risk" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></span>-->
+								</g:each>
+								</table>
+						</div>				
 				</g:if>
 			
 				<g:if test="${projectInfoInstance?.impediments}">
@@ -280,7 +289,6 @@
 				<fieldset class="buttons">
 					<g:hiddenField name="id" value="${projectInfoInstance?.id}" />
 					<g:link class="edit" action="edit" id="${projectInfoInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
 				</fieldset>
 			</g:form>
 		</div>
