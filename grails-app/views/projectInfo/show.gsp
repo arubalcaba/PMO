@@ -232,13 +232,14 @@
 				</g:if>
 			
 				<g:if test="${projectInfoInstance?.risks}">
+				<li class="fieldcontain">
 					<!--<span id="risks-label" class="property-label"><g:message code="projectInfo.risks.label" default="Risks" /></span>-->
-						<div id="riskTable" class="fieldcontain">
+						<div id="riskTable">
 						    <table border="1">
 								  <caption>Risks</caption>
 								  <tr>
 								    <th>Risk</th>
-								    <th>riskMigrationStrategy</th>
+								    <th>Risk Migration Strategy</th>
 								  </tr>
 								  <g:each in="${projectInfoInstance.risks}" var="r">
 								  	<tr>
@@ -248,40 +249,74 @@
 						<!--  <span class="property-value" aria-labelledby="risks-label"><g:link controller="risk" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></span>-->
 								</g:each>
 								</table>
-						</div>				
+						</div>
+				  </li>				
 				</g:if>
 			
 				<g:if test="${projectInfoInstance?.impediments}">
 				<li class="fieldcontain">
-					<span id="impediments-label" class="property-label"><g:message code="projectInfo.impediments.label" default="Impediments" /></span>
-					
-						<g:each in="${projectInfoInstance.impediments}" var="i">
-						<span class="property-value" aria-labelledby="impediments-label"><g:link controller="impediment" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
+					<!-- <span id="impediments-label" class="property-label"><g:message code="projectInfo.impediments.label" default="Impediments" /></span>-->
+					<div id="impedimentsTable">
+						    <table border="1">
+								  <caption>Impediments</caption>
+								  <tr>
+								    <th>Impediment</th>
+								    <th>Remediation Plan</th>
+								  </tr>
+								  <g:each in="${projectInfoInstance.impediments}" var="i">
+								  	<tr>
+								    	<td>${i.impediment}</td>
+								    	<td>${i.remediationPlan}</td>
+								  </tr>
+						<!--  <span class="property-value" aria-labelledby="impediments-label"><g:link controller="impediment" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></span>-->
+								</g:each>
+								</table>
+						</div>
+						</li>				
 				</g:if>
 			
 				<g:if test="${projectInfoInstance?.changeOrders}">
 				<li class="fieldcontain">
-					<span id="changeOrders-label" class="property-label"><g:message code="projectInfo.changeOrders.label" default="Change Orders" /></span>
-					
-						<g:each in="${projectInfoInstance.changeOrders}" var="c">
-						<span class="property-value" aria-labelledby="changeOrders-label"><g:link controller="changeOrder" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
+				    <!--<span id="changeOrders-label" class="property-label"><g:message code="projectInfo.changeOrders.label" default="Change Orders" /></span>-->
+						<div id="changeOrderTable">
+						    <table border="1">
+								  <caption>Change Orders</caption>
+								  <tr>
+								    <th>Change Order Name</th>
+								    <th>Link</th>
+								  </tr>
+								  <g:each in="${projectInfoInstance.changeOrders}" var="c">
+								  	<tr>
+								    	<td>${c.changeOrderName}</td>
+								    	<td>${c.linkriskMigrationStrategy}</td>
+								  </tr>
+						<!--  <span class="property-value" aria-labelledby="changeOrders-label"><g:link controller="changeOrder" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></span>-->
+								</g:each>
+								</table>
+						</div>	
+						</li>		
 				</g:if>
 			
 				<g:if test="${projectInfoInstance?.qualityTargets}">
-				<li class="fieldcontain">
-					<span id="qualityTargets-label" class="property-label"><g:message code="projectInfo.qualityTargets.label" default="Quality Targets" /></span>
-					
-						<g:each in="${projectInfoInstance.qualityTargets}" var="q">
-						<span class="property-value" aria-labelledby="qualityTargets-label"><g:link controller="qualityTarget" action="show" id="${q.id}">${q?.encodeAsHTML()}</g:link></span>
-						</g:each>
-					
-				</li>
+				   <li class="fieldcontain">
+				  <!--<span id="qualityTargets-label" class="property-label"><g:message code="projectInfo.qualityTargets.label" default="Quality Targets" /></span>-->
+						<div id="riskTable">
+						    <table border="1">
+								  <caption>Quality Targets</caption>
+								  <tr>
+								    <th>Quality Target</th>
+								    <th>Quality Measurement Process</th>
+								  </tr>
+								  <g:each in="${projectInfoInstance.qualityTargets}" var="q">
+								  	<tr>
+								    	<td>${q.qualityTarget}</td>
+								    	<td>${q.qualityMeasurementProcess}</td>
+								  </tr>
+						<!-- <span class="property-value" aria-labelledby="qualityTargets-label"><g:link controller="qualityTarget" action="show" id="${q.id}">${q?.encodeAsHTML()}</g:link></span>-->
+								</g:each>
+								</table>
+						</div>
+						</li>							
 				</g:if>
 			
 			</ol>
