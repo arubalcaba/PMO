@@ -124,20 +124,20 @@
 <g:if test="${projectInfoInstance?.startDate}">
 				<li class="fieldcontain">
 					<span id="startDate-label" class="property-label"><g:message code="projectInfo.startDate.label" default="Start Date" /></span>					
-						<span class="property-value" aria-labelledby="startDate-label"><g:formatDate format="yyyy-MM-dd" style="MEDIUM" date="${projectInfoInstance?.startDate}" /></span>					
+						<span class="property-value" aria-labelledby="startDate-label"><g:formatDate format="MM-dd-yyyy" style="MEDIUM" date="${projectInfoInstance?.startDate}" /></span>					
 				</li>
 				</g:if>
 			
 <g:if test="${projectInfoInstance?.closeDate}">
 	<li class="fieldcontain">
 	    <span id="closeDate-label" class="property-label"><g:message code="projectInfo.closeDate.label" default="Close Date" /></span>					
-						<span class="property-value" aria-labelledby="closeDate-label"><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.closeDate}" /></span>					
+						<span class="property-value" aria-labelledby="closeDate-label"><g:formatDate format="MM-dd-yyyy" date="${projectInfoInstance?.closeDate}" /></span>					
 				</li>
 </g:if>
    <g:if test="${projectInfoInstance?.actualReleaseDate}">
 		<li class="fieldcontain">
 			<span id="actualReleaseDate-label" class="property-label"><g:message code="projectInfo.actualReleaseDate.label" default="Actual Release Date" /></span>					
-						<span class="property-value" aria-labelledby="actualReleaseDate-label"><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.actualReleaseDate}" /></span>					
+						<span class="property-value" aria-labelledby="actualReleaseDate-label"><g:formatDate format="MM-dd-yyyy" date="${projectInfoInstance?.actualReleaseDate}" /></span>					
 				</li>
 </g:if>
 
