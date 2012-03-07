@@ -212,15 +212,6 @@
 						
 					</g:if>
 				
-					<g:if test="${projectInfoInstance?.impediments}">
-						<dt><g:message code="projectInfo.impediments.label" default="Impediments" /></dt>
-						
-							<g:each in="${projectInfoInstance.impediments}" var="i">
-							<dd><g:link controller="impediment" action="show" id="${i.id}">${i?.encodeAsHTML()}</g:link></dd>
-							</g:each>
-						
-					</g:if>
-				
 					<g:if test="${projectInfoInstance?.qualityTargets}">
 						<dt><g:message code="projectInfo.qualityTargets.label" default="Quality Targets" /></dt>
 						
@@ -229,14 +220,77 @@
 							</g:each>
 						
 					</g:if>
-				
+					
 					<g:if test="${projectInfoInstance?.risks}">
-						<dt><g:message code="projectInfo.risks.label" default="Risks" /></dt>
-						
-							<g:each in="${projectInfoInstance.risks}" var="r">
-							<dd><g:link controller="risk" action="show" id="${r.id}">${r?.encodeAsHTML()}</g:link></dd>
-							</g:each>
-						
+						<div id="riskTable">
+						    <table class="table table-condensed table-bordered" style="width:50%">
+								  <caption>Risks</caption>
+								  <tr>
+								    <th style="text-align: center">Risk</th>
+								    <th style="text-align: center">Risk Migration Strategy</th>
+								  </tr>
+								  <g:each in="${projectInfoInstance.risks}" var="r">
+								  	<tr>
+								    	<td style="text-align: center">${r.risk}</td>
+								    	<td style="text-align: center">${r.riskMigrationStrategy}</td>
+								  </tr>
+								</g:each>
+								</table>
+						</div>
+					</g:if>
+					
+					<g:if test="${projectInfoInstance?.impediments}">
+					<div id="impedimentsTable">
+						    <table class="table table-condensed table-bordered" style="width:50%">
+								  <caption>Impediments</caption>
+								  <tr>
+								    <th style="text-align: center">Impediment</th>
+								    <th style="text-align: center">Remediation Plan</th>
+								  </tr>
+								  <g:each in="${projectInfoInstance.impediments}" var="i">
+								  	<tr>
+								    	<td style="text-align: center">${i.impediment}</td>
+								    	<td style="text-align: center">${i.remediationPlan}</td>
+								  </tr>
+								</g:each>
+								</table>
+						</div>
+						</g:if>
+					
+					<g:if test="${projectInfoInstance?.changeOrders}">
+						<div id="changeOrderTable">
+						    <table class="table table-condensed table-bordered" style="width:50%">
+								  <caption>Change Orders</caption>
+								  <tr>
+								    <th style="text-align: center">Change Order Name</th>
+								    <th style="text-align: center">Link</th>
+								  </tr>
+								  <g:each in="${projectInfoInstance.changeOrders}" var="c">
+								  	<tr>
+								    	<td style="text-align: center">${c.changeOrderName}</td>
+								    	<td style="text-align: center">${c.linkriskMigrationStrategy}</td>
+								  </tr>
+								</g:each>
+								</table>
+						</div>	
+					</g:if>
+					
+					<g:if test="${projectInfoInstance?.qualityTargets}">
+						<div id="qualityTargetsTable">
+						    <table class="table table-condensed table-bordered" style="width:50%">
+								  <caption>Quality Targets</caption>
+								  <tr>
+								    <th style="text-align: center">Quality Target</th>
+								    <th style="text-align: center">Quality Measurement Process</th>
+								  </tr>
+								  <g:each in="${projectInfoInstance.qualityTargets}" var="q">
+								  	<tr>
+								    	<td style="text-align: center">${q.qualityTarget}</td>
+								    	<td style="text-align: center">${q.qualityMeasurementProcess}</td>
+								  </tr>
+								</g:each>
+								</table>
+						</div>						
 					</g:if>
 				
 				</dl>
@@ -248,10 +302,7 @@
 							<i class="icon-pencil"></i>
 							<g:message code="default.button.edit.label" default="Edit" />
 						</g:link>
-						<button class="btn btn-danger" type="submit" name="_action_delete">
-							<i class="icon-trash icon-white"></i>
-							<g:message code="default.button.delete.label" default="Delete" />
-						</button>
+						
 					</div>
 				</g:form>
 
