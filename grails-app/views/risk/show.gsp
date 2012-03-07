@@ -3,61 +3,84 @@
 <!doctype html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="bootstrap">
 		<g:set var="entityName" value="${message(code: 'risk.label', default: 'Risk')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#show-risk" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="show-risk" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<ol class="property-list risk">
+		<div class="row-fluid">
 			
-				<g:if test="${riskInstance?.projectInfo}">
-				<li class="fieldcontain">
-					<span id="projectInfo-label" class="property-label"><g:message code="risk.projectInfo.label" default="Project Info" /></span>
-					
-						<span class="property-value" aria-labelledby="projectInfo-label"><g:link controller="projectInfo" action="show" id="${riskInstance?.projectInfo?.id}">${riskInstance?.projectInfo?.encodeAsHTML()}</g:link></span>
-					
-				</li>
+			<div class="span3">
+				<div class="well">
+					<ul class="nav nav-list">
+						<li class="nav-header">${entityName}</li>
+						<li>
+							<g:link class="list" action="list">
+								<i class="icon-list"></i>
+								<g:message code="default.list.label" args="[entityName]" />
+							</g:link>
+						</li>
+						<li>
+							<g:link class="create" action="create">
+								<i class="icon-plus"></i>
+								<g:message code="default.create.label" args="[entityName]" />
+							</g:link>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="span9">
+
+				<div class="page-header">
+					<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+				</div>
+
+				<g:if test="${flash.message}">
+				<bootstrap:alert class="alert-info">${flash.message}</bootstrap:alert>
 				</g:if>
-			
-				<g:if test="${riskInstance?.risk}">
-				<li class="fieldcontain">
-					<span id="risk-label" class="property-label"><g:message code="risk.risk.label" default="Risk" /></span>
-					
-						<span class="property-value" aria-labelledby="risk-label"><g:fieldValue bean="${riskInstance}" field="risk"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${riskInstance?.riskMigrationStrategy}">
-				<li class="fieldcontain">
-					<span id="riskMigrationStrategy-label" class="property-label"><g:message code="risk.riskMigrationStrategy.label" default="Risk Migration Strategy" /></span>
-					
-						<span class="property-value" aria-labelledby="riskMigrationStrategy-label"><g:fieldValue bean="${riskInstance}" field="riskMigrationStrategy"/></span>
-					
-				</li>
-				</g:if>
-			
-			</ol>
-			<g:form>
-				<fieldset class="buttons">
+
+				<dl>
+				
+					<g:if test="${riskInstance?.projectInfo}">
+						<dt><g:message code="risk.projectInfo.label" default="Project Info" /></dt>
+						
+							<dd><g:link controller="projectInfo" action="show" id="${riskInstance?.projectInfo?.id}">${riskInstance?.projectInfo?.encodeAsHTML()}</g:link></dd>
+						
+					</g:if>
+				
+					<g:if test="${riskInstance?.risk}">
+						<dt><g:message code="risk.risk.label" default="Risk" /></dt>
+						
+							<dd><g:fieldValue bean="${riskInstance}" field="risk"/></dd>
+						
+					</g:if>
+				
+					<g:if test="${riskInstance?.riskMigrationStrategy}">
+						<dt><g:message code="risk.riskMigrationStrategy.label" default="Risk Migration Strategy" /></dt>
+						
+							<dd><g:fieldValue bean="${riskInstance}" field="riskMigrationStrategy"/></dd>
+						
+					</g:if>
+				
+				</dl>
+
+				<g:form>
 					<g:hiddenField name="id" value="${riskInstance?.id}" />
-					<g:link class="edit" action="edit" id="${riskInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
+					<div class="form-actions">
+						<g:link class="btn" action="edit" id="${riskInstance?.id}">
+							<i class="icon-pencil"></i>
+							<g:message code="default.button.edit.label" default="Edit" />
+						</g:link>
+						<button class="btn btn-danger" type="submit" name="_action_delete">
+							<i class="icon-trash icon-white"></i>
+							<g:message code="default.button.delete.label" default="Delete" />
+						</button>
+					</div>
+				</g:form>
+
+			</div>
+
 		</div>
 	</body>
 </html>

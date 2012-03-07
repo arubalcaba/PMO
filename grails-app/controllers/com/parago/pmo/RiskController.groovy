@@ -5,10 +5,10 @@ import grails.converters.JSON
 
 class RiskController {
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
 
     def index() {
-        redirect(action: "list", params: params)
+        redirect action: 'list', params: params
     }
 
     def list() {
@@ -17,25 +17,26 @@ class RiskController {
     }
 
     def create() {
-        [riskInstance: new Risk(params)]
-    }
-
-    def save() {
-		println params
-        def riskInstance = new Risk(params)
-		println(params.toString());
-        if (!riskInstance.save(flush: true)) {
+		switch (request.method) {
+		case 'GET':
+        	[riskInstance: new Risk(params)]
+			break
+		case 'POST':
+	        def riskInstance = new Risk(params)
+	        if (!riskInstance.save(flush: true)) {
+	            render view: 'create', model: [riskInstance: riskInstance]
+	            return
+	        }
 			withFormat{
-				html{ render(view: "create", model: [riskInstance: riskInstance])
-					return}
-				json{response.status = 500}
+				html{
+					flash.message = message(code: 'default.created.message', args: [message(code: 'risk.label', default: 'Risk'), riskInstance.id])
+					redirect action: 'show', id: riskInstance.id
+				}
+				json{
+					response.status = 200;render text: riskInstance.id
+				}
 			}
-        }
-
-		flash.message = message(code: 'default.created.message', args: [message(code: 'risk.label', default: 'Risk'), riskInstance.id])
-		withFormat{
-			html{redirect(action: "show", id: riskInstance.id)}
-			json{println riskInstance.id; response.status = 200;render text: riskInstance.id}
+			break
 		}
     }
 
@@ -43,7 +44,7 @@ class RiskController {
         def riskInstance = Risk.get(params.id)
         if (!riskInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'risk.label', default: 'Risk'), params.id])
-            redirect(action: "list")
+            redirect action: 'list'
             return
         }
 
@@ -51,103 +52,102 @@ class RiskController {
     }
 
     def edit() {
-        def riskInstance = Risk.get(params.id)
-        if (!riskInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'risk.label', default: 'Risk'), params.id])
-            redirect(action: "list")
-            return
-        }
+		switch (request.method) {
+		case 'GET':
+	        def riskInstance = Risk.get(params.id)
+	        if (!riskInstance) {
+	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'risk.label', default: 'Risk'), params.id])
+	            redirect action: 'list'
+	            return
+	        }
 
-        [riskInstance: riskInstance]
-    }
-
-    def update() {
-		withFormat{
-			html{
-				def riskInstance = Risk.get(params.id)
-				if (!riskInstance) {
-					flash.message = message(code: 'default.not.found.message', args: [message(code: 'risk.label', default: 'Risk'), params.id])
-					redirect(action: "list")
-					return
-				}
-		
-				if (params.version) {
-					def version = params.version.toLong()
-					if (riskInstance.version > version) {
-						riskInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-								  [message(code: 'risk.label', default: 'Risk')] as Object[],
-								  "Another user has updated this Risk while you were editing")
-						render(view: "edit", model: [riskInstance: riskInstance])
+	        [riskInstance: riskInstance]
+			break
+		case 'POST':
+			withFormat{
+				html{
+					def riskInstance = Risk.get(params.id)
+					if (!riskInstance) {
+						flash.message = message(code: 'default.not.found.message', args: [message(code: 'risk.label', default: 'Risk'), params.id])
+						redirect action: 'list'
 						return
 					}
-				}
 		
-				riskInstance.properties = params
-		
-				if (!riskInstance.save(flush: true)) {
-					render(view: "edit", model: [riskInstance: riskInstance])
-					return
-				}
-		
-				flash.message = message(code: 'default.updated.message', args: [message(code: 'risk.label', default: 'Risk'), riskInstance.id])
-				redirect(action: "show", id: riskInstance.id)
-			}
-			json{
-				println params
-				def riskInstance = Risk.get(params.id)
-				println riskInstance
-				if (!riskInstance) {
-					response.status = 405;
-					render "Risk ${params.id} not found";
-				}
-				
-				if (params.version) {
-					def version = params.version.toLong()
-					if (riskInstance.version > version) {
-						riskInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-								  [message(code: 'risk.label', default: 'Risk')] as Object[],
-								  "Another user has updated this Risk while you were editing")
-						render(riskInstance.errors.allErrors as JSON)
+					if (params.version) {
+						def version = params.version.toLong()
+						if (riskInstance.version > version) {
+							riskInstance.errors.rejectValue('version', 'default.optimistic.locking.failure',
+									  [message(code: 'risk.label', default: 'Risk')] as Object[],
+									  "Another user has updated this Risk while you were editing")
+							render view: 'edit', model: [riskInstance: riskInstance]
+							return
+						}
 					}
+		
+					riskInstance.properties = params
+		
+					if (!riskInstance.save(flush: true)) {
+						render view: 'edit', model: [riskInstance: riskInstance]
+						return
+					}
+		
+					flash.message = message(code: 'default.updated.message', args: [message(code: 'risk.label', default: 'Risk'), riskInstance.id])
+					redirect action: 'show', id: riskInstance.id
 				}
-				
-				def columnId = params.columnId;
-				if(columnId == 2)
-					riskInstance.risk = params.value;
-				else
-					riskInstance.riskMigrationStrategy = params.value;
-				
-				if (!riskInstance.save(flush: true)) {
-						response.status = 404;
-						message = "an error occurred";
-						render message as JSON;
+				json{
+					def riskInstance = Risk.get(params.id)
+					if (!riskInstance) {
+						response.status = 405;
+						render "Risk ${params.id} not found";
+					}
+		
+					if (params.version) {
+						def version = params.version.toLong()
+						if (riskInstance.version > version) {
+							riskInstance.errors.rejectValue('version', 'default.optimistic.locking.failure',
+									  [message(code: 'risk.label', default: 'Risk')] as Object[],
+									  "Another user has updated this Risk while you were editing")
+							render riskInstance.errors.allErrors as JSON
+						}
+					}
+		
+					def columnId = params.columnId;
+					if(columnId == 2)
+						riskInstance.risk = params.value;
+					else
+						riskInstance.riskMigrationStrategy = params.value;
+		
+					if (!riskInstance.save(flush: true)) {
+						response.status = 405;
+						render "Risk could not be saved" as JSON
+					}
+					response.status = 200;
+					render text:params.value
 				}
-					
-				response.status = 200;
-				render text:params.value
 			}
+	        
+			break
 		}
     }
 
     def delete() {
-		
 		withFormat{
 			html{
 				def riskInstance = Risk.get(params.id)
 				if (!riskInstance) {
 					flash.message = message(code: 'default.not.found.message', args: [message(code: 'risk.label', default: 'Risk'), params.id])
-					redirect(action: "list")
+					redirect action: 'list'
 					return
 				}
 		
 				try {
 					riskInstance.delete(flush: true)
 					flash.message = message(code: 'default.deleted.message', args: [message(code: 'risk.label', default: 'Risk'), params.id])
-					redirect(action: "list")
+					redirect action: 'list'
 				}
 				catch (DataIntegrityViolationException e) {
 					flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'risk.label', default: 'Risk'), params.id])
-					redirect(action: "show", id: params.id)
+					redirect action: 'show', id: params.id
 				}
 			}
 			json{
@@ -164,13 +164,11 @@ class RiskController {
 					render text:"ok";
 				}
 				catch (DataIntegrityViolationException e) {
-					message = message(code: 'default.not.deleted.message', args: [message(code: 'risk.label', default: 'Risk'), params.id])
 					response.status = 405;
-					render message as JSON;
+					render "{message(code: 'default.not.deleted.message', args: [message(code: 'risk.label', default: 'Risk'), params.id])}" as JSON;
 				}
-				
 			}
-		}
+		} 
     }
 	
 	def dataTablesSource(){

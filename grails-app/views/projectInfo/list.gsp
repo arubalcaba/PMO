@@ -3,64 +3,90 @@
 <!doctype html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="bootstrap">
 		<g:set var="entityName" value="${message(code: 'projectInfo.label', default: 'ProjectInfo')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#list-projectInfo" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="list-projectInfo" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<table>
-				<thead>
-					<tr>
-					
-						<g:sortableColumn property="projectName" title="${message(code: 'projectInfo.projectName.label', default: 'Project Name')}" />
-					
-						<g:sortableColumn property="projectType" title="${message(code: 'projectInfo.projectType.label', default: 'Project Type')}" />
-					
-						<g:sortableColumn property="projectCode" title="${message(code: 'projectInfo.projectCode.label', default: 'Project Code')}" />
-					
-						<th><g:message code="projectInfo.deliveryManager.label" default="Delivery Manager" /></th>
-					
-						<g:sortableColumn property="scrumMaster" title="${message(code: 'projectInfo.scrumMaster.label', default: 'Scrum Master')}" />
-					
-						<th><g:message code="projectInfo.status.label" default="Status" /></th>
-					
-					</tr>
-				</thead>
-				<tbody>
-				<g:each in="${projectInfoInstanceList}" status="i" var="projectInfoInstance">
-					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-					
-						<td><g:link action="show" id="${projectInfoInstance.id}">${fieldValue(bean: projectInfoInstance, field: "projectName")}</g:link></td>
-					
-						<td>${fieldValue(bean: projectInfoInstance, field: "projectType")}</td>
-					
-						<td>${fieldValue(bean: projectInfoInstance, field: "projectCode")}</td>
-					
-						<td>${fieldValue(bean: projectInfoInstance, field: "deliveryManager")}</td>
-					
-						<td>${fieldValue(bean: projectInfoInstance, field: "scrumMaster")}</td>
-					
-						<td>${fieldValue(bean: projectInfoInstance, field: "status")}</td>
-					
-					</tr>
-				</g:each>
-				</tbody>
-			</table>
-			<div class="pagination">
-				<g:paginate total="${projectInfoInstanceTotal}" />
+		<div class="row-fluid">
+			
+			<div class="span3">
+				<div class="well">
+					<ul class="nav nav-list">
+						<li class="nav-header">${entityName}</li>
+						<li class="active">
+							<g:link class="list" action="list">
+								<i class="icon-list icon-white"></i>
+								<g:message code="default.list.label" args="[entityName]" />
+							</g:link>
+						</li>
+						<li>
+							<g:link class="create" action="create">
+								<i class="icon-plus"></i>
+								<g:message code="default.create.label" args="[entityName]" />
+							</g:link>
+						</li>
+					</ul>
+				</div>
 			</div>
+
+			<div class="span9">
+				
+				<div class="page-header">
+					<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+				</div>
+
+				<g:if test="${flash.message}">
+				<bootstrap:alert class="alert-info">${flash.message}</bootstrap:alert>
+				</g:if>
+				
+				<table class="table table-striped">
+					<thead>
+						<tr>
+						
+							<g:sortableColumn property="projectName" title="${message(code: 'projectInfo.projectName.label', default: 'Project Name')}" />
+						
+							<g:sortableColumn property="projectType" title="${message(code: 'projectInfo.projectType.label', default: 'Project Type')}" />
+						
+							<g:sortableColumn property="projectCode" title="${message(code: 'projectInfo.projectCode.label', default: 'Project Code')}" />
+						
+							<th class="header"><g:message code="projectInfo.deliveryManager.label" default="Delivery Manager" /></th>
+						
+							<g:sortableColumn property="scrumMaster" title="${message(code: 'projectInfo.scrumMaster.label', default: 'Scrum Master')}" />
+						
+							<th class="header"><g:message code="projectInfo.status.label" default="Status" /></th>
+						
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+					<g:each in="${projectInfoInstanceList}" var="projectInfoInstance">
+						<tr>
+						
+							<td>${fieldValue(bean: projectInfoInstance, field: "projectName")}</td>
+						
+							<td>${fieldValue(bean: projectInfoInstance, field: "projectType")}</td>
+						
+							<td>${fieldValue(bean: projectInfoInstance, field: "projectCode")}</td>
+						
+							<td>${fieldValue(bean: projectInfoInstance, field: "deliveryManager")}</td>
+						
+							<td>${fieldValue(bean: projectInfoInstance, field: "scrumMaster")}</td>
+						
+							<td>${fieldValue(bean: projectInfoInstance, field: "status")}</td>
+						
+							<td class="link">
+								<g:link action="show" id="${projectInfoInstance.id}" class="btn btn-small">Show &raquo;</g:link>
+							</td>
+						</tr>
+					</g:each>
+					</tbody>
+				</table>
+				<div class="pagination">
+					<bootstrap:paginate total="${projectInfoInstanceTotal}" />
+				</div>
+			</div>
+
 		</div>
 	</body>
 </html>

@@ -54,5 +54,6 @@ class ProjectInfo {
 		risks(nullable: true)
 		impediments(nullable: true)
 		changeOrders(nullable: true)
+		
     }
 }

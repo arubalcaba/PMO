@@ -174,8 +174,8 @@ function createRiskTabel()
                     ]
 
                 }).makeEditable({
-                                    sUpdateURL: "/PMO_Dashboard/risk/update.json",
-                                    sAddURL: "/PMO_Dashboard/risk/save.json",
+                                    sUpdateURL: "/PMO_Dashboard/risk/edit.json",
+                                    sAddURL: "/PMO_Dashboard/risk/create.json",
                                     sDeleteURL: "/PMO_Dashboard/risk/delete.json",
                                     sAddNewRowFormId: "formAddRisk",
                                     sAddNewRowButtonId: "btnAddRisk",

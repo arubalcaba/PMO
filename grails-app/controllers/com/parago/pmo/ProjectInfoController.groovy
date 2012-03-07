@@ -4,10 +4,10 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class ProjectInfoController {
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [create: ['GET', 'POST'], edit: ['GET', 'POST'], delete: 'POST']
 
     def index() {
-        redirect(action: "list", params: params)
+        redirect action: 'list', params: params
     }
 
     def list() {
@@ -16,25 +16,28 @@ class ProjectInfoController {
     }
 
     def create() {
-        [projectInfoInstance: new ProjectInfo(params)]
-    }
+		switch (request.method) {
+		case 'GET':
+        	[projectInfoInstance: new ProjectInfo(params)]
+			break
+		case 'POST':
+	        def projectInfoInstance = new ProjectInfo(params)
+	        if (!projectInfoInstance.save(flush: true)) {
+	            render view: 'create', model: [projectInfoInstance: projectInfoInstance]
+	            return
+	        }
 
-    def save() {
-        def projectInfoInstance = new ProjectInfo(params)
-        if (!projectInfoInstance.save(flush: true)) {
-            render(view: "create", model: [projectInfoInstance: projectInfoInstance])
-            return
-        }
-
-		flash.message = message(code: 'default.created.message', args: [message(code: 'projectInfo.label', default: 'ProjectInfo'), projectInfoInstance.id])
-        redirect(action: "show", id: projectInfoInstance.id)
+			flash.message = message(code: 'default.created.message', args: [message(code: 'projectInfo.label', default: 'ProjectInfo'), projectInfoInstance.id])
+	        redirect action: 'show', id: projectInfoInstance.id
+			break
+		}
     }
 
     def show() {
         def projectInfoInstance = ProjectInfo.get(params.id)
         if (!projectInfoInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'projectInfo.label', default: 'ProjectInfo'), params.id])
-            redirect(action: "list")
+            redirect action: 'list'
             return
         }
 
@@ -42,62 +45,65 @@ class ProjectInfoController {
     }
 
     def edit() {
-        def projectInfoInstance = ProjectInfo.get(params.id)
-        if (!projectInfoInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'projectInfo.label', default: 'ProjectInfo'), params.id])
-            redirect(action: "list")
-            return
-        }
+		switch (request.method) {
+		case 'GET':
+	        def projectInfoInstance = ProjectInfo.get(params.id)
+	        if (!projectInfoInstance) {
+	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'projectInfo.label', default: 'ProjectInfo'), params.id])
+	            redirect action: 'list'
+	            return
+	        }
 
-        [projectInfoInstance: projectInfoInstance]
-    }
+	        [projectInfoInstance: projectInfoInstance]
+			break
+		case 'POST':
+	        def projectInfoInstance = ProjectInfo.get(params.id)
+	        if (!projectInfoInstance) {
+	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'projectInfo.label', default: 'ProjectInfo'), params.id])
+	            redirect action: 'list'
+	            return
+	        }
 
-    def update() {
-        def projectInfoInstance = ProjectInfo.get(params.id)
-        if (!projectInfoInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'projectInfo.label', default: 'ProjectInfo'), params.id])
-            redirect(action: "list")
-            return
-        }
+	        if (params.version) {
+	            def version = params.version.toLong()
+	            if (projectInfoInstance.version > version) {
+	                projectInfoInstance.errors.rejectValue('version', 'default.optimistic.locking.failure',
+	                          [message(code: 'projectInfo.label', default: 'ProjectInfo')] as Object[],
+	                          "Another user has updated this ProjectInfo while you were editing")
+	                render view: 'edit', model: [projectInfoInstance: projectInfoInstance]
+	                return
+	            }
+	        }
 
-        if (params.version) {
-            def version = params.version.toLong()
-            if (projectInfoInstance.version > version) {
-                projectInfoInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'projectInfo.label', default: 'ProjectInfo')] as Object[],
-                          "Another user has updated this ProjectInfo while you were editing")
-                render(view: "edit", model: [projectInfoInstance: projectInfoInstance])
-                return
-            }
-        }
+	        projectInfoInstance.properties = params
 
-        projectInfoInstance.properties = params
+	        if (!projectInfoInstance.save(flush: true)) {
+	            render view: 'edit', model: [projectInfoInstance: projectInfoInstance]
+	            return
+	        }
 
-        if (!projectInfoInstance.save(flush: true)) {
-            render(view: "edit", model: [projectInfoInstance: projectInfoInstance])
-            return
-        }
-
-		flash.message = message(code: 'default.updated.message', args: [message(code: 'projectInfo.label', default: 'ProjectInfo'), projectInfoInstance.id])
-        redirect(action: "show", id: projectInfoInstance.id)
+			flash.message = message(code: 'default.updated.message', args: [message(code: 'projectInfo.label', default: 'ProjectInfo'), projectInfoInstance.id])
+	        redirect action: 'show', id: projectInfoInstance.id
+			break
+		}
     }
 
     def delete() {
         def projectInfoInstance = ProjectInfo.get(params.id)
         if (!projectInfoInstance) {
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'projectInfo.label', default: 'ProjectInfo'), params.id])
-            redirect(action: "list")
+            redirect action: 'list'
             return
         }
 
         try {
             projectInfoInstance.delete(flush: true)
 			flash.message = message(code: 'default.deleted.message', args: [message(code: 'projectInfo.label', default: 'ProjectInfo'), params.id])
-            redirect(action: "list")
+            redirect action: 'list'
         }
         catch (DataIntegrityViolationException e) {
 			flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'projectInfo.label', default: 'ProjectInfo'), params.id])
-            redirect(action: "show", id: params.id)
+            redirect action: 'show', id: params.id
         }
     }
 }

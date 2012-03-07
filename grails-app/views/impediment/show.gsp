@@ -3,61 +3,84 @@
 <!doctype html>
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="bootstrap">
 		<g:set var="entityName" value="${message(code: 'impediment.label', default: 'Impediment')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<a href="#show-impediment" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
-		</div>
-		<div id="show-impediment" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
-			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
-			</g:if>
-			<ol class="property-list impediment">
+		<div class="row-fluid">
 			
-				<g:if test="${impedimentInstance?.impediment}">
-				<li class="fieldcontain">
-					<span id="impediment-label" class="property-label"><g:message code="impediment.impediment.label" default="Impediment" /></span>
-					
-						<span class="property-value" aria-labelledby="impediment-label"><g:fieldValue bean="${impedimentInstance}" field="impediment"/></span>
-					
-				</li>
+			<div class="span3">
+				<div class="well">
+					<ul class="nav nav-list">
+						<li class="nav-header">${entityName}</li>
+						<li>
+							<g:link class="list" action="list">
+								<i class="icon-list"></i>
+								<g:message code="default.list.label" args="[entityName]" />
+							</g:link>
+						</li>
+						<li>
+							<g:link class="create" action="create">
+								<i class="icon-plus"></i>
+								<g:message code="default.create.label" args="[entityName]" />
+							</g:link>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="span9">
+
+				<div class="page-header">
+					<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+				</div>
+
+				<g:if test="${flash.message}">
+				<bootstrap:alert class="alert-info">${flash.message}</bootstrap:alert>
 				</g:if>
-			
-				<g:if test="${impedimentInstance?.remediationPlan}">
-				<li class="fieldcontain">
-					<span id="remediationPlan-label" class="property-label"><g:message code="impediment.remediationPlan.label" default="Remediation Plan" /></span>
-					
-						<span class="property-value" aria-labelledby="remediationPlan-label"><g:fieldValue bean="${impedimentInstance}" field="remediationPlan"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${impedimentInstance?.projectInfo}">
-				<li class="fieldcontain">
-					<span id="projectInfo-label" class="property-label"><g:message code="impediment.projectInfo.label" default="Project Info" /></span>
-					
-						<span class="property-value" aria-labelledby="projectInfo-label"><g:link controller="projectInfo" action="show" id="${impedimentInstance?.projectInfo?.id}">${impedimentInstance?.projectInfo?.encodeAsHTML()}</g:link></span>
-					
-				</li>
-				</g:if>
-			
-			</ol>
-			<g:form>
-				<fieldset class="buttons">
+
+				<dl>
+				
+					<g:if test="${impedimentInstance?.impediment}">
+						<dt><g:message code="impediment.impediment.label" default="Impediment" /></dt>
+						
+							<dd><g:fieldValue bean="${impedimentInstance}" field="impediment"/></dd>
+						
+					</g:if>
+				
+					<g:if test="${impedimentInstance?.remediationPlan}">
+						<dt><g:message code="impediment.remediationPlan.label" default="Remediation Plan" /></dt>
+						
+							<dd><g:fieldValue bean="${impedimentInstance}" field="remediationPlan"/></dd>
+						
+					</g:if>
+				
+					<g:if test="${impedimentInstance?.projectInfo}">
+						<dt><g:message code="impediment.projectInfo.label" default="Project Info" /></dt>
+						
+							<dd><g:link controller="projectInfo" action="show" id="${impedimentInstance?.projectInfo?.id}">${impedimentInstance?.projectInfo?.encodeAsHTML()}</g:link></dd>
+						
+					</g:if>
+				
+				</dl>
+
+				<g:form>
 					<g:hiddenField name="id" value="${impedimentInstance?.id}" />
-					<g:link class="edit" action="edit" id="${impedimentInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-					<g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
-				</fieldset>
-			</g:form>
+					<div class="form-actions">
+						<g:link class="btn" action="edit" id="${impedimentInstance?.id}">
+							<i class="icon-pencil"></i>
+							<g:message code="default.button.edit.label" default="Edit" />
+						</g:link>
+						<button class="btn btn-danger" type="submit" name="_action_delete">
+							<i class="icon-trash icon-white"></i>
+							<g:message code="default.button.delete.label" default="Delete" />
+						</button>
+					</div>
+				</g:form>
+
+			</div>
+
 		</div>
 	</body>
 </html>
