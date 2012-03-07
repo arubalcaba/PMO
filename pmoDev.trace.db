@@ -1,0 +1,24 @@
+03-06 09:13:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "CHANGE_ORDER" not found; SQL statement:
+alter table change_order drop constraint FKEB379FF4F071278 [42102-147]
+03-06 09:13:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "IMPEDIMENT" not found; SQL statement:
+alter table impediment drop constraint FK553B02BC4F071278 [42102-147]
+03-06 09:13:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "PROJECT_INFO" not found; SQL statement:
+alter table project_info drop constraint FK37FBDA145DF380A2 [42102-147]
+03-06 09:13:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "PROJECT_INFO" not found; SQL statement:
+alter table project_info drop constraint FK37FBDA14851CBCA0 [42102-147]
+03-06 09:13:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "PROJECT_INFO" not found; SQL statement:
+alter table project_info drop constraint FK37FBDA141A680BC [42102-147]
+03-06 09:13:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "PROJECT_INFO" not found; SQL statement:
+alter table project_info drop constraint FK37FBDA148AA13A1E [42102-147]
+03-06 09:13:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "QUALITY_TARGET" not found; SQL statement:
+alter table quality_target drop constraint FK571160D14F071278 [42102-147]
+03-06 09:13:38 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Table "RISK" not found; SQL statement:
+alter table risk drop constraint FK356ACF4F071278 [42102-147]
