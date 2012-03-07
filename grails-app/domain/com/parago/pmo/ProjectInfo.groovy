@@ -31,7 +31,7 @@ class ProjectInfo {
 		projectName(blank: false)
 		projectType(blank: false)
 		projectCode(blank: false)
-		deliveryManager(nullable: true)
+		deliveryManager(nullable: true,blank: false)
 		scrumMaster(nullable: true)
 		status(nullable: true)
 		auditStatus(nullable: true)

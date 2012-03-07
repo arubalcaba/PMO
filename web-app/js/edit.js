@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
-     createAccordion();
+    createAccordion();
      createDatePicker();
-     createRiskTabel();
-     createImpedimentTable();
-     createQualityTargetTable();
-     createChangeOrderTable();
+    createRiskTabel();
+    createImpedimentTable();
+    createQualityTargetTable();
+    createChangeOrderTable();
 });
 
 function createAccordion()
