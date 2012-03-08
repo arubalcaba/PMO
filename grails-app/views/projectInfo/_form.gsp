@@ -161,7 +161,8 @@
 				<g:message code="projectInfo.startDate.label" default="Start Date" />
 			</label>
 			<div class="controls">
-			<g:field type="date" name="startDate"  value="${projectInfoInstance?.startDate.format(dateFormat)}" readOnly="true"/>
+			<g:field type="date" name="viewstartDate"  value="${projectInfoInstance?.startDate.format(dateFormat)}" readOnly="true"/>
+			<g:hiddenField name="startDate" id="startDate" value="${projectInfoInstance?.startDate}" rel="1" />
 <%--			<g:formatDate format="MM-dd-yyyy" style="MEDIUM" date="${projectInfoInstance?.startDate}" />--%>
 			</div>
 		</div>
