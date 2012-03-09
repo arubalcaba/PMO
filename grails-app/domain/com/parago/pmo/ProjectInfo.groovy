@@ -22,6 +22,11 @@ class ProjectInfo {
 	Date closeDate;
 	Date actualReleaseDate;
 	Date plannedReleaseDate;
+	Date supportDocDelivered;
+	Date thirtyDayReview;
+	Date sixtyDayReview;
+	Date handOffComplete;
+    TurnoverStatus turnoverStatus;
 	String category;
 	InvoiceStatus invoiceStatus;
 	String invoiceNote;
@@ -49,6 +54,11 @@ class ProjectInfo {
 		actualReleaseDate(nullable: true)
 		plannedReleaseDate(nullable: true)		
 		category(nullable: true)
+		supportDocDelivered(nullable: true)
+		thirtyDayReview(nullable: true)
+		sixtyDayReview(nullable: true)
+		handOffComplete(nullable: true)
+		turnoverStatus(nullable: true)		
 		invoiceStatus(nullable: true)
 		invoiceNote(nullable: true)
 		risks(nullable: true)

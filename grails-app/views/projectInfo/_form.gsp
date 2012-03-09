@@ -213,6 +213,51 @@
 			</div>
 		</div>
 		</g:if>
+		
+		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'supportDocDelivered', 'error')} ">
+			<label class="control-label" for="supportDocDelivered">
+				<g:message code="projectInfo.supportDocDelivered.label" default="Support Doc Delivered Date" />
+			</label>
+			<div class="controls">
+			<g:textField name="supportDocDelivered" value="${formatDate(format:'dd-MM-yyyy',date:projectInfoInstance?.supportDocDelivered)}" id="supportDocDelivered"/>
+			</div>
+		</div>
+		
+		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'thirtyDayReview', 'error')} ">
+			<label class="control-label" for="thirtyDayReview">
+				<g:message code="projectInfo.thirtyDayReview.label" default="30 day Review Date" />
+			</label>
+			<div class="controls">
+			<g:textField name="thirtyDayReview" value="${formatDate(format:'dd-MM-yyyy',date:projectInfoInstance?.thirtyDayReview)}" id="thirtyDayReview"/>
+			</div>
+		</div>
+		
+		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'sixtyDayReview', 'error')} ">
+			<label class="control-label" for="sixtyDayReview">
+				<g:message code="projectInfo.sixtyDayReview.label" default="60 day Review Date" />
+			</label>
+			<div class="controls">
+			<g:textField name="sixtyDayReview" value="${formatDate(format:'dd-MM-yyyy',date:projectInfoInstance?.sixtyDayReview)}" id="sixtyDayReview"/>
+			</div>
+		</div>
+		
+		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'handOffComplete', 'error')} ">
+			<label class="control-label" for="handOffComplete">
+				<g:message code="projectInfo.handOffComplete.label" default="Hand Off Complete Date" />
+			</label>
+			<div class="controls">
+			<g:textField name="handOffComplete" value="${formatDate(format:'dd-MM-yyyy',date:projectInfoInstance?.handOffComplete)}" id="handOffComplete"/>
+			</div>
+		</div>
+		
+	  <div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'turnoverStatus', 'error')} ">
+			<label class="control-label" for="turnoverStatus">
+				<g:message code="projectInfo.turnoverStatus.label" default="Turnover Status" />
+			</label>
+			<div class="controls">
+			<g:select id="turnoverStatus" name="turnoverStatus.id" from="${com.parago.pmo.TurnoverStatus.list()}" optionKey="id" value="${projectInfoInstance?.turnoverStatus?.id}" class="many-to-one" noSelection="['null': '']"/>
+			</div>
+		</div>
 
 		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'invoiceStatus', 'error')} ">
 			<label class="control-label" for="invoiceStatus">

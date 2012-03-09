@@ -5,31 +5,18 @@
 		<meta name="layout" content="bootstrap">
 		<g:set var="entityName" value="${message(code: 'projectInfo.label', default: 'ProjectInfo')}" />
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
-<%--        <link rel="stylesheet" href="/PMO_Dashboard/jui/jquery-ui-1.8.16.custom.css" type="text/css">--%>
-        <link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.8.2/css/jquery.dataTables_themeroller.css" type="text/css">
-		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css" type="text/css">
-		<!--<script src='/PMO_Dashboard/js/jquery-ui-1.8.16.custom.min.js' type='text/javascript'></script>-->
-			<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js' type='text/javascript'></script>
-		<script src='https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js' type='text/javascript'></script>
-		<script src='http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.8.2/jquery.dataTables.js' type='text/javascript'></script>	
-		<script src='/PMO_Dashboard/js/jquery.dataTables.editable.js' type='text/javascript'></script>
-        <script src='/PMO_Dashboard/js/jquery.jeditable.js' type='text/javascript'></script>
-        <script src='/PMO_Dashboard/js/edit.js' type='text/javascript'></script>
         
-      <script type="text/css">
-		td.last-updated-cell {
-            background-color: yellow !important;
-            border: medium solid;
-        }
-        tr.last-added-row {
-            border: medium solid;
-         }
-         tr.last-added-row td {
-          background-color: green !important;
-         }
-      </script>
-          
-	</head>
+        <link rel="stylesheet" href="${resource(dir: 'jui', file: 'jquery-ui.css')}" type="text/css">    
+		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.dataTables_themeroller.css')}" type="text/css">
+		<script  rel="javascript" src="${resource(dir: 'js', file: 'jquery-ui-1.8.18.custom.min.js')}"  type="text/javascript"></script>
+		<script  rel="javascript" src="${resource(dir: 'js', file: 'jquery.validate.min.js')}"  type="text/javascript"></script>
+		<script  rel="javascript" src="${resource(dir: 'js', file: 'jquery.dataTables.min.js')}"  type="text/javascript"></script>
+		<script  rel="javascript" src="${resource(dir: 'js', file: 'jquery.dataTables.editable.js')}"  type="text/javascript"></script>
+		<script  rel="javascript" src="${resource(dir: 'js', file: 'jquery.jeditable.js')}"  type="text/javascript"></script>
+		<script  rel="javascript" src="${resource(dir: 'js', file: 'edit.js')}"  type="text/javascript"></script>
+
+        
+        </head>
 	<body>
 	<g:hiddenField name="projectInfo" id="projectInfo" value="${projectInfoInstance?.id}" rel="1" />
 		<div class="row-fluid">
@@ -43,13 +30,7 @@
 								<i class="icon-list"></i>
 								<g:message code="default.list.label" args="[entityName]" />
 							</g:link>
-						</li>
-						<li>
-							<g:link class="create" action="create">
-								<i class="icon-plus"></i>
-								<g:message code="default.create.label" args="[entityName]" />
-							</g:link>
-						</li>
+						</li>						
 					</ul>
 				</div>
 			</div>
@@ -112,8 +93,9 @@
 								<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />
 								<label for="riskt">Quality Target</label><br />
 								<input type="text" name="qualityTarget" id="qualityTarget" rel="2" class="required" /><br />
-								<label for="riskt">Quality Measurement Process</label><br />
-								<input type="text" name="qualityMeasurementProcess" id="qualityMeasurementProcess" rel="3" class="required" /><br />
+								<label for="riskt">Quality Measurement Process</label><br />								
+								<textarea rows="4" cols="50" maxlength="120" name="qualityMeasurementProcess" id="qualityMeasurementProcess" rel="3" class="required"></textarea><br />
+								
 								<br />
 								<button id="btnAddQualityTargetCancel" value="cancel">Cancel</button>
 								<button id="btnAddQualityTargetOk" value="Ok">Add Quality Target</button>	
@@ -139,9 +121,9 @@
 								<input type="hidden" name="id" id="id" rel="0" value="DATAROWID" />
 								<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />
 								<label for="riskt">Risk</label><br />
-								<input type="text" name="risk" id="risk" rel="2" class="required" /><br />
+								<input type="text" name="risk" id="risk" rel="2" class="required maxLength#5" /><br />
 								<label for="riskt">Risk Migration Strategy</label><br />
-								<input type="text" name="riskMigrationStrategy" id="riskMigrationStrategy" rel="3" class="required" /><br />
+								<textarea rows="4" cols="50" maxlength="120" name="riskMigrationStrategy" id="riskMigrationStrategy" rel="3" class="required"></textarea><br />
 								<br />
 								<button id="btnAddRiskCancel" value="cancel">Cancel</button>
 								<button id="btnAddRiskOk" value="Ok">Add Risk</button>	
@@ -168,8 +150,8 @@
 							<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />
 							<label for="riskt">Impediment</label><br />
 							<input type="text" name="impediment" id="impediment" rel="2" class="required" /><br />
-							<label for="riskt">Remediation Plan</label><br />
-							<input type="text" name="remediationPlan" id="remediationPlan" rel="3" class="required" /><br />
+							<label for="riskt">Remediation Plan</label><br />							
+							<textarea rows="4" cols="50" maxlength="120" name="remediationPlan" id="remediationPlan" rel="3" class="required"></textarea><br />
 							<br />
 							<button id="btnAddImpedimentCancel" value="cancel">Cancel</button>
 							<button id="btnAddImpedimentOk" value="Ok">Add Impediment</button>	
@@ -197,7 +179,7 @@
 								<label for="riskt">Change Order Name</label><br />
 								<input type="text" name="changeOrderName" id="changeOrderName" rel="2" class="required" /><br />
 								<label for="riskt">Link</label><br />
-								<input type="text" name="link" id="link" rel="3" class="required" /><br />
+								<input type="text" name="link" id="link" maxlength="120" rel="3" class="required" /><br />
 								<br />
 								<button id="btnAddChangeOrderCancel" value="cancel">Cancel</button>
 								<button id="btnAddChangeOrderOk" value="Ok">Add Change Order</button>	

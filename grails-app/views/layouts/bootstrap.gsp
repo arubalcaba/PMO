@@ -21,7 +21,7 @@
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
 		<link rel="apple-touch-icon" sizes="72x72" href="${resource(dir: 'images', file: 'apple-touch-icon-72x72.png')}">
 		<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-114x114.png')}">
-<%--		<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' type='text/javascript'></script>--%>
+
 		<r:layoutResources/>
 		
 		<g:layoutHead/>
@@ -44,7 +44,7 @@
 					<div class="nav-collapse">
 						<ul class="nav">							
 							<li<%= request.forwardURI == "${createLink(uri: '/')}" ? ' class="active"' : '' %>><a href="${createLink(uri: '/')}">Home</a></li>
-							<li><a href="/PMO_Dashboard/projectInfo/index">Project Info</a></li>
+							<li><a href="projectInfo/">Project Info</a></li>
 						</ul>
 					</div>
 				</div>

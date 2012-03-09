@@ -31,6 +31,10 @@ function createAccordion()
 function createDatePicker ()
 {
       $( "#plannedReleaseDate" ).datepicker();
+      $( "#supportDocDelivered" ).datepicker();
+      $( "#thirtyDayReview" ).datepicker();
+      $( "#sixtyDayReview" ).datepicker();
+      $( "#handOffComplete" ).datepicker();
 }
 function createQualityTargetTable(){
      $('#qualityTargetTable').dataTable( {
@@ -38,13 +42,13 @@ function createQualityTargetTable(){
                     "bJQueryUI": true,
                     "bProcessing": true,
                     "bAutoWidth" : false,
-                    "sAjaxSource": "/PMO_Dashboard/qualityTarget/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
+                    "sAjaxSource": "/qualityTarget/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
                     "aoColumns": [{"bVisible": false,"bSearchable": false,"bSortable":false},{"bVisible": false,"bSearchable": false,"bSortable":false},{"bSortable":false},{"bSortable":false}]
 
                 }).makeEditable({
-                                    sUpdateURL: "/PMO_Dashboard/qualityTarget/update.json",
-                                    sAddURL: "/PMO_Dashboard/qualityTarget/save.json",
-                                    sDeleteURL: "/PMO_Dashboard/qualityTarget/delete.json",
+                                    sUpdateURL: "/qualityTarget/edit.json",
+                                    sAddURL: "/qualityTarget/save.json",
+                                    sDeleteURL: "/qualityTarget/delete.json",
                                     sAddNewRowFormId: "formAddQualityTarget",
                                     sAddNewRowButtonId: "btnAddQualityTarget",
                                     sDeleteRowButtonId: "btnDelQualityTarget",
@@ -70,9 +74,21 @@ function createQualityTargetTable(){
                                     oAddNewRowFormOptions: {    title: 'Add a new Quality Target - form',
                                                     show: "blind",
                                                     hide: "explode"
-                                    }
+                                    },
+                                    "aoColumns": [
+                                                   {cssclass:"required",tooltip: 'Double Click to edit'},
+                                                  {
+                                                    cssclass:"required",
+                                                    type:   'textarea',
+                                                    cancel: 'Cancel',
+                                                    submit: 'OK',
+                                                    tooltip: 'Double Click to edit',
+                                                    maxlength: 120
+                                                }
+                                                 ]
+
                                         });
-    
+
 }
 function createChangeOrderTable(){
      $('#changeOrderTable').dataTable( {
@@ -80,13 +96,13 @@ function createChangeOrderTable(){
                     "bJQueryUI": true,
                     "bProcessing": true,
                     "bAutoWidth" : false,
-                    "sAjaxSource": "/PMO_Dashboard/changeOrder/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
+                    "sAjaxSource": "/changeOrder/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
                     "aoColumns": [{"bVisible": false,"bSearchable": false,"bSortable":false},{"bVisible": false,"bSearchable": false,"bSortable":false},{"bSortable":false},{"bSortable":false}]
 
                 }).makeEditable({
-                                    sUpdateURL: "/PMO_Dashboard/changeOrder/update.json",
-                                    sAddURL: "/PMO_Dashboard/changeOrder/save.json",
-                                    sDeleteURL: "/PMO_Dashboard/changeOrder/delete.json",
+                                    sUpdateURL: "/changeOrder/edit.json",
+                                    sAddURL: "/changeOrder/create.json",
+                                    sDeleteURL: "/changeOrder/delete.json",
                                     sAddNewRowFormId: "formAddChangeOrder",
                                     sAddNewRowButtonId: "btnAddChangeOrder",
                                     sDeleteRowButtonId: "btnDelChangeOrder",
@@ -112,9 +128,13 @@ function createChangeOrderTable(){
                                     oAddNewRowFormOptions: {    title: 'Add a new Change Order - form',
                                                     show: "blind",
                                                     hide: "explode"
-                                    }
+                                    },
+                                    "aoColumns": [
+                                                   {cssclass:"required",tooltip: 'Double Click to edit'},
+                                                  {cssclass:"required",tooltip: 'Double Click to edit', maxlength: 120}
+                                                 ]
                                         });
-    
+
 }
 function createImpedimentTable(){
      $('#impedimentTable').dataTable( {
@@ -122,13 +142,13 @@ function createImpedimentTable(){
                     "bJQueryUI": true,
                     "bProcessing": true,
                     "bAutoWidth" : false,
-                    "sAjaxSource": "/PMO_Dashboard/impediment/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
+                    "sAjaxSource": "/impediment/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
                     "aoColumns": [{"bVisible": false,"bSearchable": false,"bSortable":false},{"bVisible": false,"bSearchable": false,"bSortable":false},{"bSortable":false},{"bSortable":false}]
 
                 }).makeEditable({
-                                    sUpdateURL: "/PMO_Dashboard/impediment/update.json",
-                                    sAddURL: "/PMO_Dashboard/impediment/save.json",
-                                    sDeleteURL: "/PMO_Dashboard/impediment/delete.json",
+                                    sUpdateURL: "/impediment/edit.json",
+                                    sAddURL: "/impediment/create.json",
+                                    sDeleteURL: "/impediment/delete.json",
                                     sAddNewRowFormId: "formAddImpediment",
                                     sAddNewRowButtonId: "btnAddImpediment",
                                     sDeleteRowButtonId: "btnDelImpediment",
@@ -154,9 +174,20 @@ function createImpedimentTable(){
                                     oAddNewRowFormOptions: {    title: 'Add a new Impediment - form',
                                                     show: "blind",
                                                     hide: "explode"
-                                    }
+                                    },
+                                    "aoColumns": [
+                                                   {cssclass:"required",tooltip: 'Double Click to edit'},
+                                                  {
+                                                    cssclass:"required",
+                                                    type:   'textarea',
+                                                    cancel: 'Cancel',
+                                                    submit: 'OK',
+                                                    tooltip: 'Double Click to edit',
+                                                    maxlength: 120
+                                                }
+                                                 ]
                                         });
-    
+
 }
 function createRiskTabel()
 {
@@ -165,7 +196,7 @@ function createRiskTabel()
                     "bJQueryUI": true,
                     "bProcessing": true,
                     "bAutoWidth" : false,
-                    "sAjaxSource": "/PMO_Dashboard/risk/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
+                    "sAjaxSource": "/risk/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
                     "aoColumns": [
                     {"bVisible": false,"bSearchable": false,"bSortable":false},
                     {"bVisible": false,"bSearchable": false,"bSortable":false},
@@ -174,9 +205,9 @@ function createRiskTabel()
                     ]
 
                 }).makeEditable({
-                                    sUpdateURL: "/PMO_Dashboard/risk/edit.json",
-                                    sAddURL: "/PMO_Dashboard/risk/create.json",
-                                    sDeleteURL: "/PMO_Dashboard/risk/delete.json",
+                                    sUpdateURL: "/risk/edit.json",
+                                    sAddURL: "/risk/create.json",
+                                    sDeleteURL: "/risk/delete.json",
                                     sAddNewRowFormId: "formAddRisk",
                                     sAddNewRowButtonId: "btnAddRisk",
                                     sDeleteRowButtonId: "btnDelRisk",
@@ -202,7 +233,18 @@ function createRiskTabel()
                                     oAddNewRowFormOptions: {    title: 'Add a new Risk - form',
                                                     show: "blind",
                                                     hide: "explode"
-                                    }
+                                    },
+                                    "aoColumns": [
+                                                   {cssclass:"required",tooltip: 'Double Click to edit'},
+                                                  {
+                                                    cssclass:"required",
+                                                    type:   'textarea',
+                                                    cancel: 'Cancel',
+                                                    submit: 'OK',
+                                                    tooltip: 'Double Click to edit',
+                                                    maxlength: 120
+                                                }
+                                                 ]
                                         });
 
 

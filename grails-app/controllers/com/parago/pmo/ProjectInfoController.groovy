@@ -82,7 +82,7 @@ class ProjectInfoController {
 	            return
 	        }
 
-			flash.message = message(code: 'default.updated.message', args: [message(code: 'projectInfo.label', default: 'ProjectInfo'), projectInfoInstance.id])
+			flash.message = message(code: 'default.updated.message', args: [message(code: 'projectInfo.label', default: 'Project: '), projectInfoInstance.projectName])
 	        redirect action: 'show', id: projectInfoInstance.id
 			break
 		}

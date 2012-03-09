@@ -19,13 +19,7 @@
 								<i class="icon-list"></i>
 								<g:message code="default.list.label" args="[entityName]" />
 							</g:link>
-						</li>
-						<li>
-							<g:link class="create" action="create">
-								<i class="icon-plus"></i>
-								<g:message code="default.create.label" args="[entityName]" />
-							</g:link>
-						</li>
+						</li>						
 					</ul>
 				</div>
 			</div>
@@ -33,7 +27,7 @@
 			<div class="span9">
 
 				<div class="page-header">
-					<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+					<h1>Project : ${projectInfoInstance.projectName} Details</h1>
 				</div>
 
 				<g:if test="${flash.message}">
@@ -65,9 +59,7 @@
 				
 					<g:if test="${projectInfoInstance?.deliveryManager}">
 						<dt><g:message code="projectInfo.deliveryManager.label" default="Delivery Manager" /></dt>
-						
-							<dd><g:link controller="person" action="show" id="${projectInfoInstance?.deliveryManager?.id}">${projectInfoInstance?.deliveryManager?.encodeAsHTML()}</g:link></dd>
-						
+							<dd>${projectInfoInstance?.deliveryManager?.encodeAsHTML()}</dd>						
 					</g:if>
 				
 					<g:if test="${projectInfoInstance?.scrumMaster}">
@@ -79,16 +71,12 @@
 				
 					<g:if test="${projectInfoInstance?.status}">
 						<dt><g:message code="projectInfo.status.label" default="Status" /></dt>
-						
-							<dd><g:link controller="projectStatus" action="show" id="${projectInfoInstance?.status?.id}">${projectInfoInstance?.status?.encodeAsHTML()}</g:link></dd>
-						
+							<dd>${projectInfoInstance?.status?.encodeAsHTML()}</dd>						
 					</g:if>
 				
 					<g:if test="${projectInfoInstance?.auditStatus}">
 						<dt><g:message code="projectInfo.auditStatus.label" default="Audit Status" /></dt>
-						
-							<dd><g:link controller="auditStatus" action="show" id="${projectInfoInstance?.auditStatus?.id}">${projectInfoInstance?.auditStatus?.encodeAsHTML()}</g:link></dd>
-						
+							<dd>${projectInfoInstance?.auditStatus?.encodeAsHTML()}</dd>					
 					</g:if>
 				
 					<g:if test="${projectInfoInstance?.link}">
@@ -157,21 +145,21 @@
 					<g:if test="${projectInfoInstance?.startDate}">
 						<dt><g:message code="projectInfo.startDate.label" default="Start Date" /></dt>
 						
-							<dd><g:formatDate date="${projectInfoInstance?.startDate}" /></dd>
+							<dd><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.startDate}" /></dd>
 						
 					</g:if>
 				
 					<g:if test="${projectInfoInstance?.closeDate}">
 						<dt><g:message code="projectInfo.closeDate.label" default="Close Date" /></dt>
 						
-							<dd><g:formatDate date="${projectInfoInstance?.closeDate}" /></dd>
+							<dd><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.closeDate}" /></dd>
 						
 					</g:if>
 				
 					<g:if test="${projectInfoInstance?.actualReleaseDate}">
 						<dt><g:message code="projectInfo.actualReleaseDate.label" default="Actual Release Date" /></dt>
 						
-							<dd><g:formatDate date="${projectInfoInstance?.actualReleaseDate}" /></dd>
+							<dd><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.actualReleaseDate}" /></dd>
 						
 					</g:if>
 				
@@ -185,41 +173,49 @@
 					<g:if test="${projectInfoInstance?.category}">
 						<dt><g:message code="projectInfo.category.label" default="Category" /></dt>
 						
-							<dd><g:fieldValue bean="${projectInfoInstance}" field="category"/></dd>
+							<dd><g:fieldValue format="yyyy-MM-dd" bean="${projectInfoInstance}" field="category"/></dd>
 						
 					</g:if>
-				
+					<g:if test="${projectInfoInstance?.supportDocDelivered}">
+						<dt><g:message code="projectInfo.supportDocDelivered.label" default="Support Doc Delivered Date" /></dt>
+						
+							<dd><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.supportDocDelivered}" /></dd>
+						
+					</g:if>
+					<g:if test="${projectInfoInstance?.thirtyDayReview}">
+						<dt><g:message code="projectInfo.thirtyDayReview.label" default="30 day Review Date" /></dt>
+						
+							<dd><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.thirtyDayReview}" /></dd>
+						
+					</g:if>
+					<g:if test="${projectInfoInstance?.sixtyDayReview}">
+						<dt><g:message code="projectInfo.sixtyDayReview.label" default="60 day Review Date" /></dt>
+						
+							<dd><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.sixtyDayReview}" /></dd>
+						
+					</g:if>
+					<g:if test="${projectInfoInstance?.handOffComplete}">
+						<dt><g:message code="projectInfo.handOffComplete.label" default="Hand Off Complete Date" /></dt>
+						
+							<dd><g:formatDate date="${projectInfoInstance?.handOffComplete}" /></dd>
+						
+					</g:if>
+					<g:if test="${projectInfoInstance?.turnoverStatus}">
+						<dt><g:message code="projectInfo.supportStatus.label" default="Turnover Status" /></dt>
+							<dd>${projectInfoInstance?.turnoverStatus?.encodeAsHTML()}</dd>					
+					</g:if>
+
 					<g:if test="${projectInfoInstance?.invoiceStatus}">
 						<dt><g:message code="projectInfo.invoiceStatus.label" default="Invoice Status" /></dt>
-						
-							<dd><g:link controller="invoiceStatus" action="show" id="${projectInfoInstance?.invoiceStatus?.id}">${projectInfoInstance?.invoiceStatus?.encodeAsHTML()}</g:link></dd>
-						
+							<dd>${projectInfoInstance?.invoiceStatus?.encodeAsHTML()}</dd>
 					</g:if>
 				
 					<g:if test="${projectInfoInstance?.invoiceNote}">
 						<dt><g:message code="projectInfo.invoiceNote.label" default="Invoice Note" /></dt>
 						
-							<dd><g:fieldValue bean="${projectInfoInstance}" field="invoiceNote"/></dd>
-						
-					</g:if>
-				
-					<g:if test="${projectInfoInstance?.changeOrders}">
-						<dt><g:message code="projectInfo.changeOrders.label" default="Change Orders" /></dt>
-						
-							<g:each in="${projectInfoInstance.changeOrders}" var="c">
-							<dd><g:link controller="changeOrder" action="show" id="${c.id}">${c?.encodeAsHTML()}</g:link></dd>
-							</g:each>
-						
-					</g:if>
-				
-					<g:if test="${projectInfoInstance?.qualityTargets}">
-						<dt><g:message code="projectInfo.qualityTargets.label" default="Quality Targets" /></dt>
-						
-							<g:each in="${projectInfoInstance.qualityTargets}" var="q">
-							<dd><g:link controller="qualityTarget" action="show" id="${q.id}">${q?.encodeAsHTML()}</g:link></dd>
-							</g:each>
-						
-					</g:if>
+							<dd><g:fieldValue bean="${projectInfoInstance}" field="invoiceNote"/></dd>						
+					</g:if>			
+					
 					
 					<g:if test="${projectInfoInstance?.risks}">
 						<div id="riskTable">

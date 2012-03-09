@@ -2,8 +2,9 @@ import com.parago.pmo.AuditStatus;
 import com.parago.pmo.InvoiceStatus
 import com.parago.pmo.Person;
 import com.parago.pmo.ProjectInfo;
-import com.parago.pmo.ProjectStatus
+import com.parago.pmo.ProjectStatus;
 import com.parago.pmo.Risk;
+import com.parago.pmo.TurnoverStatus;
 
 class BootStrap {
 
@@ -36,6 +37,13 @@ class BootStrap {
 			new InvoiceStatus(status:" N/A - Corporate").save(failOnError: true);
 			
 		}
+		if(!TurnoverStatus.count())
+		{
+			new TurnoverStatus(status:"Planned").save(failOnError: true);
+			new TurnoverStatus(status:"Complete").save(failOnError: true);
+			new TurnoverStatus(status:"In Progress").save(failOnError: true);
+			new TurnoverStatus(status:"Not Applicable").save(failOnError: true);
+		}
 		if(!Person.count())
 		{
 			new Person(firstName: "Neelima", lastName:"Annam", email:"neelima@parago.com").save(failOnError: true);
@@ -47,7 +55,7 @@ class BootStrap {
 		}
 		if(!Risk.count)
 		{
-			new Risk(risk:"Herpes Risk", riskMigrationStrategy: "Something",projectInfo:ProjectInfo.getAll().get(0)).save(failOnError: true);
+			new Risk(risk:"Herpes Risk", riskMigrationStrategy: "Something",projectInfo:ProjectInfo.getAll().get(0), invoiceStatus:InvoiceStatus.getAll().get(0)).save(failOnError: true);
 		}
 		
 		
