@@ -48,15 +48,20 @@ class BootStrap {
 		{
 			new Person(firstName: "Neelima", lastName:"Annam", email:"neelima@parago.com").save(failOnError: true);
 			new Person(firstName: "Craig", lastName:"Hammer", email:"mchammer@parago.com").save(failOnError: true);
+			new Person(firstName: "Tom", lastName:"Kale", email:"tom.kale@parago.com").save(failOnError: true);
+			new Person(firstName: "Peggy", lastName:"Rattarree", email:"peggy.rattarree@parago.com").save(failOnError: true);
+			new Person(firstName: "Miriam", lastName:"Seasock", email:"miriam.seasock@parago.com").save(failOnError: true);
+			new Person(firstName: "Amy", lastName:"Tribndis", email:"amy.tribendis@parago.com").save(failOnError: true);
+			new Person(firstName: "Franz", lastName:"Zemen", email:"franz.zemen@parago.com").save(failOnError: true);
 		}
-		if(!ProjectInfo.count())
+		/*if(!ProjectInfo.count())
 		{
 			new ProjectInfo(projectName: "Project BAM",projectType: "Top Secret",projectCode: "123", startDate: new Date(), closeDate: new Date(), actualReleaseDate: new Date(), category: "test", scrumMaster: "Malcolm",    ).save(failOnError: true);
 		}
 		if(!Risk.count)
 		{
-			new Risk(risk:"Herpes Risk", riskMigrationStrategy: "Something",projectInfo:ProjectInfo.getAll().get(0), invoiceStatus:InvoiceStatus.getAll().get(0)).save(failOnError: true);
-		}
+			new Risk(risk:"Risk1", riskMigrationStrategy: "Something",projectInfo:ProjectInfo.getAll().get(0), invoiceStatus:InvoiceStatus.getAll().get(0)).save(failOnError: true);
+		}*/
 		
 		
     }

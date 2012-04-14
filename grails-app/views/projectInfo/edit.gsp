@@ -18,7 +18,12 @@
         
         </head>
 	<body>
-	<g:hiddenField name="projectInfo" id="projectInfo" value="${projectInfoInstance?.id}" rel="1" />
+	<g:hiddenField name="projectInfo" id="projectInfo" value="${projectInfoInstance?.id}"/>
+	<g:hiddenField name="context" id="context" value="${request.contextPath}"/>
+	
+	
+	
+	
 		<div class="row-fluid">
 
 			<div class="span3">

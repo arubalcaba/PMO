@@ -57,6 +57,7 @@ class ProjectInfoController {
 	        [projectInfoInstance: projectInfoInstance]
 			break
 		case 'POST':
+		    print params;
 	        def projectInfoInstance = ProjectInfo.get(params.id)
 	        if (!projectInfoInstance) {
 	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'projectInfo.label', default: 'ProjectInfo'), params.id])
@@ -74,8 +75,19 @@ class ProjectInfoController {
 	                return
 	            }
 	        }
-
-	        projectInfoInstance.properties = params
+	        projectInfoInstance.properties = params	
+			print params?.plannedReleaseDate	
+			
+			if(params?.plannedReleaseDate)
+			{
+				
+				projectInfoInstance?.plannedReleaseDate=Date.parse("MM/dd/yyyy",params?.plannedReleaseDate);
+				print projectInfoInstance?.plannedReleaseDate;
+				projectInfoInstance.clearErrors();
+			}
+			
+			
+			
 
 	        if (!projectInfoInstance.save(flush: true)) {
 	            render view: 'edit', model: [projectInfoInstance: projectInfoInstance]

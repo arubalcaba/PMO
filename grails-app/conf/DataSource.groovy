@@ -23,10 +23,24 @@ environments {
             url = "jdbc:h2:mem:testDb;MVCC=TRUE"
         }
     }
+	rrtdev{
+		
+		dataSource {
+			dbCreate = "update"
+			driverClassName = "com.mysql.jdbc.Driver"
+			username = "pmo"
+			password =  "pmo" 
+			url = "jdbc:mysql://184.106.212.88/pmo"			
+		}	
+	}
+
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE"
+			driverClassName = "com.mysql.jdbc.Driver"
+			username = "pmo"
+			password =  "pmo"
+			url = "jdbc:mysql://172.16.65.54/pmo"
             pooled = true
             properties {
                maxActive = -1

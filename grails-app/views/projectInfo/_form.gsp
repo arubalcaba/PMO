@@ -1,5 +1,8 @@
 <%@ page import="com.parago.pmo.ProjectInfo" %>
 		<g:set var="dateFormat" value="MM/dd/yyyy"/>
+		
+		 <fieldset>
+		 <legend>Project Information</legend>
 		<g:if test="${projectInfoInstance?.projectName}">
 		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'projectName', 'error')} required">
 			<label class="control-label" class="control-label" for="projectName">
@@ -7,7 +10,7 @@
 				
 			</label>
 			<div class="controls">
-				<g:textField name="projectName" value="${projectInfoInstance?.projectName}" readOnly="true"/>
+				<g:textField name="projectName" value="${projectInfoInstance?.projectName}" readOnly="true" style="width:50%"/>
 			</div>
 		</div>
 		</g:if>
@@ -18,10 +21,18 @@
 				<g:message code="projectInfo.projectCode.label" default="Project Code" />
 			</label>
 			<div class="controls">
-				<g:textField name="projectCode" value="${projectInfoInstance?.projectCode}" readOnly="true"/>
+				<g:textField name="projectCode" value="${projectInfoInstance?.projectCode}" readOnly="true" style="width:50%"/>
 			</div>
 		</div>
 		</g:if>
+		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'link', 'error')} ">
+			<label class="control-label" for="link">
+				<g:message code="projectInfo.link.label" default="Project Link" />
+			</label>
+			<div class="controls">
+			<g:textField name="link" value="${projectInfoInstance?.link}"/>
+			</div>
+		</div>
 		
 		<g:if test="${projectInfoInstance?.projectType}">
 		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'projectType', 'error')} required">
@@ -39,7 +50,7 @@
 				<g:message code="projectInfo.deliveryManager.label" default="Delivery Manager" />
 			</label>
 			<div class="controls">
-			<g:select id="deliveryManager" name="deliveryManager.id" from="${com.parago.pmo.Person.list()}" optionKey="id" required="" value="${projectInfoInstance?.deliveryManager?.id}" class="many-to-one" noSelection="['': '']"/>
+			<g:select id="deliveryManager" name="deliveryManager.id" from="${com.parago.pmo.Person.list().sort{it?.firstName}}" optionKey="id" required="" value="${projectInfoInstance?.deliveryManager?.id}" class="many-to-one" noSelection="['': '']"/>
 			</div>
 		</div>
 		
@@ -57,32 +68,50 @@
 	
 		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'status', 'error')} ">
 			<label class="control-label" class="control-label" for="status">
-				<g:message code="projectInfo.status.label" default="Status" />
+				<g:message code="projectInfo.status.label" default="Project Status" />
 			</label>
 			<div class="controls">
-			<g:select id="status" name="status.id" from="${com.parago.pmo.ProjectStatus.list()}" optionKey="id" value="${projectInfoInstance?.status?.id}" class="many-to-one" noSelection="['null': '']"/>
+			<g:select id="status" name="status.id" from="${com.parago.pmo.ProjectStatus.list().sort{it?.status}}" optionKey="id" value="${projectInfoInstance?.status?.id}" class="many-to-one" noSelection="['': '']"/>
 			</div>
 		</div>
-	
-		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'auditStatus', 'error')} ">
-			<label class="control-label" for="auditStatus">
-				<g:message code="projectInfo.auditStatus.label" default="Audit Status" />
-			</label>
-			<div class="controls">
-			<g:select id="auditStatus" name="auditStatus.id" from="${com.parago.pmo.AuditStatus.list()}" optionKey="id" value="${projectInfoInstance?.auditStatus?.id}" class="many-to-one" noSelection="['null': '']"/>
+		</fieldset>
+	 <fieldset>
+		 <legend>Schedule Information</legend>
+			 	<g:if test="${projectInfoInstance?.startDate}">
+					 <div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'startDate', 'error')} ">
+					<label class="control-label" for="startDate">
+						<g:message code="projectInfo.startDate.label" default="Start Date" />
+					</label>
+					<div class="controls">
+						<g:field type="date" name="viewstartDate"  value="${projectInfoInstance?.startDate.format(dateFormat)}" readOnly="true"/>
+					    <g:hiddenField name="startDate" id="startDate" value="${projectInfoInstance?.startDate}" />				
+					</div>
+				</div>
+			  </g:if>
+			  <div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'plannedReleaseDate', 'error')} ">
+				<label class="control-label" for="plannedReleaseDate">
+					<g:message code="projectInfo.plannedReleaseDate.label" default="Planned Release Date" />
+				</label>
+				<div class="controls">
+				<g:textField name="plannedReleaseDate" value="${formatDate(format:'MM/dd/yyyy',date:projectInfoInstance?.plannedReleaseDate)}" id="plannedReleaseDate"/>
+				</div>
 			</div>
-		</div>
-	
-		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'link', 'error')} ">
-			<label class="control-label" for="link">
-				<g:message code="projectInfo.link.label" default="Link" />
-			</label>
-			<div class="controls">
-			<g:textField name="link" value="${projectInfoInstance?.link}"/>
+			<g:if test="${projectInfoInstance?.actualReleaseDate}">
+			<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'actualReleaseDate', 'error')} ">
+				<label class="control-label" for="actualReleaseDate">
+					<g:message code="projectInfo.actualReleaseDate.label" default="Actual Release Date" />					
+				</label>
+				<div class="controls">
+				<g:field type="date" name="viewActualReleaseDate"  value="${projectInfoInstance?.actualReleaseDate.format(dateFormat)}" readOnly="true"/>
+			     <g:hiddenField name="actualReleaseDate" id="actualReleaseDate" value="${projectInfoInstance?.actualReleaseDate}" />		
+				</div>
 			</div>
-		</div>
-
-		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'budgetWithContractors', 'error')} required">
+		</g:if>		
+	</fieldset>
+   <fieldset>
+		 <legend>Budget Information</legend>
+		 
+		 <div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'budgetWithContractors', 'error')} required">
 			<label class="control-label" for="budgetWithContractors">
 				<g:message code="projectInfo.budgetWithContractors.label" default="Budget w/Contractors" />
 				<span class="required-indicator"></span>
@@ -90,8 +119,7 @@
 			<div class="controls">
 			<g:field type="number" name="budgetWithContractors" required="" value="${fieldValue(bean: projectInfoInstance, field: 'budgetWithContractors')}"/>
 			</div>
-		</div>
-
+		 </div>
 		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'actualCost', 'error')} required">
 			<label class="control-label" for="actualCost">
 				<g:message code="projectInfo.actualCost.label" default="Actual Cost" />
@@ -117,27 +145,12 @@
 			<div class="controls">
 			<g:field type="number" name="loeHours" required="" value="${fieldValue(bean: projectInfoInstance, field: 'loeHours')}"/>
 			</div>
-		</div>
-
-		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'anticipatedClientGP', 'error')} required">
-			<label class="control-label" for="anticipatedClientGP">
-				<g:message code="projectInfo.anticipatedClientGP.label" default="Anticipated Client GP" />
-			</label>
-			<div class="controls">
-			<g:field type="number" name="anticipatedClientGP" required="" value="${fieldValue(bean: projectInfoInstance, field: 'anticipatedClientGP')}"/>
-			</div>
-		</div>
-
-		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'billableAmount', 'error')} required">
-			<label class="control-label" for="billableAmount">
-				<g:message code="projectInfo.billableAmount.label" default="Billable Amount" />
-			</label>
-			<div class="controls">
-			<g:field type="number" name="billableAmount" required="" value="${fieldValue(bean: projectInfoInstance, field: 'billableAmount')}"/>
-			</div>
-		</div>
-
-		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'numberOfQualityMeasures', 'error')} required">
+		</div>	
+	 	
+	</fieldset>
+		<fieldset>
+		 <legend>Quality Information</legend>
+		 <div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'numberOfQualityMeasures', 'error')} required">
 			<label class="control-label" for="numberOfQualityMeasures">
 				<g:message code="projectInfo.numberOfQualityMeasures.label" default="Number Of Quality Measures" />
 			</label>
@@ -154,55 +167,10 @@
 			<g:field type="number" name="numberOfQualityMeasuresNotMet" required="" value="${fieldValue(bean: projectInfoInstance, field: 'numberOfQualityMeasuresNotMet')}"/>
 			</div>
 		</div>
-		
-		<g:if test="${projectInfoInstance?.startDate}">
-		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'startDate', 'error')} ">
-			<label class="control-label" for="startDate">
-				<g:message code="projectInfo.startDate.label" default="Start Date" />
-			</label>
-			<div class="controls">
-			<g:field type="date" name="viewstartDate"  value="${projectInfoInstance?.startDate.format(dateFormat)}" readOnly="true"/>
-			<g:hiddenField name="startDate" id="startDate" value="${projectInfoInstance?.startDate}" rel="1" />
-<%--			<g:formatDate format="MM-dd-yyyy" style="MEDIUM" date="${projectInfoInstance?.startDate}" />--%>
-			</div>
-		</div>
-		</g:if>
-		
-		<g:if test="${projectInfoInstance?.closeDate}">
-		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'closeDate', 'error')} ">
-			<label class="control-label" for="closeDate">
-				<g:message code="projectInfo.closeDate.label" default="Close Date" />
-			</label>
-			<div class="controls">
-			<g:field type="date" name="startDate"  value="${projectInfoInstance?.closeDate.format(dateFormat)}" readOnly="true"/>
-			</div>
-		</div>
-		</g:if>
-
-		<g:if test="${projectInfoInstance?.actualReleaseDate}">
-		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'actualReleaseDate', 'error')} ">
-			<label class="control-label" for="actualReleaseDate">
-				<g:message code="projectInfo.actualReleaseDate.label" default="Actual Release Date" />
-				
-			</label>
-			<div class="controls">
-			<g:field type="date" name="startDate"  value="${projectInfoInstance?.actualReleaseDate.format(dateFormat)}" readOnly="true"/>
-			</div>
-		</div>
-		</g:if>
-		
-		
-
-		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'plannedReleaseDate', 'error')} ">
-			<label class="control-label" for="plannedReleaseDate">
-				<g:message code="projectInfo.plannedReleaseDate.label" default="Planned Release Date" />
-			</label>
-			<div class="controls">
-			<g:textField name="plannedReleaseDate" value="${formatDate(format:'dd-MM-yyyy',date:projectInfoInstance?.plannedReleaseDate)}" id="plannedReleaseDate"/>
-			</div>
-		</div>
-		
-		<g:if test="${projectInfoInstance?.category}">
+	</fieldset>
+	<fieldset>
+		 <legend>Management Information</legend>
+		 <g:if test="${projectInfoInstance?.category}">
 		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'category', 'error')} ">
 			<label class="control-label" for="category">
 				<g:message code="projectInfo.category.label" default="Category" />
@@ -213,8 +181,20 @@
 			</div>
 		</div>
 		</g:if>
+
+		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'anticipatedClientGP', 'error')} required">
+			<label class="control-label" for="anticipatedClientGP">
+				<g:message code="projectInfo.anticipatedClientGP.label" default="Anticipated Client GP" />
+			</label>
+			<div class="controls">
+			<g:field type="number" name="anticipatedClientGP" required="" value="${fieldValue(bean: projectInfoInstance, field: 'anticipatedClientGP')}"/>
+			</div>
+		</div>
 		
-		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'supportDocDelivered', 'error')} ">
+	</fieldset>
+	<fieldset>
+		 <legend>Support Turnover & Audit Closedown Information</legend>
+		 <div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'supportDocDelivered', 'error')} ">
 			<label class="control-label" for="supportDocDelivered">
 				<g:message code="projectInfo.supportDocDelivered.label" default="Support Doc Delivered Date" />
 			</label>
@@ -255,27 +235,36 @@
 				<g:message code="projectInfo.turnoverStatus.label" default="Turnover Status" />
 			</label>
 			<div class="controls">
-			<g:select id="turnoverStatus" name="turnoverStatus.id" from="${com.parago.pmo.TurnoverStatus.list()}" optionKey="id" value="${projectInfoInstance?.turnoverStatus?.id}" class="many-to-one" noSelection="['null': '']"/>
+			<g:select id="turnoverStatus" name="turnoverStatus.id" from="${com.parago.pmo.TurnoverStatus.list().sort{it?.status}}" optionKey="id" value="${projectInfoInstance?.turnoverStatus?.id}" class="many-to-one" noSelection="['null': '']"/>
 			</div>
 		</div>
-
-		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'invoiceStatus', 'error')} ">
-			<label class="control-label" for="invoiceStatus">
-				<g:message code="projectInfo.invoiceStatus.label" default="Invoice Status" />
+		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'auditStatus', 'error')} ">
+			<label class="control-label" for="auditStatus">
+				<g:message code="projectInfo.auditStatus.label" default="Audit Status" />
 			</label>
 			<div class="controls">
-			<g:select id="invoiceStatus" name="invoiceStatus.id" from="${com.parago.pmo.InvoiceStatus.list()}" optionKey="id" value="${projectInfoInstance?.invoiceStatus?.id}" class="many-to-one" noSelection="['null': '']"/>
+			<g:select id="auditStatus" name="auditStatus.id" from="${com.parago.pmo.AuditStatus.list().sort{it?.status}}" optionKey="id" value="${projectInfoInstance?.auditStatus?.id}" class="many-to-one" noSelection="['null': '']"/>
 			</div>
 		</div>
-
-		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'invoiceNote', 'error')} ">
-			<label class="control-label" for="invoiceNote">
-				<g:message code="projectInfo.invoiceNote.label" default="Invoice Note" />
+		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'auditTurnoverComments', 'error')} ">
+			<label class="control-label" for="auditTurnoverComments">
+				<g:message code="projectInfo.auditTurnoverComments.label" default="Audit Turnover Comments" />
 			</label>
 			<div class="controls">
-			<g:textArea name="invoiceNote" value="${projectInfoInstance?.invoiceNote}"/>
+			<g:textArea name="auditTurnoverComments" value="${projectInfoInstance?.auditTurnoverComments}"/>
 			</div>
 		</div>
 
-
+		 <g:if test="${projectInfoInstance?.closeDate}">
+			<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'closeDate', 'error')} ">
+				<label class="control-label" for="closeDate">
+					<g:message code="projectInfo.closeDate.label" default="Close Date" />
+				</label>
+				<div class="controls">
+				<g:field type="date" name="viewclostDate"  value="${projectInfoInstance?.closeDate.format(dateFormat)}" readOnly="true"/>
+			     <g:hiddenField name="closeDate" id="closeDate" value="${projectInfoInstance?.closeDate}" />	
+				</div>
+			</div>
+		</g:if>
+		</fieldset>
 

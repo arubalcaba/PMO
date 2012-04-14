@@ -6,6 +6,40 @@
 		<meta name="layout" content="bootstrap">
 		<g:set var="entityName" value="${message(code: 'projectInfo.label', default: 'ProjectInfo')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
+		
+		
+		
+		
+		
+		
+		
+		
+		<script type="text/css">
+
+			.fieldcontain {
+	margin-top: 1em;
+}
+
+.fieldcontain label,
+.fieldcontain .property-label {
+	color: #666666;
+	text-align: right;
+	width: 25%;
+}
+
+.fieldcontain .property-label {
+	float: left;
+}
+
+.fieldcontain .property-value {
+	display: block;
+	margin-left: 27%;
+}
+
+
+</script>
+		
+	
 	</head>
 	<body>
 		<div class="row-fluid">
@@ -33,193 +67,133 @@
 				<g:if test="${flash.message}">
 				<bootstrap:alert class="alert-info">${flash.message}</bootstrap:alert>
 				</g:if>
+				
+				
 
-				<dl>
-				
-					<g:if test="${projectInfoInstance?.projectName}">
-						<dt><g:message code="projectInfo.projectName.label" default="Project Name" /></dt>
-						
-							<dd><g:fieldValue bean="${projectInfoInstance}" field="projectName"/></dd>
-						
-					</g:if>
-				
-					<g:if test="${projectInfoInstance?.projectType}">
-						<dt><g:message code="projectInfo.projectType.label" default="Project Type" /></dt>
-						
-							<dd><g:fieldValue bean="${projectInfoInstance}" field="projectType"/></dd>
-						
-					</g:if>
+				<table class="table table-condensed" > 
+				   <g:if test="${projectInfoInstance?.projectName}">
+						<tr>
+						<td style="width:30%"><g:message code="projectInfo.projectName.label" default="Project Name" /></td>						
+						<td style="width:70%"><g:fieldValue bean="${projectInfoInstance}" field="projectName"/><td>
+						</tr>						
+					</g:if> 							
 				
 					<g:if test="${projectInfoInstance?.projectCode}">
-						<dt><g:message code="projectInfo.projectCode.label" default="Project Code" /></dt>
-						
-							<dd><g:fieldValue bean="${projectInfoInstance}" field="projectCode"/></dd>
-						
+						<tr><td style="width:30%"><g:message code="projectInfo.projectCode.label" default="Project Code" /></td>						
+							<td style="width:70%"><g:fieldValue bean="${projectInfoInstance}" field="projectCode"/></td></tr>						
 					</g:if>
-				
+					<g:if test="${projectInfoInstance?.link}">
+						<tr><td style="width:30%"><g:message code="projectInfo.link.label" default="Project Link" /></td>						
+							<td style="width:70%"><g:fieldValue bean="${projectInfoInstance}" field="link"/></td></tr>						
+					</g:if>
+					<g:if test="${projectInfoInstance?.projectType}">
+						<tr>
+						<td style="width:30%"><g:message code="projectInfo.projectType.label" default="Project Type" /></td>						
+					     <td style="width:70%"><g:fieldValue bean="${projectInfoInstance}" field="projectType"/></td>
+					     </tr>						
+					</g:if>
 					<g:if test="${projectInfoInstance?.deliveryManager}">
-						<dt><g:message code="projectInfo.deliveryManager.label" default="Delivery Manager" /></dt>
-							<dd>${projectInfoInstance?.deliveryManager?.encodeAsHTML()}</dd>						
+						<tr><td style="width:30%"><g:message code="projectInfo.deliveryManager.label" default="Delivery Manager" /></td>
+							<td style="width:70%">${projectInfoInstance?.deliveryManager?.encodeAsHTML()}</td></tr>						
 					</g:if>
 				
 					<g:if test="${projectInfoInstance?.scrumMaster}">
-						<dt><g:message code="projectInfo.scrumMaster.label" default="Scrum Master" /></dt>
-						
-							<dd><g:fieldValue bean="${projectInfoInstance}" field="scrumMaster"/></dd>
-						
+						<tr><td style="width:30%"><g:message code="projectInfo.scrumMaster.label" default="Scrum Master" /></td>						
+							<td style="width:70%"><g:fieldValue bean="${projectInfoInstance}" field="scrumMaster"/></td></tr>						
 					</g:if>
 				
 					<g:if test="${projectInfoInstance?.status}">
-						<dt><g:message code="projectInfo.status.label" default="Status" /></dt>
-							<dd>${projectInfoInstance?.status?.encodeAsHTML()}</dd>						
+						<tr><td style="width:30%"><g:message code="projectInfo.status.label" default="Project Status" /></td>
+							<td style="width:70%">${projectInfoInstance?.status?.encodeAsHTML()}</td></tr>						
 					</g:if>
-				
-					<g:if test="${projectInfoInstance?.auditStatus}">
-						<dt><g:message code="projectInfo.auditStatus.label" default="Audit Status" /></dt>
-							<dd>${projectInfoInstance?.auditStatus?.encodeAsHTML()}</dd>					
+					<g:if test="${projectInfoInstance?.startDate}">
+						<tr><td style="width:30%"><g:message code="projectInfo.startDate.label" default="Start Date" /></td>						
+							<td style="width:70%"><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.startDate}" /></td></tr>						
 					</g:if>
-				
-					<g:if test="${projectInfoInstance?.link}">
-						<dt><g:message code="projectInfo.link.label" default="Link" /></dt>
-						
-							<dd><g:fieldValue bean="${projectInfoInstance}" field="link"/></dd>
-						
+						<g:if test="${projectInfoInstance?.plannedReleaseDate}">
+						<tr><td style="width:30%"><g:message code="projectInfo.plannedReleaseDate.label" default="Planned Release Date" /></td>						
+							<td style="width:70%"><g:formatDate date="${projectInfoInstance?.plannedReleaseDate}" /></td></tr>						
+					</g:if>			
+					<g:if test="${projectInfoInstance?.actualReleaseDate}">
+						<tr><td style="width:30%"><g:message code="projectInfo.actualReleaseDate.label" default="Actual Release Date" /></td>						
+							<td style="width:70%"><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.actualReleaseDate}" /></td></tr>						
 					</g:if>
-				
 					<g:if test="${projectInfoInstance?.budgetWithContractors}">
-						<dt><g:message code="projectInfo.budgetWithContractors.label" default="Budget With Contractors" /></dt>
-						
-							<dd><g:fieldValue bean="${projectInfoInstance}" field="budgetWithContractors"/></dd>
-						
+						<tr><td style="width:30%"><g:message code="projectInfo.budgetWithContractors.label" default="Budget With Contractors" /></td>						
+							<td style="width:70%"><g:fieldValue bean="${projectInfoInstance}" field="budgetWithContractors"/></td></tr>						
 					</g:if>
 				
 					<g:if test="${projectInfoInstance?.actualCost}">
-						<dt><g:message code="projectInfo.actualCost.label" default="Actual Cost" /></dt>
-						
-							<dd><g:fieldValue bean="${projectInfoInstance}" field="actualCost"/></dd>
-						
+						<tr><td style="width:30%"><g:message code="projectInfo.actualCost.label" default="Actual Cost" /></td>						
+							<td style="width:70%"><g:fieldValue bean="${projectInfoInstance}" field="actualCost"/></td></tr>						
 					</g:if>
 				
 					<g:if test="${projectInfoInstance?.estimateToComplete}">
-						<dt><g:message code="projectInfo.estimateToComplete.label" default="Estimate To Complete" /></dt>
-						
-							<dd><g:fieldValue bean="${projectInfoInstance}" field="estimateToComplete"/></dd>
-						
+						<tr><td style="width:30%"><g:message code="projectInfo.estimateToComplete.label" default="Estimate To Complete" /></td>						
+							<td style="width:70%"><g:fieldValue bean="${projectInfoInstance}" field="estimateToComplete"/></td></tr>						
 					</g:if>
 				
 					<g:if test="${projectInfoInstance?.loeHours}">
-						<dt><g:message code="projectInfo.loeHours.label" default="Loe Hours" /></dt>
-						
-							<dd><g:fieldValue bean="${projectInfoInstance}" field="loeHours"/></dd>
-						
+						<tr><td style="width:30%"><g:message code="projectInfo.loeHours.label" default="Loe Hours" /></td>						
+							<td style="width:70%"><g:fieldValue bean="${projectInfoInstance}" field="loeHours"/></td></tr>						
 					</g:if>
-				
-					<g:if test="${projectInfoInstance?.anticipatedClientGP}">
-						<dt><g:message code="projectInfo.anticipatedClientGP.label" default="Anticipated Client GP" /></dt>
-						
-							<dd><g:fieldValue bean="${projectInfoInstance}" field="anticipatedClientGP"/></dd>
-						
-					</g:if>
-				
-					<g:if test="${projectInfoInstance?.billableAmount}">
-						<dt><g:message code="projectInfo.billableAmount.label" default="Billable Amount" /></dt>
-						
-							<dd><g:fieldValue bean="${projectInfoInstance}" field="billableAmount"/></dd>
-						
-					</g:if>
-				
 					<g:if test="${projectInfoInstance?.numberOfQualityMeasures}">
-						<dt><g:message code="projectInfo.numberOfQualityMeasures.label" default="Number Of Quality Measures" /></dt>
-						
-							<dd><g:fieldValue bean="${projectInfoInstance}" field="numberOfQualityMeasures"/></dd>
-						
+						<tr><td style="width:30%"><g:message code="projectInfo.numberOfQualityMeasures.label" default="Number Of Quality Measures" /></td>						
+							<td style="width:70%"><g:fieldValue bean="${projectInfoInstance}" field="numberOfQualityMeasures"/></td></tr>						
 					</g:if>
 				
 					<g:if test="${projectInfoInstance?.numberOfQualityMeasuresNotMet}">
-						<dt><g:message code="projectInfo.numberOfQualityMeasuresNotMet.label" default="Number Of Quality Measures Not Met" /></dt>
-						
-							<dd><g:fieldValue bean="${projectInfoInstance}" field="numberOfQualityMeasuresNotMet"/></dd>
-						
+						<tr><td style="width:30%"><g:message code="projectInfo.numberOfQualityMeasuresNotMet.label" default="Number Of Quality Measures Not Met" /></td>						
+							<td style="width:70%"><g:fieldValue bean="${projectInfoInstance}" field="numberOfQualityMeasuresNotMet"/></td></tr>						
 					</g:if>
-				
-					<g:if test="${projectInfoInstance?.startDate}">
-						<dt><g:message code="projectInfo.startDate.label" default="Start Date" /></dt>
-						
-							<dd><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.startDate}" /></dd>
-						
-					</g:if>
-				
-					<g:if test="${projectInfoInstance?.closeDate}">
-						<dt><g:message code="projectInfo.closeDate.label" default="Close Date" /></dt>
-						
-							<dd><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.closeDate}" /></dd>
-						
-					</g:if>
-				
-					<g:if test="${projectInfoInstance?.actualReleaseDate}">
-						<dt><g:message code="projectInfo.actualReleaseDate.label" default="Actual Release Date" /></dt>
-						
-							<dd><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.actualReleaseDate}" /></dd>
-						
-					</g:if>
-				
-					<g:if test="${projectInfoInstance?.plannedReleaseDate}">
-						<dt><g:message code="projectInfo.plannedReleaseDate.label" default="Planned Release Date" /></dt>
-						
-							<dd><g:formatDate date="${projectInfoInstance?.plannedReleaseDate}" /></dd>
-						
-					</g:if>
-				
 					<g:if test="${projectInfoInstance?.category}">
-						<dt><g:message code="projectInfo.category.label" default="Category" /></dt>
-						
-							<dd><g:fieldValue format="yyyy-MM-dd" bean="${projectInfoInstance}" field="category"/></dd>
-						
+						<tr><td style="width:30%"><g:message code="projectInfo.category.label" default="Category" /></td>						
+							<td style="width:70%"><g:fieldValue format="yyyy-MM-dd" bean="${projectInfoInstance}" field="category"/></td></tr>						
 					</g:if>
+					
+					<g:if test="${projectInfoInstance?.anticipatedClientGP}">
+						<tr><td style="width:30%"><g:message code="projectInfo.anticipatedClientGP.label" default="Anticipated Client GP" /></td>						
+							<td style="width:70%"><g:fieldValue bean="${projectInfoInstance}" field="anticipatedClientGP"/></td></tr>						
+					</g:if>
+					
 					<g:if test="${projectInfoInstance?.supportDocDelivered}">
-						<dt><g:message code="projectInfo.supportDocDelivered.label" default="Support Doc Delivered Date" /></dt>
-						
-							<dd><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.supportDocDelivered}" /></dd>
-						
+						<tr><td style="width:30%"><g:message code="projectInfo.supportDocDelivered.label" default="Support Doc Delivered Date" /></td>						
+							<td style="width:70%"><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.supportDocDelivered}" /></td></tr>						
 					</g:if>
 					<g:if test="${projectInfoInstance?.thirtyDayReview}">
-						<dt><g:message code="projectInfo.thirtyDayReview.label" default="30 day Review Date" /></dt>
-						
-							<dd><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.thirtyDayReview}" /></dd>
-						
+						<tr><td style="width:30%"><g:message code="projectInfo.thirtyDayReview.label" default="30 day Review Date" /></td>						
+							<td style="width:70%"><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.thirtyDayReview}" /></td></tr>						
 					</g:if>
 					<g:if test="${projectInfoInstance?.sixtyDayReview}">
-						<dt><g:message code="projectInfo.sixtyDayReview.label" default="60 day Review Date" /></dt>
-						
-							<dd><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.sixtyDayReview}" /></dd>
-						
+						<tr><td style="width:30%"><g:message code="projectInfo.sixtyDayReview.label" default="60 day Review Date" /></td>						
+							<td style="width:70%"><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.sixtyDayReview}" /></td></tr>						
 					</g:if>
 					<g:if test="${projectInfoInstance?.handOffComplete}">
-						<dt><g:message code="projectInfo.handOffComplete.label" default="Hand Off Complete Date" /></dt>
-						
-							<dd><g:formatDate date="${projectInfoInstance?.handOffComplete}" /></dd>
-						
-					</g:if>
-					<g:if test="${projectInfoInstance?.turnoverStatus}">
-						<dt><g:message code="projectInfo.supportStatus.label" default="Turnover Status" /></dt>
-							<dd>${projectInfoInstance?.turnoverStatus?.encodeAsHTML()}</dd>					
-					</g:if>
-
-					<g:if test="${projectInfoInstance?.invoiceStatus}">
-						<dt><g:message code="projectInfo.invoiceStatus.label" default="Invoice Status" /></dt>
-							<dd>${projectInfoInstance?.invoiceStatus?.encodeAsHTML()}</dd>
-					</g:if>
-				
-					<g:if test="${projectInfoInstance?.invoiceNote}">
-						<dt><g:message code="projectInfo.invoiceNote.label" default="Invoice Note" /></dt>
-						
-							<dd><g:fieldValue bean="${projectInfoInstance}" field="invoiceNote"/></dd>						
-					</g:if>			
+						<tr><td style="width:30%"><g:message code="projectInfo.handOffComplete.label" default="Hand Off Complete Date" /></td>						
+							<td style="width:70%"><g:formatDate date="${projectInfoInstance?.handOffComplete}" /></td></tr>						
+					</g:if>				
 					
+					<g:if test="${projectInfoInstance?.turnoverStatus}">
+						<tr><td style="width:30%"><g:message code="projectInfo.supportStatus.label" default="Turnover Status" /></td>
+							<td style="width:70%">${projectInfoInstance?.turnoverStatus?.encodeAsHTML()}</td></tr>					
+					</g:if>
+	
+					<g:if test="${projectInfoInstance?.auditStatus}">
+						<tr><td style="width:30%"><g:message code="projectInfo.auditStatus.label" default="Audit Status" /></td>
+							<td style="width:70%">${projectInfoInstance?.auditStatus?.encodeAsHTML()}</td></tr>					
+					</g:if>
+					<g:if test="${projectInfoInstance?.auditTurnoverComments}">
+						<tr><td style="width:30%"><g:message code="projectInfo.auditTurnoverComments.label" default="Audit Turnover Comments" /></td>
+							<td style="width:70%">${projectInfoInstance?.auditTurnoverComments?.encodeAsHTML()}</td></tr>					
+					</g:if>					
+	
+					<g:if test="${projectInfoInstance?.closeDate}">
+						<tr><td style="width:30%"><g:message code="projectInfo.closeDate.label" default="Close Date" /></td>						
+							<td style="width:70%"><g:formatDate format="yyyy-MM-dd" date="${projectInfoInstance?.closeDate}" /></td></tr>						
+					</g:if>
 					
 					<g:if test="${projectInfoInstance?.risks}">
-						<div id="riskTable">
-						    <table class="table table-condensed table-bordered" style="width:50%">
+						    <tr><td colspan="2"><table class="table table-condensed table-bordered" style="width:50%">
 								  <caption>Risks</caption>
 								  <tr>
 								    <th style="text-align: center">Risk</th>
@@ -232,11 +206,11 @@
 								  </tr>
 								</g:each>
 								</table>
-						</div>
+						</td></tr>
 					</g:if>
 					
 					<g:if test="${projectInfoInstance?.impediments}">
-					<div id="impedimentsTable">
+					<tr><td colspan="2">
 						    <table class="table table-condensed table-bordered" style="width:50%">
 								  <caption>Impediments</caption>
 								  <tr>
@@ -250,11 +224,11 @@
 								  </tr>
 								</g:each>
 								</table>
-						</div>
+						</td></tr>
 						</g:if>
 					
 					<g:if test="${projectInfoInstance?.changeOrders}">
-						<div id="changeOrderTable">
+						<tr><td colspan="2">
 						    <table class="table table-condensed table-bordered" style="width:50%">
 								  <caption>Change Orders</caption>
 								  <tr>
@@ -264,15 +238,15 @@
 								  <g:each in="${projectInfoInstance.changeOrders}" var="c">
 								  	<tr>
 								    	<td style="text-align: center">${c.changeOrderName}</td>
-								    	<td style="text-align: center">${c.linkriskMigrationStrategy}</td>
+								    	<td style="text-align: center">${c.link}</td>
 								  </tr>
 								</g:each>
 								</table>
-						</div>	
+						</td></tr>	
 					</g:if>
 					
 					<g:if test="${projectInfoInstance?.qualityTargets}">
-						<div id="qualityTargetsTable">
+						<tr><td colspan="2">
 						    <table class="table table-condensed table-bordered" style="width:50%">
 								  <caption>Quality Targets</caption>
 								  <tr>
@@ -286,10 +260,11 @@
 								  </tr>
 								</g:each>
 								</table>
-						</div>						
+						</td></tr>						
 					</g:if>
+
+				</table>				
 				
-				</dl>
 
 				<g:form>
 					<g:hiddenField name="id" value="${projectInfoInstance?.id}" />

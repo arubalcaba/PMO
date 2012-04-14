@@ -1,5 +1,8 @@
+var context;
+
 $(document).ready(function() {
 
+	context=$('#context').val();
     createAccordion();
      createDatePicker();
     createRiskTabel();
@@ -42,13 +45,13 @@ function createQualityTargetTable(){
                     "bJQueryUI": true,
                     "bProcessing": true,
                     "bAutoWidth" : false,
-                    "sAjaxSource": "/qualityTarget/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
+                    "sAjaxSource": context + "/qualityTarget/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
                     "aoColumns": [{"bVisible": false,"bSearchable": false,"bSortable":false},{"bVisible": false,"bSearchable": false,"bSortable":false},{"bSortable":false},{"bSortable":false}]
 
                 }).makeEditable({
-                                    sUpdateURL: "/qualityTarget/edit.json",
-                                    sAddURL: "/qualityTarget/save.json",
-                                    sDeleteURL: "/qualityTarget/delete.json",
+                                    sUpdateURL:context + "/qualityTarget/edit.json",
+                                    sAddURL: context + "/qualityTarget/create.json",
+                                    sDeleteURL: context + "/qualityTarget/delete.json",
                                     sAddNewRowFormId: "formAddQualityTarget",
                                     sAddNewRowButtonId: "btnAddQualityTarget",
                                     sDeleteRowButtonId: "btnDelQualityTarget",
@@ -96,13 +99,13 @@ function createChangeOrderTable(){
                     "bJQueryUI": true,
                     "bProcessing": true,
                     "bAutoWidth" : false,
-                    "sAjaxSource": "/changeOrder/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
+                    "sAjaxSource": context + "/changeOrder/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
                     "aoColumns": [{"bVisible": false,"bSearchable": false,"bSortable":false},{"bVisible": false,"bSearchable": false,"bSortable":false},{"bSortable":false},{"bSortable":false}]
 
                 }).makeEditable({
-                                    sUpdateURL: "/changeOrder/edit.json",
-                                    sAddURL: "/changeOrder/create.json",
-                                    sDeleteURL: "/changeOrder/delete.json",
+                                    sUpdateURL: context + "/changeOrder/edit.json",
+                                    sAddURL: context + "/changeOrder/create.json",
+                                    sDeleteURL: context + "/changeOrder/delete.json",
                                     sAddNewRowFormId: "formAddChangeOrder",
                                     sAddNewRowButtonId: "btnAddChangeOrder",
                                     sDeleteRowButtonId: "btnDelChangeOrder",
@@ -142,13 +145,13 @@ function createImpedimentTable(){
                     "bJQueryUI": true,
                     "bProcessing": true,
                     "bAutoWidth" : false,
-                    "sAjaxSource": "/impediment/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
+                    "sAjaxSource": context + "/impediment/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
                     "aoColumns": [{"bVisible": false,"bSearchable": false,"bSortable":false},{"bVisible": false,"bSearchable": false,"bSortable":false},{"bSortable":false},{"bSortable":false}]
 
                 }).makeEditable({
-                                    sUpdateURL: "/impediment/edit.json",
-                                    sAddURL: "/impediment/create.json",
-                                    sDeleteURL: "/impediment/delete.json",
+                                    sUpdateURL: context + "/impediment/edit.json",
+                                    sAddURL: context + "/impediment/create.json",
+                                    sDeleteURL: context + "/impediment/delete.json",
                                     sAddNewRowFormId: "formAddImpediment",
                                     sAddNewRowButtonId: "btnAddImpediment",
                                     sDeleteRowButtonId: "btnDelImpediment",
@@ -196,7 +199,7 @@ function createRiskTabel()
                     "bJQueryUI": true,
                     "bProcessing": true,
                     "bAutoWidth" : false,
-                    "sAjaxSource": "/risk/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
+                    "sAjaxSource": context + "/risk/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
                     "aoColumns": [
                     {"bVisible": false,"bSearchable": false,"bSortable":false},
                     {"bVisible": false,"bSearchable": false,"bSortable":false},
@@ -205,9 +208,9 @@ function createRiskTabel()
                     ]
 
                 }).makeEditable({
-                                    sUpdateURL: "/risk/edit.json",
-                                    sAddURL: "/risk/create.json",
-                                    sDeleteURL: "/risk/delete.json",
+                                    sUpdateURL: context +  "/risk/edit.json",
+                                    sAddURL: context + "/risk/create.json",
+                                    sDeleteURL: context + "/risk/delete.json",
                                     sAddNewRowFormId: "formAddRisk",
                                     sAddNewRowButtonId: "btnAddRisk",
                                     sDeleteRowButtonId: "btnDelRisk",

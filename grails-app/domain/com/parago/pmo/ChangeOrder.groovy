@@ -4,6 +4,8 @@ class ChangeOrder {
 	
 	String changeOrderName;
 	String link;
+	double costImpact;
+	int scheduleImpact;
 	static belongsTo = [projectInfo:ProjectInfo];
 
     static constraints = {
