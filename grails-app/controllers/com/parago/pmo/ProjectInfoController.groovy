@@ -76,13 +76,31 @@ class ProjectInfoController {
 	            }
 	        }
 	       
-			print params?.plannedReleaseDate	
+	
 			
 			if(params?.plannedReleaseDate)
 			{
 				params?.plannedReleaseDate=Date.parse("MM/dd/yyyy",params?.plannedReleaseDate);
-				print params?.plannedReleaseDate;
 			}
+			if(params?.supportDocDelivered)
+			{
+				params?.supportDocDelivered=Date.parse("MM/dd/yyyy",params?.supportDocDelivered);
+			}
+			if(params?.thirtyDayReview)
+			{
+				params?.thirtyDayReview=Date.parse("MM/dd/yyyy",params?.thirtyDayReview);
+			}
+			if(params?.sixtyDayReview)
+			{
+				params?.sixtyDayReview=Date.parse("MM/dd/yyyy",params?.sixtyDayReview);
+			}
+			if(params?.handOffComplete)
+			{
+				params?.handOffComplete=Date.parse("MM/dd/yyyy",params?.handOffComplete);
+			}
+			
+			
+			
 			projectInfoInstance.properties = params
 			
 			

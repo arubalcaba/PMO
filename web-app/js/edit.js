@@ -4,11 +4,14 @@ $(document).ready(function() {
 
 	context=$('#context').val();
     createAccordion();
-     createDatePicker();
+    createDatePicker();
+    createInvoiceSelect();
     createRiskTabel();
     createImpedimentTable();
     createQualityTargetTable();
     createChangeOrderTable();
+    createMilestoneTabel();
+    createInvoiceTabel();
 });
 
 function createAccordion()
@@ -38,7 +41,41 @@ function createDatePicker ()
       $( "#thirtyDayReview" ).datepicker();
       $( "#sixtyDayReview" ).datepicker();
       $( "#handOffComplete" ).datepicker();
+      $( "#milestoneDate").datepicker();
 }
+function createInvoiceSelect()
+{
+        $.ajax({
+            url : context + '/invoiceStatus/selectjson',
+            type : 'GET',
+            dataType : 'json',
+            async : true,
+            cache : false,
+            success : function(data) {
+                            if(typeof(console) !== 'undefined' && console != null) {
+                                console.log("invoiceSelectJson " + JSON.stringify(data));
+                                }
+                var select =getOptionsHtml(data);
+                $('#invoiceStatus').empty().html(select).addClass("required");
+            }
+        });
+}
+function getOptionsHtml(data)
+{
+    retStr = " ";
+
+    for(var i =0; i<data.option.length; i++)
+    {
+        retStr += '<option value="' + data.option[i][0]+'">'+ data.option[i][1] + '</option>';
+        retStr +=" ";
+    }
+    if(typeof(console) !== 'undefined' && console != null) {
+                                console.log("select " +retStr);
+                                }
+    return retStr;
+
+}
+
 function createQualityTargetTable(){
      $('#qualityTargetTable').dataTable( {
                     "bPaginate": true,
@@ -46,8 +83,10 @@ function createQualityTargetTable(){
                     "bProcessing": true,
                     "bAutoWidth" : false,
                     "bFilter": false,
+                    "bLengthChange": false,
+                    "bSort": false,
                     "sAjaxSource": context + "/qualityTarget/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
-                    "aoColumns": [{"bVisible": false,"bSearchable": false,"bSortable":false},{"bVisible": false,"bSearchable": false,"bSortable":false},{"bSortable":false},{"bSortable":false}]
+                    "aoColumns": [{"bVisible": false},{"bVisible": false}, null,null]
 
                 }).makeEditable({
                                     sUpdateURL:context + "/qualityTarget/edit.json",
@@ -58,24 +97,24 @@ function createQualityTargetTable(){
                                     sDeleteRowButtonId: "btnDelQualityTarget",
                                     sAddNewRowOkButtonId: "btnAddQualityTargetOk",
                                     sAddNewRowCancelButtonId: "btnAddQualityTargetCancel",
-                                    oAddNewRowButtonOptions: {  label: "Add...",
+                                    oAddNewRowButtonOptions: {  label: "Add New Quality Target",
                                                     icons: {primary:'ui-icon-plus'}
                                     },
-                                    oDeleteRowButtonOptions: {  label: "Remove",
+                                    oDeleteRowButtonOptions: {  label: "Delete Quality Target",
                                                     icons: {primary:'ui-icon-trash'}
                                     },
-                                    oAddNewRowOkButtonOptions: {    label: "Confirm",
+                                    oAddNewRowOkButtonOptions: {    label: "Add Quality Target",
                                                     icons: {primary:'ui-icon-check'},
                                                     name:"action",
                                                     value:"add-new"
                                     },
-                                    oAddNewRowCancelButtonOptions: { label: "Close",
+                                    oAddNewRowCancelButtonOptions: { label: "Cancel Quality Target",
                                                      "class": "back-class",
                                                      name:"action",
                                                      value:"cancel-add",
                                                      icons: {primary:'ui-icon-close'}
                                     },
-                                    oAddNewRowFormOptions: {    title: 'Add a new Quality Target - form',
+                                    oAddNewRowFormOptions: {    title: 'Add a new Quality Target',
                                                     show: "blind",
                                                     hide: "explode"
                                     },
@@ -101,8 +140,10 @@ function createChangeOrderTable(){
                     "bProcessing": true,
                     "bAutoWidth" : false,
                     "bFilter": false,
+                    "bLengthChange": false,
+                    "bSort": false,
                     "sAjaxSource": context + "/changeOrder/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
-                    "aoColumns": [{"bVisible": false,"bSearchable": false,"bSortable":false},{"bVisible": false,"bSearchable": false,"bSortable":false},{"bSortable":false},{"bSortable":false},{"bSortable":false},{"bSortable":false}]
+                    "aoColumns": [{"bVisible": false},{"bVisible": false}, null,null,null,null]
 
                 }).makeEditable({
                                     sUpdateURL: context + "/changeOrder/edit.json",
@@ -113,24 +154,24 @@ function createChangeOrderTable(){
                                     sDeleteRowButtonId: "btnDelChangeOrder",
                                     sAddNewRowOkButtonId: "btnAddChangeOrderOk",
                                     sAddNewRowCancelButtonId: "btnAddChangeOrderCancel",
-                                    oAddNewRowButtonOptions: {  label: "Add...",
+                                    oAddNewRowButtonOptions: {  label: "Add New Change Order",
                                                     icons: {primary:'ui-icon-plus'}
                                     },
-                                    oDeleteRowButtonOptions: {  label: "Remove",
+                                    oDeleteRowButtonOptions: {  label: "Delete Change Order",
                                                     icons: {primary:'ui-icon-trash'}
                                     },
-                                    oAddNewRowOkButtonOptions: {    label: "Confirm",
+                                    oAddNewRowOkButtonOptions: {    label: "Add Change Order",
                                                     icons: {primary:'ui-icon-check'},
                                                     name:"action",
                                                     value:"add-new"
                                     },
-                                    oAddNewRowCancelButtonOptions: { label: "Close",
+                                    oAddNewRowCancelButtonOptions: { label: "Cancel Change Order",
                                                      "class": "back-class",
                                                      name:"action",
                                                      value:"cancel-add",
                                                      icons: {primary:'ui-icon-close'}
                                     },
-                                    oAddNewRowFormOptions: {    title: 'Add a new Change Order - form',
+                                    oAddNewRowFormOptions: {    title: 'Add a new Change Order',
                                                     show: "blind",
                                                     hide: "explode"
                                     },
@@ -150,8 +191,10 @@ function createImpedimentTable(){
                     "bProcessing": true,
                     "bAutoWidth" : false,
                     "bFilter": false,
+                    "bLengthChange": false,
+                    "bSort": false,
                     "sAjaxSource": context + "/impediment/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
-                    "aoColumns": [{"bVisible": false,"bSearchable": false,"bSortable":false},{"bVisible": false,"bSearchable": false,"bSortable":false},{"bSortable":false},{"bSortable":false}]
+                    "aoColumns": [{"bVisible": false},{"bVisible": false}, null,null]
 
                 }).makeEditable({
                                     sUpdateURL: context + "/impediment/edit.json",
@@ -162,24 +205,24 @@ function createImpedimentTable(){
                                     sDeleteRowButtonId: "btnDelImpediment",
                                     sAddNewRowOkButtonId: "btnAddImpedimentOk",
                                     sAddNewRowCancelButtonId: "btnAddImpedimentCancel",
-                                    oAddNewRowButtonOptions: {  label: "Add...",
+                                    oAddNewRowButtonOptions: {  label: "Add New Impediment",
                                                     icons: {primary:'ui-icon-plus'}
                                     },
-                                    oDeleteRowButtonOptions: {  label: "Remove",
+                                    oDeleteRowButtonOptions: {  label: "Delete Impediment",
                                                     icons: {primary:'ui-icon-trash'}
                                     },
-                                    oAddNewRowOkButtonOptions: {    label: "Confirm",
+                                    oAddNewRowOkButtonOptions: {    label: "Add Impediment",
                                                     icons: {primary:'ui-icon-check'},
                                                     name:"action",
                                                     value:"add-new"
                                     },
-                                    oAddNewRowCancelButtonOptions: { label: "Close",
+                                    oAddNewRowCancelButtonOptions: { label: "Cancel Impediment",
                                                      "class": "back-class",
                                                      name:"action",
                                                      value:"cancel-add",
                                                      icons: {primary:'ui-icon-close'}
                                     },
-                                    oAddNewRowFormOptions: {    title: 'Add a new Impediment - form',
+                                    oAddNewRowFormOptions: {    title: 'Add a new Impediment',
                                                     show: "blind",
                                                     hide: "explode"
                                     },
@@ -205,13 +248,10 @@ function createRiskTabel()
                     "bProcessing": true,
                     "bAutoWidth" : false,
                     "bFilter": false,
+                    "bLengthChange": false,
+                    "bSort": false,
                     "sAjaxSource": context + "/risk/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
-                    "aoColumns": [
-                    {"bVisible": false,"bSearchable": false,"bSortable":false},
-                    {"bVisible": false,"bSearchable": false,"bSortable":false},
-                    {"bSortable":false},
-                    {"bSortable":false}
-                    ]
+                    "aoColumns": [{"bVisible": false},{"bVisible": false}, null,null]
 
                 }).makeEditable({
                                     sUpdateURL: context +  "/risk/edit.json",
@@ -222,24 +262,24 @@ function createRiskTabel()
                                     sDeleteRowButtonId: "btnDelRisk",
                                     sAddNewRowOkButtonId: "btnAddRiskOk",
                                     sAddNewRowCancelButtonId: "btnAddRiskCancel",
-                                    oAddNewRowButtonOptions: {  label: "Add...",
+                                    oAddNewRowButtonOptions: {  label: "Add New Risk",
                                                     icons: {primary:'ui-icon-plus'}
                                     },
-                                    oDeleteRowButtonOptions: {  label: "Remove",
+                                    oDeleteRowButtonOptions: {  label: "Delete Risk",
                                                     icons: {primary:'ui-icon-trash'}
                                     },
-                                    oAddNewRowOkButtonOptions: {    label: "Confirm",
+                                    oAddNewRowOkButtonOptions: {    label: "Add Risk",
                                                     icons: {primary:'ui-icon-check'},
                                                     name:"action",
                                                     value:"add-new"
                                     },
-                                    oAddNewRowCancelButtonOptions: { label: "Close",
+                                    oAddNewRowCancelButtonOptions: { label: "Cancel Risk",
                                                      "class": "back-class",
                                                      name:"action",
                                                      value:"cancel-add",
                                                      icons: {primary:'ui-icon-close'}
                                     },
-                                    oAddNewRowFormOptions: {    title: 'Add a new Risk - form',
+                                    oAddNewRowFormOptions: {    title: 'Add a new Risk',
                                                     show: "blind",
                                                     hide: "explode"
                                     },
@@ -258,4 +298,146 @@ function createRiskTabel()
 
 
 }
+function createMilestoneTabel()
+{
+    $('#milestoneTable').dataTable( {
+                    "bPaginate": true,
+                    "bJQueryUI": true,
+                    "bProcessing": true,
+                    "bAutoWidth" : false,
+                    "bFilter": false,
+                    "bLengthChange": false,
+                    "bSort": false,
+                    "sAjaxSource": context + "/projectMilestone/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
+                    "aoColumns": [{"bVisible": false},{"bVisible": false}, null,null,null,null]
+
+                }).makeEditable({
+                                    sUpdateURL: context +  "/projectMilestone/edit.json",
+                                    sAddURL: context + "/projectMilestone/create.json",
+                                    sDeleteURL: context + "/projectMilestone/delete.json",
+                                    sAddNewRowFormId: "formAddMilestone",
+                                    sAddNewRowButtonId: "btnAddMilestone",
+                                    sDeleteRowButtonId: "btnDelMilestone",
+                                    sAddNewRowOkButtonId: "btnAddMilestoneOk",
+                                    sAddNewRowCancelButtonId: "btnAddMilestoneCancel",
+                                    oAddNewRowButtonOptions: {  label: "Add New Milestone",
+                                                    icons: {primary:'ui-icon-plus'}
+                                    },
+                                    oDeleteRowButtonOptions: {  label: "Delete Milestone",
+                                                    icons: {primary:'ui-icon-trash'}
+                                    },
+                                    oAddNewRowOkButtonOptions: {    label: "Add Milestone",
+                                                    icons: {primary:'ui-icon-check'},
+                                                    name:"action",
+                                                    value:"add-new"
+                                    },
+                                    oAddNewRowCancelButtonOptions: { label: "Cancel Milestone",
+                                                     "class": "back-class",
+                                                     name:"action",
+                                                     value:"cancel-add",
+                                                     icons: {primary:'ui-icon-close'}
+                                    },
+                                    oAddNewRowFormOptions: {    title: 'Add New Milestone',
+                                                    show: "blind",
+                                                    hide: "explode"
+                                    },
+                                    "aoColumns": [
+                                                   {cssclass:"required",tooltip: 'Double Click to edit'},
+                                                   {
+                                                     type:   'checkbox',
+                                                     cancel: 'Cancel',
+                                                     submit: 'OK',
+                                                     checkbox: { trueValue: 'Yes', falseValue: 'No' },
+                                                     tooltip: 'Click to disable',
+                                                     sSuccessResponse: "IGNORE"
+                                                  },
+                                                   {
+                                                     type:   'datepicker',
+                                                     tooltip: 'Click to disable',
+                                                     sSuccessResponse: "IGNORE"
+                                                  },
+                                                  {
+                                                    cssclass:"required",
+                                                    type:   'textarea',
+                                                    cancel: 'Cancel',
+                                                    submit: 'OK',
+                                                    tooltip: 'Double Click to edit',
+                                                    maxlength: 120
+                                                }
+                                                 ]
+                                        });
+
+
+}
+function createInvoiceTabel()
+{
+    $('#invoiceTable').dataTable( {
+                    "bPaginate": true,
+                    "bJQueryUI": true,
+                    "bProcessing": true,
+                    "bAutoWidth" : false,
+                    "bFilter": false,
+                    "bSort": false,
+                    "bLengthChange": false,
+                    "sAjaxSource": context + "/projectInvoice/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
+                     "aoColumns": [{"bVisible": false},{"bVisible": false}, null,null,null]
+
+
+                }).makeEditable({
+                                    sUpdateURL: context +  "/projectInvoice/edit.json",
+                                    sAddURL: context + "/projectInvoice/create.json",
+                                    sDeleteURL: context + "/projectInvoice/delete.json",
+                                    sAddNewRowFormId: "formAddInvoice",
+                                    sAddNewRowButtonId: "btnAddInvoice",
+                                    sDeleteRowButtonId: "btnDelInvoice",
+                                    sAddNewRowOkButtonId: "btnAddInvoiceOk",
+                                    sAddNewRowCancelButtonId: "btnAddInvoiceCancel",
+                                    oAddNewRowButtonOptions: {  label: "Add New Invoice",
+                                                    icons: {primary:'ui-icon-plus'}
+                                    },
+                                    oDeleteRowButtonOptions: {  label: "Delete Invoice",
+                                                    icons: {primary:'ui-icon-trash'}
+                                    },
+                                    oAddNewRowOkButtonOptions: {    label: "Add Invoice",
+                                                    icons: {primary:'ui-icon-check'},
+                                                    name:"action",
+                                                    value:"add-new"
+                                    },
+                                    oAddNewRowCancelButtonOptions: { label: "Cancel Invoice",
+                                                     "class": "back-class",
+                                                     name:"action",
+                                                     value:"cancel-add",
+                                                     icons: {primary:'ui-icon-close'}
+                                    },
+                                    oAddNewRowFormOptions: {    title: 'Add new Invoice',
+                                                    show: "blind",
+                                                    hide: "explode"
+                                    },
+                                   "aoColumns": [
+                                                   {cssclass:"required number",tooltip: 'Double Click to edit'},
+                                                   {
+                                                      tooltip: 'Click to select status',
+                                                      loadtext: 'loading...',
+                                                      type: 'select',
+                                                      onblur: 'cancel',
+                                                      submit: 'Ok',
+                                                      loadurl: context + '/invoiceStatus/listjson',
+                                                      loadtype: 'GET',
+                                                      cssclass:"required"
+                                                  },
+                                                  {
+                                                    cssclass:"required",
+                                                    type:   'textarea',
+                                                    cancel: 'Cancel',
+                                                    submit: 'OK',
+                                                    tooltip: 'Double Click to edit',
+                                                    maxlength: 120
+                                                }
+                                                 ]
+                                        });
+
+
+}
+
+
 

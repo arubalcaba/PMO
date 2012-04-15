@@ -9,11 +9,14 @@
         <link rel="stylesheet" href="${resource(dir: 'jui', file: 'jquery-ui.css')}" type="text/css">    
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.dataTables_themeroller.css')}" type="text/css">
 		<script  rel="javascript" src="${resource(dir: 'js', file: 'jquery-ui-1.8.18.custom.min.js')}"  type="text/javascript"></script>
+	    <script  rel="javascript" src="${resource(dir: 'js', file: 'json2.js')}"  type="text/javascript"></script>		
 		<script  rel="javascript" src="${resource(dir: 'js', file: 'jquery.validate.min.js')}"  type="text/javascript"></script>
 		<script  rel="javascript" src="${resource(dir: 'js', file: 'jquery.dataTables.min.js')}"  type="text/javascript"></script>
 		<script  rel="javascript" src="${resource(dir: 'js', file: 'jquery.dataTables.editable.js')}"  type="text/javascript"></script>
 		<script  rel="javascript" src="${resource(dir: 'js', file: 'jquery.jeditable.js')}"  type="text/javascript"></script>
-		<script  rel="javascript" src="${resource(dir: 'js', file: 'edit.js')}"  type="text/javascript"></script>
+		<script  rel="javascript" src="${resource(dir: 'js', file: 'jquery.jeditable.checkbox.js')}"  type="text/javascript"></script>
+		<script  rel="javascript" src="${resource(dir: 'js', file: 'jquery.jeditable.datepicker.js')}"  type="text/javascript"></script>	
+	    <script  rel="javascript" src="${resource(dir: 'js', file: 'edit.js')}"  type="text/javascript"></script>
 
         
         </head>
@@ -78,7 +81,73 @@
 						</g:form>
 					</fieldset>
 				  </div>
-				   <%--Begin Quality Target Section--%>             
+				  
+	<%--Begin Milestones Section--%>             
+    <h3><a href="#">Milestones</a></h3>
+        <div>
+        	<button id="btnAddMilestone">Add MileStone</button>
+        	<button id="btnDelMilestone">Delete MileStone</button>
+				<table  width="100%" cellpadding="0" cellspacing="0" border="0" class="display" id="milestoneTable">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>ProjectInfoId</th>
+							<th>Milestone</th>
+							<th>Complete</th>
+							<th>Date</th>
+							<th>Note</th>
+						</tr>
+					</thead>
+					</table>
+							 <form id="formAddMilestone" action="#" title="Add New Milestone">
+								<input type="hidden" name="id" id="id" rel="0" value="DATAROWID" />
+								<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />												
+								<label for="name">Milestone</label><br />
+								<input type="text" name="name" id="name" rel="2" class="required" /><br />
+								<label for="complete">Complete</label><br />								
+								<input type="checkBox" name="complete" id="complete" rel="3" class="required" value="true" /><br />
+								<label for="date">Date</label><br />
+								<input type="text" name="date" id="milestoneDate" rel="4" class="required date" /><br />
+								<label for="note">Note</label><br />
+								<input type="text" name="note" id="note" rel="5" class="required" /><br />
+																
+								<br />
+								<button id="btnAddMilestoneCancel" value="cancel">Cancel Milestone</button>
+								<button id="btnAddMilestoneOk" value="Ok">Add Milestone</button>	
+							</form>
+		</div>
+	<%--Begin Invoices--%>             
+    <h3><a href="#">Invoices</a></h3>
+        <div>
+        	<button id="btnAddInvoice">Add Invoice</button>
+        	<button id="btnDelInvoice">Delete Invoice</button>
+				<table  width="100%" cellpadding="0" cellspacing="0" border="0" class="display" id="invoiceTable">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>ProjectInfoId</th>
+							<th>Billable Amount ($)</th>
+							<th>Status</th>
+							<th>Note</th>
+						</tr>
+					</thead>
+					</table>
+							 <form id="formAddInvoice" action="#" title="Add New Invoice">
+								<input type="hidden" name="id" id="id" rel="0" value="DATAROWID" />
+								<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />
+								<label for="billiableAmount">Billiable Amount ($)</label><br />
+								<input type="text" name="billableAmount" id="billableAmount" rel="2" class="required number" /><br />
+								<label for="invoiceStatus">Status</label><br />
+								<select name="invoiceStatus" id="invoiceStatus" rel="3" class="required"></select><br />							
+								<label for="invoiceNote">Note</label><br />
+								<input type="text" name="invoiceNote" id="invoiceNote" rel="4" class="required" /><br />
+								<br />
+								<button id="btnAddInvoiceCancel" value="cancel">Cancel Invoice</button>
+								<button id="btnAddInvoiceOk" value="Ok">Add Invoice</button>	
+							</form>
+		</div>
+			  
+ <%--Begin Quality Target Section--%>             
     <h3><a href="#">Quality Target</a></h3>
         <div>
         	<button id="btnAddQualityTarget">Add Quality Target</button>
@@ -102,7 +171,7 @@
 								<textarea rows="4" cols="50" maxlength="120" name="qualityMeasurementProcess" id="qualityMeasurementProcess" rel="3" class="required"></textarea><br />
 								
 								<br />
-								<button id="btnAddQualityTargetCancel" value="cancel">Cancel</button>
+								<button id="btnAddQualityTargetCancel" value="cancel">Cancel Quality Target</button>
 								<button id="btnAddQualityTargetOk" value="Ok">Add Quality Target</button>	
 							</form>
 		</div>
@@ -130,7 +199,7 @@
 								<label for="riskMigrationStrategy">Risk Migration Strategy</label><br />
 								<textarea rows="4" cols="50" maxlength="120" name="riskMigrationStrategy" id="riskMigrationStrategy" rel="3" class="required"></textarea><br />
 								<br />
-								<button id="btnAddRiskCancel" value="cancel">Cancel</button>
+								<button id="btnAddRiskCancel" value="cancel">Cancel Risk</button>
 								<button id="btnAddRiskOk" value="Ok">Add Risk</button>	
 							</form>
      	</div>
@@ -158,7 +227,7 @@
 							<label for="remediationPlan">Remediation Plan</label><br />							
 							<textarea rows="4" cols="50" maxlength="120" name="remediationPlan" id="remediationPlan" rel="3" class="required"></textarea><br />
 							<br />
-							<button id="btnAddImpedimentCancel" value="cancel">Cancel</button>
+							<button id="btnAddImpedimentCancel" value="cancel">Cancel Impediment</button>
 							<button id="btnAddImpedimentOk" value="Ok">Add Impediment</button>	
 						</form>
         </div>
@@ -174,7 +243,7 @@
 							<th>ID</th>
 							<th>ProjectInfoId</th>
 							<th>Change Order Name</th>
-							<th>Cost Impact</th>
+							<th>Cost Impact ($)</th>
 							<th>Schedule Impact</th>
 							<th>Link</th>
 						</tr>
@@ -185,14 +254,14 @@
 								<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />
 								<label for="changeOrderName">Change Order Name</label><br />
 								<input type="text" name="changeOrderName" id="changeOrderName" rel="2" class="required" /><br />
-								<label for="costImpact">Cost Impact</label><br />
+								<label for="costImpact">Cost Impact ($)</label><br />
 								<input type="text" name="costImpact" id="costImpact" rel="3" class="required number" /><br />
 								<label for="scheduleImpact">Schedule Impact</label><br />
 								<input type="text" name="scheduleImpact" id="scheduleImpact" rel="4" class="required digits" /><br />
 								<label for="link">Link</label><br />
 								<input type="text" name="link" id="link" maxlength="120" rel="5" class="required" /><br />
 								<br />
-								<button id="btnAddChangeOrderCancel" value="cancel">Cancel</button>
+								<button id="btnAddChangeOrderCancel" value="cancel">Cancel Change Order</button>
 								<button id="btnAddChangeOrderOk" value="Ok">Add Change Order</button>	
 							</form>
         </div>

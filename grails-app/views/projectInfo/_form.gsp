@@ -106,14 +106,22 @@
 			     <g:hiddenField name="actualReleaseDate" id="actualReleaseDate" value="${projectInfoInstance?.actualReleaseDate}" />		
 				</div>
 			</div>
-		</g:if>		
+		</g:if>
+		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'scheduleComments', 'error')} ">
+			<label class="control-label" for="scheduleComments">
+				<g:message code="projectInfo.scheduleComments.label" default="Schedule Comments" />
+			</label>
+			<div class="controls">
+			<g:textArea name="scheduleComments" value="${projectInfoInstance?.scheduleComments}"/>
+			</div>
+		</div>		
 	</fieldset>
    <fieldset>
 		 <legend>Budget Information</legend>
 		 
 		 <div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'budgetWithContractors', 'error')} required">
 			<label class="control-label" for="budgetWithContractors">
-				<g:message code="projectInfo.budgetWithContractors.label" default="Budget w/Contractors" />
+				<g:message code="projectInfo.budgetWithContractors.label" default="Budget w/Contractors (\$)" />
 				<span class="required-indicator"></span>
 			</label>
 			<div class="controls">
@@ -122,7 +130,7 @@
 		 </div>
 		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'actualCost', 'error')} required">
 			<label class="control-label" for="actualCost">
-				<g:message code="projectInfo.actualCost.label" default="Actual Cost" />
+				<g:message code="projectInfo.actualCost.label" default="Actual Cost (\$)" />
 			</label>
 			<div class="controls">
 			<g:field type="number" name="actualCost" required="" value="${fieldValue(bean: projectInfoInstance, field: 'actualCost')}"/>
@@ -131,7 +139,7 @@
 
 		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'estimateToComplete', 'error')} required">
 			<label class="control-label" for="estimateToComplete">
-				<g:message code="projectInfo.estimateToComplete.label" default="Estimate To Complete" />
+				<g:message code="projectInfo.estimateToComplete.label" default="Estimate To Complete (\$)" />
 			</label>
 			<div class="controls">
 			<g:field type="number" name="estimateToComplete" required="" value="${fieldValue(bean: projectInfoInstance, field: 'estimateToComplete')}"/>
@@ -144,6 +152,14 @@
 			</label>
 			<div class="controls">
 			<g:field type="number" name="loeHours" required="" value="${fieldValue(bean: projectInfoInstance, field: 'loeHours')}"/>
+			</div>
+		</div>
+		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'budgetComments', 'error')} ">
+			<label class="control-label" for="budgetComments">
+				<g:message code="projectInfo.budgetComments.label" default="Budget Comments" />
+			</label>
+			<div class="controls">
+			<g:textArea name="budgetComments" value="${projectInfoInstance?.budgetComments}"/>
 			</div>
 		</div>	
 	 	
@@ -167,6 +183,24 @@
 			<g:field type="number" name="numberOfQualityMeasuresNotMet" required="" value="${fieldValue(bean: projectInfoInstance, field: 'numberOfQualityMeasuresNotMet')}"/>
 			</div>
 		</div>
+		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'qualityMet', 'error')} required">
+			<label class="control-label" for="qualityMet">
+				<g:message code="projectInfo.qualityMet.label" default="Quality Met" />
+			</label>
+			<div class="controls">
+			<g:checkBox name="qualityMet" value="${projectInfoInstance?.qualityMet}" />
+			</div>
+		</div>
+		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'qualityComments', 'error')} ">
+			<label class="control-label" for="qualityComments">
+				<g:message code="projectInfo.qualityComments.label" default="Quality Comments" />
+			</label>
+			<div class="controls">
+			<g:textArea name="qualityComments" value="${projectInfoInstance?.qualityComments}"/>
+			</div>
+		</div>
+		
+		
 	</fieldset>
 	<fieldset>
 		 <legend>Management Information</legend>
@@ -184,7 +218,7 @@
 
 		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'anticipatedClientGP', 'error')} required">
 			<label class="control-label" for="anticipatedClientGP">
-				<g:message code="projectInfo.anticipatedClientGP.label" default="Anticipated Client GP" />
+				<g:message code="projectInfo.anticipatedClientGP.label" default="Anticipated Client GP (\$)" />
 			</label>
 			<div class="controls">
 			<g:field type="number" name="anticipatedClientGP" required="" value="${fieldValue(bean: projectInfoInstance, field: 'anticipatedClientGP')}"/>
@@ -199,7 +233,7 @@
 				<g:message code="projectInfo.supportDocDelivered.label" default="Support Doc Delivered Date" />
 			</label>
 			<div class="controls">
-			<g:textField name="supportDocDelivered" value="${formatDate(format:'dd-MM-yyyy',date:projectInfoInstance?.supportDocDelivered)}" id="supportDocDelivered"/>
+			<g:textField name="supportDocDelivered" value="${formatDate(format:'MM/dd/yyyy',date:projectInfoInstance?.supportDocDelivered)}" id="supportDocDelivered"/>
 			</div>
 		</div>
 		
@@ -208,7 +242,7 @@
 				<g:message code="projectInfo.thirtyDayReview.label" default="30 day Review Date" />
 			</label>
 			<div class="controls">
-			<g:textField name="thirtyDayReview" value="${formatDate(format:'dd-MM-yyyy',date:projectInfoInstance?.thirtyDayReview)}" id="thirtyDayReview"/>
+			<g:textField name="thirtyDayReview" value="${formatDate(format:'MM/dd/yyyy',date:projectInfoInstance?.thirtyDayReview)}" id="thirtyDayReview"/>
 			</div>
 		</div>
 		
@@ -217,7 +251,7 @@
 				<g:message code="projectInfo.sixtyDayReview.label" default="60 day Review Date" />
 			</label>
 			<div class="controls">
-			<g:textField name="sixtyDayReview" value="${formatDate(format:'dd-MM-yyyy',date:projectInfoInstance?.sixtyDayReview)}" id="sixtyDayReview"/>
+			<g:textField name="sixtyDayReview" value="${formatDate(format:'MM/dd/yyyy',date:projectInfoInstance?.sixtyDayReview)}" id="sixtyDayReview"/>
 			</div>
 		</div>
 		
@@ -226,7 +260,7 @@
 				<g:message code="projectInfo.handOffComplete.label" default="Hand Off Complete Date" />
 			</label>
 			<div class="controls">
-			<g:textField name="handOffComplete" value="${formatDate(format:'dd-MM-yyyy',date:projectInfoInstance?.handOffComplete)}" id="handOffComplete"/>
+			<g:textField name="handOffComplete" value="${formatDate(format:'MM/dd/yyyy',date:projectInfoInstance?.handOffComplete)}" id="handOffComplete"/>
 			</div>
 		</div>
 		
@@ -252,6 +286,14 @@
 			</label>
 			<div class="controls">
 			<g:textArea name="auditTurnoverComments" value="${projectInfoInstance?.auditTurnoverComments}"/>
+			</div>
+		</div>
+	   <div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'execSummary', 'error')} ">
+			<label class="control-label" for="execSummary">
+				<g:message code="projectInfo.execSummary.label" default="Exective Summary" />
+			</label>
+			<div class="controls">
+			<g:textArea id="execSummary" name="aexecSummary" value="${projectInfoInstance?.execSummary}"/>
 			</div>
 		</div>
 

@@ -117,7 +117,12 @@ class ProjectMilestoneController {
 					if(columnId == 2)
 						projectMilestoneInstance.name = params.value;
 					else if(columnId == 3)
-						projectMilestoneInstance.complete = params.value;
+					{
+					    if(params.value.equalsIgnoreCase("Yes"))	
+						projectMilestoneInstance.complete = true;
+						else
+						projectMilestoneInstance.complete = false;
+					}
 					else if(columnId ==4)
 						projectMilestoneInstance.date = Date.parse('MM/dd/yyyy',params.value);
 					else

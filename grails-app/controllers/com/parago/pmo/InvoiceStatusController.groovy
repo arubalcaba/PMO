@@ -113,14 +113,32 @@ class InvoiceStatusController {
 	def listjson(){
 		
 		def invoiceStatusList = InvoiceStatus.getAll();
+	
 		def jsonResponse = [:];
-		    jsonResponse.put("","");
+		    jsonResponse.put(" "," ");
 			
 			invoiceStatusList?.each{ status ->
 				jsonResponse.put(status.id,status.status);
 			}
 			print jsonResponse as JSON
-			render jsonResponse as JSON;
+			String str= jsonResponse as JSON;
+			str=str.replaceAll("\"","'");
+			print str;
+			render str;
 
 }
+	def selectjson(){
+		
+		def invoiceStatusList = InvoiceStatus.getAll();
+		def jsonResponse = [:];
+			jsonResponse.option=[];		
+			invoiceStatusList?.each{ status ->
+				jsonResponse.option <<[status.id,status.status]
+
+					}
+			print jsonResponse as JSON		
+			render jsonResponse as JSON;
+}
+	
+	
 }
