@@ -33,6 +33,16 @@ environments {
 			url = "jdbc:mysql://184.106.212.88/pmo"			
 		}	
 	}
+	andrewdev{
+		
+		dataSource {
+			dbCreate = "update"
+			driverClassName = "com.mysql.jdbc.Driver"
+			username = "pmo"
+			password =  "pmo"
+			url = "jdbc:mysql://localhost/pmo"
+		}
+	}
 
     production {
         dataSource {

@@ -75,6 +75,12 @@ environments {
 		grails.dbconsole.urlRoot = '/admin/dbconsole'
 
 	}
+	andrewdev {
+		grails.logging.jul.usebridge = true
+		grails.dbconsole.enabled = true
+		grails.dbconsole.urlRoot = '/admin/dbconsole'
+
+	}
     production {
         grails.logging.jul.usebridge = false
 		grails.dbconsole.enabled = true

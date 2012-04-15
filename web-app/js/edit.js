@@ -45,6 +45,7 @@ function createQualityTargetTable(){
                     "bJQueryUI": true,
                     "bProcessing": true,
                     "bAutoWidth" : false,
+                    "bFilter": false,
                     "sAjaxSource": context + "/qualityTarget/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
                     "aoColumns": [{"bVisible": false,"bSearchable": false,"bSortable":false},{"bVisible": false,"bSearchable": false,"bSortable":false},{"bSortable":false},{"bSortable":false}]
 
@@ -99,8 +100,9 @@ function createChangeOrderTable(){
                     "bJQueryUI": true,
                     "bProcessing": true,
                     "bAutoWidth" : false,
+                    "bFilter": false,
                     "sAjaxSource": context + "/changeOrder/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
-                    "aoColumns": [{"bVisible": false,"bSearchable": false,"bSortable":false},{"bVisible": false,"bSearchable": false,"bSortable":false},{"bSortable":false},{"bSortable":false}]
+                    "aoColumns": [{"bVisible": false,"bSearchable": false,"bSortable":false},{"bVisible": false,"bSearchable": false,"bSortable":false},{"bSortable":false},{"bSortable":false},{"bSortable":false},{"bSortable":false}]
 
                 }).makeEditable({
                                     sUpdateURL: context + "/changeOrder/edit.json",
@@ -134,6 +136,8 @@ function createChangeOrderTable(){
                                     },
                                     "aoColumns": [
                                                    {cssclass:"required",tooltip: 'Double Click to edit'},
+                                                   {cssclass:"required number",tooltip: 'Double Click to edit'},
+                                                   {cssclass:"required digits",tooltip: 'Double Click to edit'},
                                                   {cssclass:"required",tooltip: 'Double Click to edit', maxlength: 120}
                                                  ]
                                         });
@@ -145,6 +149,7 @@ function createImpedimentTable(){
                     "bJQueryUI": true,
                     "bProcessing": true,
                     "bAutoWidth" : false,
+                    "bFilter": false,
                     "sAjaxSource": context + "/impediment/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
                     "aoColumns": [{"bVisible": false,"bSearchable": false,"bSortable":false},{"bVisible": false,"bSearchable": false,"bSortable":false},{"bSortable":false},{"bSortable":false}]
 
@@ -199,6 +204,7 @@ function createRiskTabel()
                     "bJQueryUI": true,
                     "bProcessing": true,
                     "bAutoWidth" : false,
+                    "bFilter": false,
                     "sAjaxSource": context + "/risk/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
                     "aoColumns": [
                     {"bVisible": false,"bSearchable": false,"bSortable":false},

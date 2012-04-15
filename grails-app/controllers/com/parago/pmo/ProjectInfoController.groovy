@@ -75,16 +75,15 @@ class ProjectInfoController {
 	                return
 	            }
 	        }
-	        projectInfoInstance.properties = params	
+	       
 			print params?.plannedReleaseDate	
 			
 			if(params?.plannedReleaseDate)
 			{
-				
-				projectInfoInstance?.plannedReleaseDate=Date.parse("MM/dd/yyyy",params?.plannedReleaseDate);
-				print projectInfoInstance?.plannedReleaseDate;
-				projectInfoInstance.clearErrors();
+				params?.plannedReleaseDate=Date.parse("MM/dd/yyyy",params?.plannedReleaseDate);
+				print params?.plannedReleaseDate;
 			}
+			projectInfoInstance.properties = params
 			
 			
 			

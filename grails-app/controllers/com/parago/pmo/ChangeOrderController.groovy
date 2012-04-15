@@ -115,6 +115,10 @@ class ChangeOrderController {
 					def columnId = params.columnId;
 					if(columnId == 2)
 						changeOrderInstance.changeOrderName = params.value;
+					else if(columnId == 3)
+						changeOrderInstance.costImpact = params.value;
+					else if(columnId == 4)
+						changeOrderInstance.scheduleImpact = params.value;
 					else
 						changeOrderInstance.link = params.value;
 					
@@ -184,6 +188,8 @@ class ChangeOrderController {
 			jsonResponse.aaData << [changeOrder.id,
 									changeOrder.projectInfo.id,
 									changeOrder.changeOrderName,
+									changeOrder.costImpact,
+									changeOrder.scheduleImpact,
 									changeOrder.link]
 		}
 		

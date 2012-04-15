@@ -96,9 +96,9 @@
 							 <form id="formAddQualityTarget" action="#" title="Add New Quality Target">
 								<input type="hidden" name="id" id="id" rel="0" value="DATAROWID" />
 								<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />
-								<label for="riskt">Quality Target</label><br />
+								<label for="qualityTarget">Quality Target</label><br />
 								<input type="text" name="qualityTarget" id="qualityTarget" rel="2" class="required" /><br />
-								<label for="riskt">Quality Measurement Process</label><br />								
+								<label for="qualityMeasurementProcess">Quality Measurement Process</label><br />								
 								<textarea rows="4" cols="50" maxlength="120" name="qualityMeasurementProcess" id="qualityMeasurementProcess" rel="3" class="required"></textarea><br />
 								
 								<br />
@@ -125,9 +125,9 @@
 							 <form id="formAddRisk" action="#" title="Add New Risk">
 								<input type="hidden" name="id" id="id" rel="0" value="DATAROWID" />
 								<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />
-								<label for="riskt">Risk</label><br />
+								<label for="risk">Risk</label><br />
 								<input type="text" name="risk" id="risk" rel="2" class="required maxLength#5" /><br />
-								<label for="riskt">Risk Migration Strategy</label><br />
+								<label for="riskMigrationStrategy">Risk Migration Strategy</label><br />
 								<textarea rows="4" cols="50" maxlength="120" name="riskMigrationStrategy" id="riskMigrationStrategy" rel="3" class="required"></textarea><br />
 								<br />
 								<button id="btnAddRiskCancel" value="cancel">Cancel</button>
@@ -153,9 +153,9 @@
 						 <form id="formAddImpediment" action="#" title="Add New Impediment">
 							<input type="hidden" name="id" id="id" rel="0" value="DATAROWID" />
 							<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />
-							<label for="riskt">Impediment</label><br />
+							<label for="impediment">Impediment</label><br />
 							<input type="text" name="impediment" id="impediment" rel="2" class="required" /><br />
-							<label for="riskt">Remediation Plan</label><br />							
+							<label for="remediationPlan">Remediation Plan</label><br />							
 							<textarea rows="4" cols="50" maxlength="120" name="remediationPlan" id="remediationPlan" rel="3" class="required"></textarea><br />
 							<br />
 							<button id="btnAddImpedimentCancel" value="cancel">Cancel</button>
@@ -174,6 +174,8 @@
 							<th>ID</th>
 							<th>ProjectInfoId</th>
 							<th>Change Order Name</th>
+							<th>Cost Impact</th>
+							<th>Schedule Impact</th>
 							<th>Link</th>
 						</tr>
 					</thead>
@@ -181,10 +183,14 @@
 							 <form id="formAddChangeOrder" action="#" title="Add New Change Order">
 								<input type="hidden" name="id" id="id" rel="0" value="DATAROWID" />
 								<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />
-								<label for="riskt">Change Order Name</label><br />
+								<label for="changeOrderName">Change Order Name</label><br />
 								<input type="text" name="changeOrderName" id="changeOrderName" rel="2" class="required" /><br />
-								<label for="riskt">Link</label><br />
-								<input type="text" name="link" id="link" maxlength="120" rel="3" class="required" /><br />
+								<label for="costImpact">Cost Impact</label><br />
+								<input type="text" name="costImpact" id="costImpact" rel="3" class="required number" /><br />
+								<label for="scheduleImpact">Schedule Impact</label><br />
+								<input type="text" name="scheduleImpact" id="scheduleImpact" rel="4" class="required digits" /><br />
+								<label for="link">Link</label><br />
+								<input type="text" name="link" id="link" maxlength="120" rel="5" class="required" /><br />
 								<br />
 								<button id="btnAddChangeOrderCancel" value="cancel">Cancel</button>
 								<button id="btnAddChangeOrderOk" value="Ok">Add Change Order</button>	
