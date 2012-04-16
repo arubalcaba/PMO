@@ -23,8 +23,9 @@ class ImpedimentController {
 			break
 		case 'POST':
 	        def impedimentInstance = new Impediment(params)
-	        if (!impedimentInstance.save(flush: true)) {
-	            render view: 'create', model: [impedimentInstance: impedimentInstance]
+	        if (!impedimentInstance.save(flush: true,failOnError: true)) {
+				response.status = 405;
+				render "Unable to create Impediment";
 	            return
 	        }
 			
@@ -114,7 +115,7 @@ class ImpedimentController {
 						}
 					}
 					def columnId = params.columnId;
-					if(columnId == 2)
+					if(params.columnId.equalsIgnoreCase("2"))
 						impedimentInstance.impediment = params.value
 					else
 						impedimentInstance.remediationPlan = params.value

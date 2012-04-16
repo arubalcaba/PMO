@@ -23,8 +23,9 @@ class QualityTargetController {
 			break
 		case 'POST':
 	        def qualityTargetInstance = new QualityTarget(params)
-	        if (!qualityTargetInstance.save(flush: true)) {
-	            render view: 'create', model: [qualityTargetInstance: qualityTargetInstance]
+	        if (!qualityTargetInstance.save(flush: true,failOnError: true)) {
+				response.status = 405;
+				render "Unable to create Quality Traget";	   
 	            return
 	        }
 			
@@ -115,7 +116,7 @@ class QualityTargetController {
 					}
 					
 					def columnId = params.columnId;
-					if(columnId == 2)
+					if(params.columnId.equalsIgnoreCase("2"))
 						qualityTargetInstance.qualityTarget = params.value;
 					else
 						qualityTargetInstance.qualityMeasurementProcess = params.value;

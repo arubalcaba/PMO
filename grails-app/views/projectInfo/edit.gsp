@@ -9,7 +9,9 @@
         <link rel="stylesheet" href="${resource(dir: 'jui', file: 'jquery-ui.css')}" type="text/css">    
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'jquery.dataTables_themeroller.css')}" type="text/css">
 		<script  rel="javascript" src="${resource(dir: 'js', file: 'jquery-ui-1.8.18.custom.min.js')}"  type="text/javascript"></script>
-	    <script  rel="javascript" src="${resource(dir: 'js', file: 'json2.js')}"  type="text/javascript"></script>		
+	    <script  rel="javascript" src="${resource(dir: 'js', file: 'json2.js')}"  type="text/javascript"></script>	
+	    <script  rel="javascript" src="${request.contextPath}/js/ckeditor/ckeditor.js"  type="text/javascript"></script>
+	    <script  rel="javascript" src="${request.contextPath}/js/ckeditor/adapters/jquery.js"  type="text/javascript"></script>	   
 		<script  rel="javascript" src="${resource(dir: 'js', file: 'jquery.validate.min.js')}"  type="text/javascript"></script>
 		<script  rel="javascript" src="${resource(dir: 'js', file: 'jquery.dataTables.min.js')}"  type="text/javascript"></script>
 		<script  rel="javascript" src="${resource(dir: 'js', file: 'jquery.dataTables.editable.js')}"  type="text/javascript"></script>
@@ -104,12 +106,12 @@
 								<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />												
 								<label for="name">Milestone</label><br />
 								<input type="text" name="name" id="name" rel="2" class="required" /><br />
-								<label for="complete">Complete</label><br />								
-								<input type="checkBox" name="complete" id="complete" rel="3" class="required" value="true" /><br />
+								<label for="complete">Complete</label>						
+								<input type="checkBox" name="complete" id="complete" rel="3"  value="true" /><br />
 								<label for="date">Date</label><br />
 								<input type="text" name="date" id="milestoneDate" rel="4" class="required date" /><br />
 								<label for="note">Note</label><br />
-								<input type="text" name="note" id="note" rel="5" class="required" /><br />
+								<textarea rows="4" cols="50" maxlength="120" name="note" id="note" rel="5"></textarea><br />
 																
 								<br />
 								<button id="btnAddMilestoneCancel" value="cancel">Cancel Milestone</button>
@@ -140,7 +142,7 @@
 								<label for="invoiceStatus">Status</label><br />
 								<select name="invoiceStatus" id="invoiceStatus" rel="3" class="required"></select><br />							
 								<label for="invoiceNote">Note</label><br />
-								<input type="text" name="invoiceNote" id="invoiceNote" rel="4" class="required" /><br />
+								<textarea rows="4" cols="50" maxlength="120" name="invoiceNote" id="invoiceNote" rel="4"></textarea><br />
 								<br />
 								<button id="btnAddInvoiceCancel" value="cancel">Cancel Invoice</button>
 								<button id="btnAddInvoiceOk" value="Ok">Add Invoice</button>	

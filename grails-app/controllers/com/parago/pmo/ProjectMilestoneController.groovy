@@ -23,11 +23,18 @@ class ProjectMilestoneController {
 			break
 		case 'POST':
 	        def projectMilestoneInstance = new ProjectMilestone();
-			projectMilestoneInstance.properties['name','complete','note'] = params;
+			projectMilestoneInstance.properties['name','complete','note','projectInfo.id'] = params;
 			projectMilestoneInstance.date = Date.parse('MM/dd/yyyy',params.date);
-	        if (!projectMilestoneInstance.save(flush: true)) {
-	            render view: 'create', model: [projectMilestoneInstance: projectMilestoneInstance]
-	            return
+			if(!params?.complete)
+			{
+				projectMilestoneInstance.complete=false;
+			}
+
+			
+	        if (!projectMilestoneInstance.save(flush: true,failOnError: true)) {
+				response.status = 405;
+				render "Unable to create Milestone";
+				return
 	        }
 			withFormat{
 				html{
@@ -114,16 +121,16 @@ class ProjectMilestoneController {
 					}
 					
 					def columnId = params.columnId;
-					if(columnId == 2)
+					if(params.columnId.equalsIgnoreCase("2"))
 						projectMilestoneInstance.name = params.value;
-					else if(columnId == 3)
+					else if(params.columnId.equalsIgnoreCase("3"))
 					{
 					    if(params.value.equalsIgnoreCase("Yes"))	
 						projectMilestoneInstance.complete = true;
 						else
 						projectMilestoneInstance.complete = false;
 					}
-					else if(columnId ==4)
+					else if(params.columnId.equalsIgnoreCase("4"))
 						projectMilestoneInstance.date = Date.parse('MM/dd/yyyy',params.value);
 					else
 						projectMilestoneInstance.note = params.value;

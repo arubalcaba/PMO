@@ -25,6 +25,7 @@ class InvoiceStatusController {
 			break
 		case 'POST':
 	        def invoiceStatusInstance = new InvoiceStatus(params)
+		
 	        if (!invoiceStatusInstance.save(flush: true)) {
 	            render view: 'create', model: [invoiceStatusInstance: invoiceStatusInstance]
 	            return

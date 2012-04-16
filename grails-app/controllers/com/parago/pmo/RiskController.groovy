@@ -23,8 +23,9 @@ class RiskController {
 			break
 		case 'POST':
 	        def riskInstance = new Risk(params)
-	        if (!riskInstance.save(flush: true)) {
-	            render view: 'create', model: [riskInstance: riskInstance]
+	        if (!riskInstance.save(flush: true,failOnError: true)) {	
+				response.status = 405;
+				render "Unable to create Risk";
 	            return
 	        }
 			withFormat{
@@ -112,7 +113,7 @@ class RiskController {
 					}
 		
 					def columnId = params.columnId;
-					if(columnId == 2)
+					if(params.columnId.equalsIgnoreCase("2"))
 						riskInstance.risk = params.value;
 					else
 						riskInstance.riskMigrationStrategy = params.value;

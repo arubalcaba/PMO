@@ -24,8 +24,9 @@ class ChangeOrderController {
 		case 'POST':
 			
 	        def changeOrderInstance = new ChangeOrder(params)
-	        if (!changeOrderInstance.save(flush: true)) {
-	            render view: 'create', model: [changeOrderInstance: changeOrderInstance]
+	        if (!changeOrderInstance.save(flush: true,failOnError: true)) {
+	            response.status = 405;
+                render "Unable to create Change Order";
 	            return
 	        }	
 			withFormat{
@@ -113,11 +114,11 @@ class ChangeOrderController {
 					}
 					
 					def columnId = params.columnId;
-					if(columnId == 2)
+					if(params.columnId.equalsIgnoreCase("2"))
 						changeOrderInstance.changeOrderName = params.value;
-					else if(columnId == 3)
+					else if(params.columnId.equalsIgnoreCase("3"))
 						changeOrderInstance.costImpact = params.value;
-					else if(columnId == 4)
+					else if(params.columnId.equalsIgnoreCase("4"))
 						changeOrderInstance.scheduleImpact = params.value;
 					else
 						changeOrderInstance.link = params.value;

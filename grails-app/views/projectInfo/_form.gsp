@@ -120,29 +120,28 @@
 		 <legend>Budget Information</legend>
 		 
 		 <div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'budgetWithContractors', 'error')} required">
-			<label class="control-label" for="budgetWithContractors">
-				<g:message code="projectInfo.budgetWithContractors.label" default="Budget w/Contractors (\$)" />
-				<span class="required-indicator"></span>
+			<label class="control-label" for="budgetWithContractors" style="width:12%">
+				<g:message code="projectInfo.budgetWithContractors.label" default="Budget w/Contractors (\$) "/>				
 			</label>
 			<div class="controls">
-			<g:field type="number" name="budgetWithContractors" required="" value="${fieldValue(bean: projectInfoInstance, field: 'budgetWithContractors')}"/>
+			<g:field type="number" min="0" step="any" name="budgetWithContractors" required="" value="${fieldValue(bean: projectInfoInstance, field: 'budgetWithContractors')}"/>
 			</div>
 		 </div>
 		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'actualCost', 'error')} required">
-			<label class="control-label" for="actualCost">
-				<g:message code="projectInfo.actualCost.label" default="Actual Cost (\$)" />
+			<label class="control-label" for="actualCost" style="width:12%">
+				<g:message code="projectInfo.actualCost.label" default="Actual Cost (\$) "/>
 			</label>
 			<div class="controls">
-			<g:field type="number" name="actualCost" required="" value="${fieldValue(bean: projectInfoInstance, field: 'actualCost')}"/>
+			<g:field type="number" min="0" step="any" name="actualCost" required="" value="${fieldValue(bean: projectInfoInstance, field: 'actualCost')}"/>
 			</div>
 		</div>
 
 		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'estimateToComplete', 'error')} required">
-			<label class="control-label" for="estimateToComplete">
-				<g:message code="projectInfo.estimateToComplete.label" default="Estimate To Complete (\$)" />
+			<label class="control-label" for="estimateToComplete" style="width:12%">
+				<g:message code="projectInfo.estimateToComplete.label" default="Estimate To Complete (\$) "  />
 			</label>
 			<div class="controls">
-			<g:field type="number" name="estimateToComplete" required="" value="${fieldValue(bean: projectInfoInstance, field: 'estimateToComplete')}"/>
+			<g:field type="number" min="0" step="any" name="estimateToComplete" required="" value="${fieldValue(bean: projectInfoInstance, field: 'estimateToComplete')}"/>
 			</div>
 		</div>
 
@@ -151,7 +150,7 @@
 				<g:message code="projectInfo.loeHours.label" default="Loe Hours" />
 			</label>
 			<div class="controls">
-			<g:field type="number" name="loeHours" required="" value="${fieldValue(bean: projectInfoInstance, field: 'loeHours')}"/>
+			<g:field type="number" min="0" step="any" name="loeHours" required="" value="${fieldValue(bean: projectInfoInstance, field: 'loeHours')}"/>
 			</div>
 		</div>
 		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'budgetComments', 'error')} ">
@@ -171,7 +170,7 @@
 				<g:message code="projectInfo.numberOfQualityMeasures.label" default="Number Of Quality Measures" />
 			</label>
 			<div class="controls">
-			<g:field type="number" name="numberOfQualityMeasures" required="" value="${fieldValue(bean: projectInfoInstance, field: 'numberOfQualityMeasures')}"/>
+			<g:field type="number" min="0" step="any" name="numberOfQualityMeasures" required="" value="${fieldValue(bean: projectInfoInstance, field: 'numberOfQualityMeasures')}"/>
 			</div>
 		</div>
 
@@ -180,7 +179,7 @@
 				<g:message code="projectInfo.numberOfQualityMeasuresNotMet.label" default="Number Of Quality Measures Not Met" />
 			</label>
 			<div class="controls">
-			<g:field type="number" name="numberOfQualityMeasuresNotMet" required="" value="${fieldValue(bean: projectInfoInstance, field: 'numberOfQualityMeasuresNotMet')}"/>
+			<g:field type="number" min="0" step="any" name="numberOfQualityMeasuresNotMet" required="" value="${fieldValue(bean: projectInfoInstance, field: 'numberOfQualityMeasuresNotMet')}"/>
 			</div>
 		</div>
 		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'qualityMet', 'error')} required">
@@ -217,11 +216,11 @@
 		</g:if>
 
 		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'anticipatedClientGP', 'error')} required">
-			<label class="control-label" for="anticipatedClientGP">
-				<g:message code="projectInfo.anticipatedClientGP.label" default="Anticipated Client GP (\$)" />
+			<label class="control-label" for="anticipatedClientGP" style="width:12%">
+				<g:message code="projectInfo.anticipatedClientGP.label" default="Anticipated Client GP (\$) " />
 			</label>
 			<div class="controls">
-			<g:field type="number" name="anticipatedClientGP" required="" value="${fieldValue(bean: projectInfoInstance, field: 'anticipatedClientGP')}"/>
+			<g:field type="number" min="0" step="any" name="anticipatedClientGP" required="" value="${fieldValue(bean: projectInfoInstance, field: 'anticipatedClientGP')}"/>
 			</div>
 		</div>
 		
@@ -251,7 +250,7 @@
 				<g:message code="projectInfo.sixtyDayReview.label" default="60 day Review Date" />
 			</label>
 			<div class="controls">
-			<g:textField name="sixtyDayReview" value="${formatDate(format:'MM/dd/yyyy',date:projectInfoInstance?.sixtyDayReview)}" id="sixtyDayReview"/>
+			<g:textField type="date" name="sixtyDayReview" value="${formatDate(format:'MM/dd/yyyy',date:projectInfoInstance?.sixtyDayReview)}" id="sixtyDayReview"/>
 			</div>
 		</div>
 		
@@ -293,7 +292,7 @@
 				<g:message code="projectInfo.execSummary.label" default="Exective Summary" />
 			</label>
 			<div class="controls">
-			<g:textArea id="execSummary" name="aexecSummary" value="${projectInfoInstance?.execSummary}"/>
+			<g:textArea id="execSummary" name="execSummary" class="ckeditor" value="${projectInfoInstance?.execSummary}"/>
 			</div>
 		</div>
 

@@ -108,36 +108,36 @@
 					</g:if>
 					<g:if test="${projectInfoInstance?.startDate}">
 						<tr><td style="width:30%"><g:message code="projectInfo.startDate.label" default="Start Date" /></td>						
-							<td style="width:70%"><g:formatDate format="MM/dd/yyy" date="${projectInfoInstance?.startDate}" /></td></tr>						
+							<td style="width:70%"><g:formatDate format="MM/dd/yyyy" date="${projectInfoInstance?.startDate}" /></td></tr>						
 					</g:if>
 						<g:if test="${projectInfoInstance?.plannedReleaseDate}">
 						<tr><td style="width:30%"><g:message code="projectInfo.plannedReleaseDate.label" default="Planned Release Date" /></td>						
-							<td style="width:70%"><g:formatDate format="MM/dd/yyy" date="${projectInfoInstance?.plannedReleaseDate}" /></td></tr>						
+							<td style="width:70%"><g:formatDate format="MM/dd/yyyy" date="${projectInfoInstance?.plannedReleaseDate}" /></td></tr>						
 					</g:if>			
 					<g:if test="${projectInfoInstance?.actualReleaseDate}">
 						<tr><td style="width:30%"><g:message code="projectInfo.actualReleaseDate.label" default="Actual Release Date" /></td>						
-							<td style="width:70%"><g:formatDate format="MM/dd/yyy" date="${projectInfoInstance?.actualReleaseDate}" /></td></tr>						
+							<td style="width:70%"><g:formatDate format="MM/dd/yyyy" date="${projectInfoInstance?.actualReleaseDate}" /></td></tr>						
 					</g:if>
 					<g:if test="${projectInfoInstance?.scheduleComments}">
 						<tr><td style="width:30%"><g:message code="projectInfo.auditTurnoverComments.label" default="Schedule Comments" /></td>
 							<td style="width:70%">${projectInfoInstance?.scheduleComments?.encodeAsHTML()}</td></tr>					
 					</g:if>	
-					<g:if test="${projectInfoInstance?.budgetWithContractors}">
+					<g:if test="${projectInfoInstance?.budgetWithContractors != null}">
 						<tr><td style="width:30%"><g:message code="projectInfo.budgetWithContractors.label" default="Budget With Contractors (\$)" /></td>						
 							<td style="width:70%"><g:formatNumber number="${projectInfoInstance?.budgetWithContractors}" type="currency" currencyCode="USD" /></td></tr>						
 					</g:if>
 				
-					<g:if test="${projectInfoInstance?.actualCost}">
+					<g:if test="${projectInfoInstance?.actualCost != null}">
 						<tr><td style="width:30%"><g:message code="projectInfo.actualCost.label" default="Actual Cost (\$)" /></td>						
 							<td style="width:70%"><g:formatNumber number="${projectInfoInstance?.actualCost}" type="currency" currencyCode="USD" /></td></tr>						
 					</g:if>
 				
-					<g:if test="${projectInfoInstance?.estimateToComplete}">
+					<g:if test="${projectInfoInstance?.estimateToComplete != null}">
 						<tr><td style="width:30%"><g:message code="projectInfo.estimateToComplete.label" default="Estimate To Complete (\$)" /></td>						
 							<td style="width:70%"><g:formatNumber number="${projectInfoInstance?.estimateToComplete}" type="currency" currencyCode="USD"/></td></tr>						
 					</g:if>
 				
-					<g:if test="${projectInfoInstance?.loeHours}">
+					<g:if test="${projectInfoInstance?.loeHours != null}">
 						<tr><td style="width:30%"><g:message code="projectInfo.loeHours.label" default="Loe Hours" /></td>						
 							<td style="width:70%"><g:fieldValue bean="${projectInfoInstance}" field="loeHours"/></td></tr>						
 					</g:if>
@@ -145,18 +145,18 @@
 						<tr><td style="width:30%"><g:message code="projectInfo.budgetComments.label" default="Budget Comments" /></td>
 							<td style="width:70%">${projectInfoInstance?.budgetComments?.encodeAsHTML()}</td></tr>					
 					</g:if>	
-					<g:if test="${projectInfoInstance?.numberOfQualityMeasures}">
+					<g:if test="${projectInfoInstance?.numberOfQualityMeasures != null}">
 						<tr><td style="width:30%"><g:message code="projectInfo.numberOfQualityMeasures.label" default="Number Of Quality Measures" /></td>						
 							<td style="width:70%"><g:fieldValue bean="${projectInfoInstance}" field="numberOfQualityMeasures"/></td></tr>						
 					</g:if>
 				
-					<g:if test="${projectInfoInstance?.numberOfQualityMeasuresNotMet}">
+					<g:if test="${projectInfoInstance?.numberOfQualityMeasuresNotMet != null}">
 						<tr><td style="width:30%"><g:message code="projectInfo.numberOfQualityMeasuresNotMet.label" default="Number Of Quality Measures Not Met" /></td>						
 							<td style="width:70%"><g:fieldValue bean="${projectInfoInstance}" field="numberOfQualityMeasuresNotMet"/></td></tr>						
 					</g:if>
-					<g:if test="${projectInfoInstance?.qualityMet}">
+					<g:if test="${projectInfoInstance?.qualityMet != null}">
 						<tr><td style="width:30%"><g:message code="projectInfo.qualityMet.label" default="Quality Met" /></td>
-							<td style="width:70%"><g:formatBoolean boolean="${projectInfoInstance?.qualityMets}" true="Yes" false="No"/></td></tr>					
+							<td style="width:70%"><g:formatBoolean boolean="${projectInfoInstance?.qualityMet}" true="Yes" false="No"/></td></tr>					
 					</g:if>	
 						<g:if test="${projectInfoInstance?.qualityComments}">
 						<tr><td style="width:30%"><g:message code="projectInfo.qualityComments.label" default="Quality Comments" /></td>
@@ -167,26 +167,26 @@
 							<td style="width:70%"><g:fieldValue  bean="${projectInfoInstance}" field="category"/></td></tr>						
 					</g:if>
 					
-					<g:if test="${projectInfoInstance?.anticipatedClientGP}">
+					<g:if test="${projectInfoInstance?.anticipatedClientGP != null}">
 						<tr><td style="width:30%"><g:message code="projectInfo.anticipatedClientGP.label" default="Anticipated Client GP (\$)" /></td>						
 							<td style="width:70%"><g:formatNumber number="${projectInfoInstance?.anticipatedClientGP}" type="currency" currencyCode="USD" /></td></tr>						
 					</g:if>
 					
 					<g:if test="${projectInfoInstance?.supportDocDelivered}">
 						<tr><td style="width:30%"><g:message code="projectInfo.supportDocDelivered.label" default="Support Doc Delivered Date" /></td>						
-							<td style="width:70%"><g:formatDate format="MM/dd/yyy" date="${projectInfoInstance?.supportDocDelivered}" /></td></tr>						
+							<td style="width:70%"><g:formatDate format="MM/dd/yyyy" date="${projectInfoInstance?.supportDocDelivered}" /></td></tr>						
 					</g:if>
 					<g:if test="${projectInfoInstance?.thirtyDayReview}">
 						<tr><td style="width:30%"><g:message code="projectInfo.thirtyDayReview.label" default="30 day Review Date" /></td>						
-							<td style="width:70%"><g:formatDate format="MM/dd/yyy" date="${projectInfoInstance?.thirtyDayReview}" /></td></tr>						
+							<td style="width:70%"><g:formatDate format="MM/dd/yyyy" date="${projectInfoInstance?.thirtyDayReview}" /></td></tr>						
 					</g:if>
 					<g:if test="${projectInfoInstance?.sixtyDayReview}">
 						<tr><td style="width:30%"><g:message code="projectInfo.sixtyDayReview.label" default="60 day Review Date" /></td>						
-							<td style="width:70%"><g:formatDate format="MM/dd/yyy" date="${projectInfoInstance?.sixtyDayReview}" /></td></tr>						
+							<td style="width:70%"><g:formatDate format="MM/dd/yyyy" date="${projectInfoInstance?.sixtyDayReview}" /></td></tr>						
 					</g:if>
 					<g:if test="${projectInfoInstance?.handOffComplete}">
 						<tr><td style="width:30%"><g:message code="projectInfo.handOffComplete.label" default="Hand Off Complete Date" /></td>						
-							<td style="width:70%"><g:formatDate date="${projectInfoInstance?.handOffComplete}" /></td></tr>						
+							<td style="width:70%"><g:formatDate format="MM/dd/yyyy" date="${projectInfoInstance?.handOffComplete}" /></td></tr>						
 					</g:if>				
 					
 					<g:if test="${projectInfoInstance?.turnoverStatus}">
@@ -204,12 +204,12 @@
 					</g:if>
 					<g:if test="${projectInfoInstance?.execSummary}">
 						<tr><td style="width:30%"><g:message code="projectInfo.execSummary.label" default="Exective Summary" /></td>
-							<td style="width:70%">${projectInfoInstance?.execSummary?.encodeAsHTML()}</td></tr>					
+							<td style="width:70%">${projectInfoInstance?.execSummary?.decodeHTML()}</td></tr>					
 					</g:if>					
 	
 					<g:if test="${projectInfoInstance?.closeDate}">
 						<tr><td style="width:30%"><g:message code="projectInfo.closeDate.label" default="Close Date" /></td>						
-							<td style="width:70%"><g:formatDate format="MM/dd/yyy" date="${projectInfoInstance?.closeDate}" /></td></tr>						
+							<td style="width:70%"><g:formatDate format="MM/dd/yyyy" date="${projectInfoInstance?.closeDate}" /></td></tr>						
 					</g:if>
 					
 					
@@ -246,7 +246,7 @@
 								  	<tr>
 								  		<td style="text-align: center"><g:formatNumber number="${pi?.billableAmount}" type="currency" currencyCode="USD" /></td>
 								    	<td style="text-align: center">${pi?.invoiceStatus?.encodeAsHTML()}</td>								
-								    	<td style="text-align: center">${pi?.note}</td>
+								    	<td style="text-align: center">${pi?.invoiceNote}</td>
 								  </tr>
 								</g:each>
 								</table>

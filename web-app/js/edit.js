@@ -12,6 +12,8 @@ $(document).ready(function() {
     createChangeOrderTable();
     createMilestoneTabel();
     createInvoiceTabel();
+
+
 });
 
 function createAccordion()
@@ -103,12 +105,12 @@ function createQualityTargetTable(){
                                     oDeleteRowButtonOptions: {  label: "Delete Quality Target",
                                                     icons: {primary:'ui-icon-trash'}
                                     },
-                                    oAddNewRowOkButtonOptions: {    label: "Add Quality Target",
+                                    oAddNewRowOkButtonOptions: {    label: "Confirm",
                                                     icons: {primary:'ui-icon-check'},
                                                     name:"action",
                                                     value:"add-new"
                                     },
-                                    oAddNewRowCancelButtonOptions: { label: "Cancel Quality Target",
+                                    oAddNewRowCancelButtonOptions: { label: "Cancel",
                                                      "class": "back-class",
                                                      name:"action",
                                                      value:"cancel-add",
@@ -160,12 +162,12 @@ function createChangeOrderTable(){
                                     oDeleteRowButtonOptions: {  label: "Delete Change Order",
                                                     icons: {primary:'ui-icon-trash'}
                                     },
-                                    oAddNewRowOkButtonOptions: {    label: "Add Change Order",
+                                    oAddNewRowOkButtonOptions: {    label: "Confirm",
                                                     icons: {primary:'ui-icon-check'},
                                                     name:"action",
                                                     value:"add-new"
                                     },
-                                    oAddNewRowCancelButtonOptions: { label: "Cancel Change Order",
+                                    oAddNewRowCancelButtonOptions: { label: "Cancel",
                                                      "class": "back-class",
                                                      name:"action",
                                                      value:"cancel-add",
@@ -211,12 +213,12 @@ function createImpedimentTable(){
                                     oDeleteRowButtonOptions: {  label: "Delete Impediment",
                                                     icons: {primary:'ui-icon-trash'}
                                     },
-                                    oAddNewRowOkButtonOptions: {    label: "Add Impediment",
+                                    oAddNewRowOkButtonOptions: {    label: "Confirm",
                                                     icons: {primary:'ui-icon-check'},
                                                     name:"action",
                                                     value:"add-new"
                                     },
-                                    oAddNewRowCancelButtonOptions: { label: "Cancel Impediment",
+                                    oAddNewRowCancelButtonOptions: { label: "Cancel",
                                                      "class": "back-class",
                                                      name:"action",
                                                      value:"cancel-add",
@@ -268,12 +270,12 @@ function createRiskTabel()
                                     oDeleteRowButtonOptions: {  label: "Delete Risk",
                                                     icons: {primary:'ui-icon-trash'}
                                     },
-                                    oAddNewRowOkButtonOptions: {    label: "Add Risk",
+                                    oAddNewRowOkButtonOptions: {    label: "Confirm",
                                                     icons: {primary:'ui-icon-check'},
                                                     name:"action",
                                                     value:"add-new"
                                     },
-                                    oAddNewRowCancelButtonOptions: { label: "Cancel Risk",
+                                    oAddNewRowCancelButtonOptions: { label: "Cancel",
                                                      "class": "back-class",
                                                      name:"action",
                                                      value:"cancel-add",
@@ -326,12 +328,12 @@ function createMilestoneTabel()
                                     oDeleteRowButtonOptions: {  label: "Delete Milestone",
                                                     icons: {primary:'ui-icon-trash'}
                                     },
-                                    oAddNewRowOkButtonOptions: {    label: "Add Milestone",
+                                    oAddNewRowOkButtonOptions: {    label: "Confirm",
                                                     icons: {primary:'ui-icon-check'},
                                                     name:"action",
                                                     value:"add-new"
                                     },
-                                    oAddNewRowCancelButtonOptions: { label: "Cancel Milestone",
+                                    oAddNewRowCancelButtonOptions: { label: "Cancel",
                                                      "class": "back-class",
                                                      name:"action",
                                                      value:"cancel-add",
@@ -348,16 +350,16 @@ function createMilestoneTabel()
                                                      cancel: 'Cancel',
                                                      submit: 'OK',
                                                      checkbox: { trueValue: 'Yes', falseValue: 'No' },
-                                                     tooltip: 'Click to disable',
-                                                     sSuccessResponse: "IGNORE"
+                                                     tooltip: 'Click to disable'
+                                                     //sSuccessResponse: "IGNORE"
                                                   },
                                                    {
                                                      type:   'datepicker',
-                                                     tooltip: 'Click to disable',
-                                                     sSuccessResponse: "IGNORE"
+                                                     cssclass:"required",
+                                                     tooltip: 'Click to disable'
+                                                    // sSuccessResponse: "IGNORE"
                                                   },
                                                   {
-                                                    cssclass:"required",
                                                     type:   'textarea',
                                                     cancel: 'Cancel',
                                                     submit: 'OK',
@@ -398,12 +400,12 @@ function createInvoiceTabel()
                                     oDeleteRowButtonOptions: {  label: "Delete Invoice",
                                                     icons: {primary:'ui-icon-trash'}
                                     },
-                                    oAddNewRowOkButtonOptions: {    label: "Add Invoice",
+                                    oAddNewRowOkButtonOptions: {    label: "Confirm",
                                                     icons: {primary:'ui-icon-check'},
                                                     name:"action",
                                                     value:"add-new"
                                     },
-                                    oAddNewRowCancelButtonOptions: { label: "Cancel Invoice",
+                                    oAddNewRowCancelButtonOptions: { label: "Cancel",
                                                      "class": "back-class",
                                                      name:"action",
                                                      value:"cancel-add",
@@ -426,7 +428,6 @@ function createInvoiceTabel()
                                                       cssclass:"required"
                                                   },
                                                   {
-                                                    cssclass:"required",
                                                     type:   'textarea',
                                                     cancel: 'Cancel',
                                                     submit: 'OK',

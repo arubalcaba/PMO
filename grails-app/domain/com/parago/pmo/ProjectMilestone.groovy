@@ -11,7 +11,7 @@ class ProjectMilestone {
 
     static constraints = {
 		name(blank: false)
-		complete(blank: false)
+		complete(nullable:true,blank: false)
 		date(blank: false)
 		note(nullable: true,blank: false)		
     }

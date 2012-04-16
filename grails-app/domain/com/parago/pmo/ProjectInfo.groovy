@@ -22,7 +22,7 @@ class ProjectInfo {
 	String qualityComments;
 	String execSummary;
 	boolean qualityMet;
-	char billable_Flag;
+	String billable_Flag;
 	double total_expense_cost;	
 	double total_cap_hours;
 	double total_expense_hours;
@@ -77,7 +77,7 @@ class ProjectInfo {
 		scheduleComments(nullable: true)
 		qualityComments(nullable: true)
 		billable_Flag(nullable: true)
-		execSummary(nullable: true,size: 0..5000 )		
+		execSummary(nullable: true,size: 0..10000 )		
 		risks(nullable: true)
 		impediments(nullable: true)
 		changeOrders(nullable: true)

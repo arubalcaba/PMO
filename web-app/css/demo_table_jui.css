@@ -521,14 +521,14 @@ tr.even.gradeU td.sorting_3 {
 	background-color: #E6FF99;
 }
 td.last-updated-cell {
-    background-color: yellow !important;
+    background-color: #FFF380 !important;
     border: medium solid;
 }
 tr.last-added-row {
     border: medium solid;
 }
 tr.last-added-row td {
-    background-color: green !important;
+    background-color: #8BB381 !important;
 }
 label.error {
     background: url("../images/unchecked.gif") no-repeat scroll 0 0 transparent;

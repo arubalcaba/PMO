@@ -55,6 +55,7 @@
 					</thead>
 					<tbody>
 					<g:each in="${projectInfoInstanceList}" var="projectInfoInstance">
+					    <g:if test="${projectInfoInstance?.billable_Flag.equalsIgnoreCase("Y")}">
 						<tr>
 						
 							<td>${fieldValue(bean: projectInfoInstance, field: "projectName")}</td>
@@ -73,6 +74,7 @@
 								<g:link action="show" id="${projectInfoInstance.id}" class="btn btn-small">Show &raquo;</g:link>
 							</td>
 						</tr>
+						</g:if>
 					</g:each>
 					</tbody>
 				</table>

@@ -1,7 +1,8 @@
 package com.parago.pmo
-
 import org.springframework.dao.DataIntegrityViolationException
+
 import grails.converters.JSON
+
 
 class ProjectInvoiceController {
 
@@ -22,10 +23,23 @@ class ProjectInvoiceController {
         	[projectInvoiceInstance: new ProjectInvoice(params)]
 			break
 		case 'POST':
-	        def projectInvoiceInstance = new ProjectInvoice(params)
-	        if (!projectInvoiceInstance.save(flush: true)) {
-	            render view: 'create', model: [projectInvoiceInstance: projectInvoiceInstance]
-	            return
+		    print "invoice params:\t"+ params
+	        def projectInvoiceInstance = new ProjectInvoice();
+			//projectInvoiceInstance.properties['projectInfo'] = params;
+			def invoiceStatusInstance = InvoiceStatus.get(params?.invoiceStatus);
+			def projectInfoInstance = ProjectInfo.get(params?.projectInfo.id);
+					
+			projectInvoiceInstance.billableAmount= params?.billableAmount.toDouble();
+			projectInvoiceInstance.invoiceStatus =invoiceStatusInstance;
+			projectInvoiceInstance.invoiceNote= params?.invoiceNote;
+			projectInvoiceInstance.projectInfo =  projectInfoInstance;
+			
+			
+			
+	        if (!projectInvoiceInstance.save(flush: true,failOnError: true)) {
+				response.status = 405;
+				render "Unable to create Invoice";
+				return
 	        }
 			
 			withFormat{
@@ -111,13 +125,17 @@ class ProjectInvoiceController {
 						}
 					}
 					def columnId = params.columnId;
-					if(columnId ==2)
-						projectInvoiceInstance.invoiceStatus = params.value;
-					else if(columnId ==3)
-						projectInvoiceInstance.billableAmount = params.value;
+					if(params.columnId.equalsIgnoreCase("2"))
+						{
+								projectInvoiceInstance.billableAmount = params.value.toDouble();
+						}
+					else if(params.columnId.equalsIgnoreCase("3"))
+					     {
+							 projectInvoiceInstance.invoiceStatus = InvoiceStatus.get(params.value);
+					     }
 					else
 						projectInvoiceInstance.invoiceNote = params.value;
-					
+												
 					if (!projectInvoiceInstance.save(flush: true)) {
 						response.status = 404;
 						message = "an error occurred";
