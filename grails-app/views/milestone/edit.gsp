@@ -1,9 +1,9 @@
-<%@ page import="com.parago.pmo.ProjectInvoice" %>
+<%@ page import="com.parago.pmo.Milestone" %>
 <!doctype html>
 <html>
 	<head>
 		<meta name="layout" content="bootstrap">
-		<g:set var="entityName" value="${message(code: 'projectInvoice.label', default: 'ProjectInvoice')}" />
+		<g:set var="entityName" value="${message(code: 'milestone.label', default: 'Milestone')}" />
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -39,10 +39,10 @@
 				<bootstrap:alert class="alert-info">${flash.message}</bootstrap:alert>
 				</g:if>
 
-				<g:hasErrors bean="${projectInvoiceInstance}">
+				<g:hasErrors bean="${milestoneInstance}">
 				<bootstrap:alert class="alert-error">
 				<ul>
-					<g:eachError bean="${projectInvoiceInstance}" var="error">
+					<g:eachError bean="${milestoneInstance}" var="error">
 					<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
 					</g:eachError>
 				</ul>
@@ -50,10 +50,10 @@
 				</g:hasErrors>
 
 				<fieldset>
-					<g:form class="form-horizontal" action="edit" id="${projectInvoiceInstance?.id}" >
-						<g:hiddenField name="version" value="${projectInvoiceInstance?.version}" />
+					<g:form class="form-horizontal" action="edit" id="${milestoneInstance?.id}" >
+						<g:hiddenField name="version" value="${milestoneInstance?.version}" />
 						<fieldset>
-							<f:all bean="projectInvoiceInstance"/>
+							<f:all bean="milestoneInstance"/>
 							<div class="form-actions">
 								<button type="submit" class="btn btn-primary">
 									<i class="icon-ok icon-white"></i>

@@ -2,17 +2,17 @@ package com.parago.pmo
 
 class ProjectMilestone {
 	
-	String name;
+	Milestone milestone;
 	boolean complete;
 	Date date;
-	String note
+	String note;
 
 	static belongsTo = [projectInfo:ProjectInfo];	
 
     static constraints = {
-		name(blank: false)
+		milestone(blank: false)
 		complete(nullable:true,blank: false)
 		date(blank: false)
-		note(nullable: true,blank: false)		
+		note(nullable: true,blank: true)		
     }
 }

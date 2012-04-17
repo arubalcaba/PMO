@@ -105,7 +105,7 @@
 								<input type="hidden" name="id" id="id" rel="0" value="DATAROWID" />
 								<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />												
 								<label for="name">Milestone</label><br />
-								<input type="text" name="name" id="name" rel="2" class="required" /><br />
+								<select name="milestone" id="milestone" rel="2" class="required"></select><br />								
 								<label for="complete">Complete</label>						
 								<input type="checkBox" name="complete" id="complete" rel="3"  value="true" /><br />
 								<label for="date">Date</label><br />

@@ -68,6 +68,7 @@ top: 4px;
 				                    <ul class="dropdown-menu">
 				                      <li><a href="${request.contextPath}/auditStatus">Audit Status</a></li>
 				                      <li><a href="${request.contextPath}/invoiceStatus">Invoice Status</a></li>
+				                      <li><a href="${request.contextPath}/milestone">Milestone</a></li>
 				                      <li><a href="${request.contextPath}/projectStatus">Project Status</a></li>
 				                      <li><a href="${request.contextPath}/turnoverStatus">Turnover Status</a></li>
 				                      <li class="divider"></li>

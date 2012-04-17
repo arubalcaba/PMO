@@ -22,15 +22,23 @@ class ProjectMilestoneController {
         	[projectMilestoneInstance: new ProjectMilestone(params)]
 			break
 		case 'POST':
-	        def projectMilestoneInstance = new ProjectMilestone();
-			projectMilestoneInstance.properties['name','complete','note','projectInfo.id'] = params;
-			projectMilestoneInstance.date = Date.parse('MM/dd/yyyy',params.date);
-			if(!params?.complete)
-			{
-				projectMilestoneInstance.complete=false;
-			}
-
-			
+				print "invoice params:\t"+ params
+				def projectMilestoneInstance = new ProjectMilestone();				
+				def milestoneInstance = Milestone.get(params?.milestone);
+				def projectInfoInstance = ProjectInfo.get(params?.projectInfo.id);
+						
+				projectMilestoneInstance.milestone= milestoneInstance ;
+				projectMilestoneInstance.projectInfo =  projectInfoInstance;
+				projectMilestoneInstance.note = params?.note;
+				projectMilestoneInstance.date = Date.parse('MM/dd/yyyy',params.date);
+				if(!params?.complete)
+				{
+					projectMilestoneInstance.complete=false;
+				}
+				else
+				{
+					projectMilestoneInstance.complete=true;
+				}
 	        if (!projectMilestoneInstance.save(flush: true,failOnError: true)) {
 				response.status = 405;
 				render "Unable to create Milestone";
@@ -122,7 +130,10 @@ class ProjectMilestoneController {
 					
 					def columnId = params.columnId;
 					if(params.columnId.equalsIgnoreCase("2"))
-						projectMilestoneInstance.name = params.value;
+					{
+						
+						projectMilestoneInstance.milestone = Milestone.get(params.value);
+					}		
 					else if(params.columnId.equalsIgnoreCase("3"))
 					{
 					    if(params.value.equalsIgnoreCase("Yes"))	
@@ -197,7 +208,7 @@ class ProjectMilestoneController {
 		projectMilestoneList?.each{ projectMilestone ->
 			jsonResponse.aaData << [projectMilestone.id,
 									projectMilestone.projectInfo.id,
-									projectMilestone.name,
+									projectMilestone.milestone.milestone,
 									projectMilestone.complete?'yes':'no',
 									projectMilestone.date.format('MM/dd/yyyy'),
 									projectMilestone.note]

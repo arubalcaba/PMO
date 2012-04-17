@@ -1,10 +1,10 @@
 
-<%@ page import="com.parago.pmo.ProjectInvoice" %>
+<%@ page import="com.parago.pmo.Milestone" %>
 <!doctype html>
 <html>
 	<head>
 		<meta name="layout" content="bootstrap">
-		<g:set var="entityName" value="${message(code: 'projectInvoice.label', default: 'ProjectInvoice')}" />
+		<g:set var="entityName" value="${message(code: 'milestone.label', default: 'Milestone')}" />
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
@@ -44,38 +44,26 @@
 					<thead>
 						<tr>
 						
-							<g:sortableColumn property="billableAmount" title="${message(code: 'projectInvoice.billableAmount.label', default: 'Billable Amount')}" />
-						
-							<th class="header"><g:message code="projectInvoice.invoiceStatus.label" default="Invoice Status" /></th>
-						
-							<g:sortableColumn property="invoiceNote" title="${message(code: 'projectInvoice.invoiceNote.label', default: 'Invoice Note')}" />
-						
-							<th class="header"><g:message code="projectInvoice.projectInfo.label" default="Project Info" /></th>
+							<g:sortableColumn property="milestone" title="${message(code: 'milestone.milestone.label', default: 'Milestone')}" />
 						
 							<th></th>
 						</tr>
 					</thead>
 					<tbody>
-					<g:each in="${projectInvoiceInstanceList}" var="projectInvoiceInstance">
+					<g:each in="${milestoneInstanceList}" var="milestoneInstance">
 						<tr>
 						
-							<td>${fieldValue(bean: projectInvoiceInstance, field: "billableAmount")}</td>
-						
-							<td>${fieldValue(bean: projectInvoiceInstance, field: "invoiceStatus")}</td>
-						
-							<td>${fieldValue(bean: projectInvoiceInstance, field: "invoiceNote")}</td>
-						
-							<td>${fieldValue(bean: projectInvoiceInstance, field: "projectInfo")}</td>
+							<td>${fieldValue(bean: milestoneInstance, field: "milestone")}</td>
 						
 							<td class="link">
-								<g:link action="show" id="${projectInvoiceInstance.id}" class="btn btn-small">Show &raquo;</g:link>
+								<g:link action="show" id="${milestoneInstance.id}" class="btn btn-small">Show &raquo;</g:link>
 							</td>
 						</tr>
 					</g:each>
 					</tbody>
 				</table>
 				<div class="pagination">
-					<bootstrap:paginate total="${projectInvoiceInstanceTotal}" />
+					<bootstrap:paginate total="${milestoneInstanceTotal}" />
 				</div>
 			</div>
 

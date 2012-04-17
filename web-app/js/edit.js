@@ -6,6 +6,7 @@ $(document).ready(function() {
     createAccordion();
     createDatePicker();
     createInvoiceSelect();
+    createMilestoneSelect();
     createRiskTabel();
     createImpedimentTable();
     createQualityTargetTable();
@@ -59,6 +60,23 @@ function createInvoiceSelect()
                                 }
                 var select =getOptionsHtml(data);
                 $('#invoiceStatus').empty().html(select).addClass("required");
+            }
+        });
+}
+function createMilestoneSelect()
+{
+        $.ajax({
+            url : context + '/milestone/selectjson',
+            type : 'GET',
+            dataType : 'json',
+            async : true,
+            cache : false,
+            success : function(data) {
+                            if(typeof(console) !== 'undefined' && console != null) {
+                                console.log("invoiceSelectJson " + JSON.stringify(data));
+                                }
+                var select =getOptionsHtml(data);
+                $('#milestone').empty().html(select).addClass("required");
             }
         });
 }
@@ -344,20 +362,29 @@ function createMilestoneTabel()
                                                     hide: "explode"
                                     },
                                     "aoColumns": [
-                                                   {cssclass:"required",tooltip: 'Double Click to edit'},
+                                                   {
+                                                      tooltip: 'Click to select milestone',
+                                                      loadtext: 'loading...',
+                                                      type: 'select',
+                                                      onblur: 'cancel',
+                                                      submit: 'Ok',
+                                                      loadurl: context + '/milestone/listjson',
+                                                      loadtype: 'GET',
+                                                      cssclass:"required"
+                                                  },
                                                    {
                                                      type:   'checkbox',
                                                      cancel: 'Cancel',
                                                      submit: 'OK',
                                                      checkbox: { trueValue: 'Yes', falseValue: 'No' },
-                                                     tooltip: 'Click to disable'
-                                                     //sSuccessResponse: "IGNORE"
+                                                     tooltip: 'Click to disable',
+                                                     sSuccessResponse: "IGNORE"
                                                   },
                                                    {
                                                      type:   'datepicker',
                                                      cssclass:"required",
-                                                     tooltip: 'Click to disable'
-                                                    // sSuccessResponse: "IGNORE"
+                                                     tooltip: 'Click to disable',
+                                                     sSuccessResponse: "IGNORE"
                                                   },
                                                   {
                                                     type:   'textarea',

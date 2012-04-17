@@ -88,6 +88,16 @@
 					</div>
 				</div>
 			  </g:if>
+			  <g:else>
+			    <div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'startDate', 'error')} ">
+					<label class="control-label" for="startDate">
+						<g:message code="projectInfo.startDate.label" default="Start Date" />
+					</label>
+					<div class="controls">
+						<g:field type="date" name="viewstartDate"  value="N/A"" readOnly="true"/>					    			
+					</div>
+				</div>		  	  
+			  </g:else>
 			  <div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'plannedReleaseDate', 'error')} ">
 				<label class="control-label" for="plannedReleaseDate">
 					<g:message code="projectInfo.plannedReleaseDate.label" default="Planned Release Date" />
@@ -107,6 +117,17 @@
 				</div>
 			</div>
 		</g:if>
+		<g:else>
+			    <div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'actualReleaseDate', 'error')} ">
+				<label class="control-label" for="actualReleaseDate">
+					<g:message code="projectInfo.actualReleaseDate.label" default="Actual Release Date" />					
+				</label>
+				<div class="controls">
+				<g:field type="date" name="viewActualReleaseDate"  value="N/A" readOnly="true"/>		
+				</div>
+			</div>			  
+		</g:else>
+		
 		<div class="control-group ${hasErrors(bean: projectInfoInstance, field: 'scheduleComments', 'error')} ">
 			<label class="control-label" for="scheduleComments">
 				<g:message code="projectInfo.scheduleComments.label" default="Schedule Comments" />

@@ -1,9 +1,8 @@
 import com.parago.pmo.AuditStatus;
 import com.parago.pmo.InvoiceStatus
+import com.parago.pmo.Milestone
 import com.parago.pmo.Person;
-import com.parago.pmo.ProjectInfo;
 import com.parago.pmo.ProjectStatus;
-import com.parago.pmo.Risk;
 import com.parago.pmo.TurnoverStatus;
 
 class BootStrap {
@@ -43,6 +42,14 @@ class BootStrap {
 			new TurnoverStatus(status:"Complete").save(failOnError: true);
 			new TurnoverStatus(status:"In Progress").save(failOnError: true);
 			new TurnoverStatus(status:"Not Applicable").save(failOnError: true);
+		}
+		if(!Milestone.count())
+		{
+			new Milestone(milestone:"Admin kick-off").save(failOnError: true);
+			new Milestone(milestone:"Mid-project Audit").save(failOnError: true);
+			new Milestone(milestone:"Solution Review").save(failOnError: true);
+			new Milestone(milestone:"Sunset Review").save(failOnError: true);
+			new Milestone(milestone:"Test Strategy Review").save(failOnError: true);
 		}
 		if(!Person.count())
 		{

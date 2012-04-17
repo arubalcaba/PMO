@@ -224,7 +224,7 @@
 								  </tr>
 								  <g:each in="${projectInfoInstance.projectMilestones}" var="pm">
 								  	<tr>
-								    	<td style="text-align: center">${pm?.name}</td>
+								    	<td style="text-align: center">${pm?.milestone?.encodeAsHTML()}</td>
 								    	<td style="text-align: center"><g:formatBoolean boolean="${pm?.complete}" true="Yes" false="No"/></td>
 								    	<td style="text-align: center"><g:formatDate format="MM/dd/yyy" date="${pm?.date}" /></td>
 								    	<td style="text-align: center">${pm?.note}</td>

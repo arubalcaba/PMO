@@ -59,6 +59,15 @@ class ProjectInfoController {
 		case 'POST':
 		    print params;
 	        def projectInfoInstance = ProjectInfo.get(params.id)
+			if(!params?.qualityMet)
+			{
+				projectInfoInstance.qualityMet=false;
+			}
+			else
+			{
+				projectInfoInstance.qualityMet=true;
+			}
+			
 	        if (!projectInfoInstance) {
 	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'projectInfo.label', default: 'ProjectInfo'), params.id])
 	            redirect action: 'list'
