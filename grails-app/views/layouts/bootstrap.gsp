@@ -54,7 +54,7 @@ top: 4px;
 					</a>	
 					
 					<a class="brand" href="${createLink(uri: '/')}"><img class="logo" src="${resource(dir: 'images', file: 'grails.png')}"
-                     alt="logo" height="25" border="0"/> Parago PMO Dashboard <small>v1.0</small></a>
+                     alt="logo" height="25" border="0"/> HUB <small>v1.0</small></a>
 
 					<div class="nav-collapse">
 						<ul class="nav">							

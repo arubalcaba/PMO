@@ -13,11 +13,11 @@
 			<section id="main" class="span9">
 
 				<div class="hero-unit">
-					<h1>Welcome to PMO Dashboard</h1>
+					<h1>Welcome to the Hub</h1>
 
-					<p>The PMO Dashboard allows for Project Managers within Parago to track certain projects and give snapshots of Project Statuses</p>
+					<p>The Hub allows for Project Managers within Parago to track certain projects and give snapshots of Project Statuses</p>
 					
-					<p>To Start Using the PMO Dashboard please click on the Project Info link in the navigation bar or click <a href="projectInfo/">here</a>
+					<p>To Start Using the Hub please click on the Project Info link in the navigation bar or click <a href="projectInfo/">here</a>
 					
 					</p>
 				</div>
