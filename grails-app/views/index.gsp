@@ -13,14 +13,10 @@
 			<section id="main" class="span9">
 
 				<div class="hero-unit">
-					<h1>Welcome to the Hub</h1>
-
-					<p>The Hub allows for Project Managers within Parago to track certain projects and give snapshots of Project Statuses</p>
-					
-					<p>To Start Using the Hub please click on the Project Info link in the navigation bar or click <a href="projectInfo/">here</a>
-					
-					</p>
-				</div>
+					<h1>Welcome to HUB   <img class="logo2" src="${resource(dir: 'images', file: 'ParagoHub_logo.jpg')}"></h1>
+                        <p>Parago’s Technology Portfolio Management System</p>
+					    <p>To Start click <a href="projectInfo/">here</a></p>
+                </div>
 					
 				<div class="row-fluid">
 					

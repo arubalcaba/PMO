@@ -68,13 +68,15 @@ jqueryUi.cdn = 'googlecode'
 environments {
     development {
         grails.logging.jul.usebridge = true
+        grails.gsp.enable.reload=true
     }
 	rrtdev {
 		grails.logging.jul.usebridge = true
 		grails.dbconsole.enabled = true
 		grails.dbconsole.urlRoot = '/admin/dbconsole'
+        grails.gsp.enable.reload=true
 
-	}
+    }
 	andrewdev {
 		grails.logging.jul.usebridge = true
 		grails.dbconsole.enabled = true

@@ -11,7 +11,10 @@ class ProjectInfoController {
     }
 
     def list() {
-        params.max = Math.min(params.max ? params.int('max') : 10, 100)
+        print ProjectInfo.count()
+
+        //params.max = Math.min(params.max ? params.int('max') : 10, 100)
+        //print params.max
         [projectInfoInstanceList: ProjectInfo.list(params), projectInfoInstanceTotal: ProjectInfo.count()]
     }
 
@@ -59,14 +62,7 @@ class ProjectInfoController {
 		case 'POST':
 		    print params;
 	        def projectInfoInstance = ProjectInfo.get(params.id)
-			if(!params?.qualityMet)
-			{
-				projectInfoInstance.qualityMet=false;
-			}
-			else
-			{
-				projectInfoInstance.qualityMet=true;
-			}
+
 			
 	        if (!projectInfoInstance) {
 	            flash.message = message(code: 'default.not.found.message', args: [message(code: 'projectInfo.label', default: 'ProjectInfo'), params.id])
@@ -107,8 +103,12 @@ class ProjectInfoController {
 			{
 				params?.handOffComplete=Date.parse("MM/dd/yyyy",params?.handOffComplete);
 			}
-			
-			
+            if(params?.clientRequestedDate)
+            {
+                params?.clientRequestedDate=Date.parse("MM/dd/yyyy",params?.clientRequestedDate);
+            }
+
+
 			
 			projectInfoInstance.properties = params
 			

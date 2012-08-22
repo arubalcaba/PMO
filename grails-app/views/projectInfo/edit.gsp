@@ -104,11 +104,11 @@
 							 <form id="formAddMilestone" action="#" title="Add New Milestone">
 								<input type="hidden" name="id" id="id" rel="0" value="DATAROWID" />
 								<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />												
-								<label for="name">Milestone</label><br />
+								<label for="milestone">Milestone</label><br />
 								<select name="milestone" id="milestone" rel="2" class="required"></select><br />								
 								<label for="complete">Complete</label>						
 								<input type="checkBox" name="complete" id="complete" rel="3"  value="true" /><br />
-								<label for="date">Date</label><br />
+								<label for="milestoneDate">Date</label><br />
 								<input type="text" name="date" id="milestoneDate" rel="4" class="required date" /><br />
 								<label for="note">Note</label><br />
 								<textarea rows="4" cols="50" maxlength="120" name="note" id="note" rel="5"></textarea><br />
@@ -137,7 +137,7 @@
 							 <form id="formAddInvoice" action="#" title="Add New Invoice">
 								<input type="hidden" name="id" id="id" rel="0" value="DATAROWID" />
 								<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />
-								<label for="billiableAmount">Billiable Amount ($)</label><br />
+								<label for="billableAmount">Billable Amount ($)</label><br />
 								<input type="text" name="billableAmount" id="billableAmount" rel="2" class="required number" /><br />
 								<label for="invoiceStatus">Status</label><br />
 								<select name="invoiceStatus" id="invoiceStatus" rel="3" class="required"></select><br />							
@@ -161,6 +161,7 @@
 							<th>ProjectInfoId</th>
 							<th>Quality Target</th>
 							<th>Quality Measurement Process</th>
+                            <th>Quality Not Met</th>
 						</tr>
 					</thead>
 					</table>
@@ -171,7 +172,8 @@
 								<input type="text" name="qualityTarget" id="qualityTarget" rel="2" class="required" /><br />
 								<label for="qualityMeasurementProcess">Quality Measurement Process</label><br />								
 								<textarea rows="4" cols="50" maxlength="120" name="qualityMeasurementProcess" id="qualityMeasurementProcess" rel="3" class="required"></textarea><br />
-								
+                                 <label for="qualityMet">Quality Met</label>
+                                 <input type="checkBox" name="qualityMet" id="qualityMet" rel="4"  value="true" /><br />
 								<br />
 								<button id="btnAddQualityTargetCancel" value="cancel">Cancel Quality Target</button>
 								<button id="btnAddQualityTargetOk" value="Ok">Add Quality Target</button>	
@@ -189,7 +191,7 @@
 							<th>ID</th>
 							<th>ProjectInfoId</th>
 							<th>Risk</th>
-							<th>Risk Migration Strategy</th>
+							<th>Risk Mitigation Strategy</th>
 						</tr>
 					</thead>
 					</table>
@@ -198,8 +200,8 @@
 								<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />
 								<label for="risk">Risk</label><br />
 								<input type="text" name="risk" id="risk" rel="2" class="required maxLength#5" /><br />
-								<label for="riskMigrationStrategy">Risk Migration Strategy</label><br />
-								<textarea rows="4" cols="50" maxlength="120" name="riskMigrationStrategy" id="riskMigrationStrategy" rel="3" class="required"></textarea><br />
+								<label for="riskMitigationStrategy">Risk Mitigation Strategy</label><br />
+								<textarea rows="4" cols="50" maxlength="120" name="riskMitigationStrategy" id="riskMitigationStrategy" rel="3" class="required"></textarea><br />
 								<br />
 								<button id="btnAddRiskCancel" value="cancel">Cancel Risk</button>
 								<button id="btnAddRiskOk" value="Ok">Add Risk</button>	
@@ -259,9 +261,9 @@
 								<label for="costImpact">Cost Impact ($)</label><br />
 								<input type="text" name="costImpact" id="costImpact" rel="3" class="required number" /><br />
 								<label for="scheduleImpact">Schedule Impact</label><br />
-								<input type="text" name="scheduleImpact" id="scheduleImpact" rel="4" class="required digits" /><br />
+								<input type="text" name="scheduleImpact" id="scheduleImpact" rel="4" class="required" /><br />
 								<label for="link">Link</label><br />
-								<input type="text" name="link" id="link" maxlength="120" rel="5" class="required" /><br />
+                                <textarea name="link" id="link" maxlength="1000" rel="5" class="required"></textarea><br />
 								<br />
 								<button id="btnAddChangeOrderCancel" value="cancel">Cancel Change Order</button>
 								<button id="btnAddChangeOrderOk" value="Ok">Add Change Order</button>	

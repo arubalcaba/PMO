@@ -17,13 +17,14 @@ class BootStrap {
 			new ProjectStatus(status:"90 day").save(failOnError: true);
 			new ProjectStatus(status:"Complete").save(failOnError: true);
 			new ProjectStatus(status:"Cancelled").save(failOnError: true);
+            new ProjectStatus(status:"New").save(failOnError: true);
 			
 		}
 		if(!AuditStatus.count())
 		{
 			new AuditStatus(status:"In Progress").save(failOnError: true);
 			new AuditStatus(status:"N/A").save(failOnError: true);
-			new AuditStatus(status:"Pending Completetion").save(failOnError: true);	
+			new AuditStatus(status:"Pending Completion").save(failOnError: true);
 			new AuditStatus(status:"Complete").save(failOnError: true);
 		}
 		if(!InvoiceStatus.count())
@@ -58,7 +59,7 @@ class BootStrap {
 			new Person(firstName: "Tom", lastName:"Kale", email:"tom.kale@parago.com").save(failOnError: true);
 			new Person(firstName: "Peggy", lastName:"Rattarree", email:"peggy.rattarree@parago.com").save(failOnError: true);
 			new Person(firstName: "Miriam", lastName:"Seasock", email:"miriam.seasock@parago.com").save(failOnError: true);
-			new Person(firstName: "Amy", lastName:"Tribndis", email:"amy.tribendis@parago.com").save(failOnError: true);
+			new Person(firstName: "Amy", lastName:"Tribendis", email:"amy.tribendis@parago.com").save(failOnError: true);
 			new Person(firstName: "Franz", lastName:"Zemen", email:"franz.zemen@parago.com").save(failOnError: true);
 		}
 		/*if(!ProjectInfo.count())

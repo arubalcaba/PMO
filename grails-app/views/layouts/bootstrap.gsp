@@ -3,7 +3,7 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title><g:layoutTitle default="${meta(name: 'app.name')}"/></title>
+		<title>HUB</title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 
@@ -34,6 +34,11 @@ max-height: 25px;
 position: relative;
 top: 4px;
 }
+img.logo2 {
+    max-height: 100px;
+    position: relative;
+    top: 4px;
+}
 -->
 </style>
 		
@@ -53,13 +58,14 @@ top: 4px;
 						<span class="icon-bar"></span>
 					</a>	
 					
-					<a class="brand" href="${createLink(uri: '/')}"><img class="logo" src="${resource(dir: 'images', file: 'grails.png')}"
-                     alt="logo" height="25" border="0"/> HUB <small>v1.0</small></a>
+					<a class="brand" href="${createLink(uri: '/')}"><img class="logo" src="${resource(dir: 'images', file: 'ParagoHub_logo.jpg')}"
+                     alt="logo" height="25" border="0"/> HUB</a>
 
 					<div class="nav-collapse">
 						<ul class="nav">							
 							<li<%= request.forwardURI == "${createLink(uri: '/')}" ? ' class="active"' : '' %>><a href="${createLink(uri: '/')}">Home</a></li>
 							<li><a href="${request.contextPath}/projectInfo/">Project Info</a></li>
+                            <li><a target="_blank" href="http://hub.parago.com/">HUB Executive Dashboard</a></li>
 						</ul>
 					
 					       <ul class="nav">

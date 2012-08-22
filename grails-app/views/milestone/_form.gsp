@@ -8,5 +8,6 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="milestone" required="" value="${milestoneInstance?.milestone}"/>
+
 </div>
 

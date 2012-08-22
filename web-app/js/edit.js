@@ -45,6 +45,9 @@ function createDatePicker ()
       $( "#sixtyDayReview" ).datepicker();
       $( "#handOffComplete" ).datepicker();
       $( "#milestoneDate").datepicker();
+      $( "#clientRequestedDate").datepicker();
+
+
 }
 function createInvoiceSelect()
 {
@@ -106,7 +109,7 @@ function createQualityTargetTable(){
                     "bLengthChange": false,
                     "bSort": false,
                     "sAjaxSource": context + "/qualityTarget/dataTablesSource?projectInfoId=" + $('#projectInfo').val(),
-                    "aoColumns": [{"bVisible": false},{"bVisible": false}, null,null]
+                    "aoColumns": [{"bVisible": false},{"bVisible": false}, null,null,null]
 
                 }).makeEditable({
                                     sUpdateURL:context + "/qualityTarget/edit.json",
@@ -146,8 +149,16 @@ function createQualityTargetTable(){
                                                     cancel: 'Cancel',
                                                     submit: 'OK',
                                                     tooltip: 'Double Click to edit',
-                                                    maxlength: 120
-                                                }
+                                                    maxlength: 200
+                                                },
+                                        {
+                                            type:   'checkbox',
+                                            cancel: 'Cancel',
+                                            submit: 'OK',
+                                            checkbox: { trueValue: 'Yes', falseValue: 'No' },
+                                            tooltip: 'Click to disable',
+                                            sSuccessResponse: "IGNORE"
+                                        }
                                                  ]
 
                                         });
@@ -198,8 +209,15 @@ function createChangeOrderTable(){
                                     "aoColumns": [
                                                    {cssclass:"required",tooltip: 'Double Click to edit'},
                                                    {cssclass:"required number",tooltip: 'Double Click to edit'},
-                                                   {cssclass:"required digits",tooltip: 'Double Click to edit'},
-                                                  {cssclass:"required",tooltip: 'Double Click to edit', maxlength: 120}
+                                                   {cssclass:"required",tooltip: 'Double Click to edit'},
+                                        {
+                                            cssclass:"required",
+                                            type:   'textarea',
+                                            cancel: 'Cancel',
+                                            submit: 'OK',
+                                            tooltip: 'Double Click to edit',
+                                            maxlength: 1000
+                                        }
                                                  ]
                                         });
 

@@ -21,17 +21,18 @@ class ProjectInfo {
 	String scheduleComments;
 	String qualityComments;
 	String execSummary;
-	boolean qualityMet;
-	String billable_Flag;
+	String billable_flag;
 	double total_expense_cost;	
 	double total_cap_hours;
 	double total_expense_hours;
 	double total_cap_cost;
+    String priority;
 		
 	Date startDate;
 	Date closeDate;
 	Date actualReleaseDate;
 	Date plannedReleaseDate;
+    Date clientRequestedDate;
 	Date supportDocDelivered;
 	Date thirtyDayReview;
 	Date sixtyDayReview;
@@ -39,7 +40,7 @@ class ProjectInfo {
     TurnoverStatus turnoverStatus;
 	String category;
 	String auditTurnoverComments;
-	static hasMany =[risks:Risk,impediments:Impediment,changeOrders:ChangeOrder,qualityTargets:QualityTarget,invocies:ProjectInvoice,projectMilestones: ProjectMilestone];	
+	static hasMany =[risks:Risk,impediments:Impediment,changeOrders:ChangeOrder,qualityTargets:QualityTarget,invoices:ProjectInvoice,projectMilestones: ProjectMilestone];
 	
 	static constraints = {
 		projectName(blank: false)
@@ -49,7 +50,7 @@ class ProjectInfo {
 		scrumMaster(nullable: true)
 		status(nullable: true,blank: false)
 		auditStatus(nullable: true,blank: false)
-		link(nullable: true)
+		link(nullable: true,maxSize:2000)
 		budgetWithContractors(nullable: true)
 		actualCost(nullable:true)
 		estimateToComplete(nullable: true)
@@ -60,7 +61,8 @@ class ProjectInfo {
 		startDate(nullable: true)
 		closeDate(nullable: true)
 		actualReleaseDate(nullable: true)
-		plannedReleaseDate(nullable: true)		
+		plannedReleaseDate(nullable: true)
+        clientRequestedDate(nullable: true)
 		category(nullable: true)
 		supportDocDelivered(nullable: true)
 		thirtyDayReview(nullable: true)
@@ -72,16 +74,18 @@ class ProjectInfo {
 		total_cap_hours(nullable: true)
 		total_expense_hours(nullable: true)
 		total_cap_cost(nullable: true)
-		qualityMet(nullable: true)
 		budgetComments(nullable: true)
 		scheduleComments(nullable: true)
 		qualityComments(nullable: true)
-		billable_Flag(nullable: true)
+		billable_flag(nullable: true)
+        priority(nullable: true)
+
+
 		execSummary(nullable: true,size: 0..10000 )		
 		risks(nullable: true)
 		impediments(nullable: true)
 		changeOrders(nullable: true)
-		invocies(nullable: true)
+		invoices(nullable: true)
 		projectMilestones(nullable: true)
 		
     }

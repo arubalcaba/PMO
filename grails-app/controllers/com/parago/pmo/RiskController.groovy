@@ -116,7 +116,7 @@ class RiskController {
 					if(params.columnId.equalsIgnoreCase("2"))
 						riskInstance.risk = params.value;
 					else
-						riskInstance.riskMigrationStrategy = params.value;
+						riskInstance.riskMitigationStrategy = params.value;
 		
 					if (!riskInstance.save(flush: true)) {
 						response.status = 405;

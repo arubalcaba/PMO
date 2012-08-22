@@ -23,6 +23,14 @@ class QualityTargetController {
 			break
 		case 'POST':
 	        def qualityTargetInstance = new QualityTarget(params)
+            if(!params?.qualityMet)
+            {
+                qualityTargetInstance.qualityMet=false;
+            }
+            else
+            {
+                qualityTargetInstance.qualityMet=true;
+            }
 	        if (!qualityTargetInstance.save(flush: true,failOnError: true)) {
 				response.status = 405;
 				render "Unable to create Quality Traget";	   
@@ -87,7 +95,7 @@ class QualityTargetController {
 							return
 						}
 					}
-		
+
 					qualityTargetInstance.properties = params
 		
 					if (!qualityTargetInstance.save(flush: true)) {
@@ -118,8 +126,15 @@ class QualityTargetController {
 					def columnId = params.columnId;
 					if(params.columnId.equalsIgnoreCase("2"))
 						qualityTargetInstance.qualityTarget = params.value;
-					else
+					else if(params.columnId.equalsIgnoreCase("3"))
 						qualityTargetInstance.qualityMeasurementProcess = params.value;
+                    else if(params.columnId.equalsIgnoreCase("4"))
+                    {
+                        if(params.value.equalsIgnoreCase("Yes"))
+                            qualityTarget.qualityMet.true;
+                        else
+                            qualityTarget.qualityMet=false;
+                    }
 						
 					if (!qualityTargetInstance.save(flush: true)) {
 							response.status = 404;
@@ -185,7 +200,8 @@ class QualityTargetController {
 			jsonResponse.aaData << [qualityTarget.id,
 									qualityTarget.projectInfo.id,
 									qualityTarget.qualityTarget,
-									qualityTarget.qualityMeasurementProcess]
+									qualityTarget.qualityMeasurementProcess,
+                                    qualityTarget.qualityMet?'yes':'no']
 		}
 		
 		render jsonResponse as JSON;
