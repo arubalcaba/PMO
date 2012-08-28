@@ -111,7 +111,7 @@
 								<label for="milestoneDate">Date</label><br />
 								<input type="text" name="date" id="milestoneDate" rel="4" class="required date" /><br />
 								<label for="note">Note</label><br />
-								<textarea rows="4" cols="50" maxlength="120" name="note" id="note" rel="5"></textarea><br />
+								<textarea rows="4" cols="50" maxlength="1000" name="note" id="note" rel="5"></textarea><br />
 																
 								<br />
 								<button id="btnAddMilestoneCancel" value="cancel">Cancel Milestone</button>
@@ -142,7 +142,7 @@
 								<label for="invoiceStatus">Status</label><br />
 								<select name="invoiceStatus" id="invoiceStatus" rel="3" class="required"></select><br />							
 								<label for="invoiceNote">Note</label><br />
-								<textarea rows="4" cols="50" maxlength="120" name="invoiceNote" id="invoiceNote" rel="4"></textarea><br />
+								<textarea rows="4" cols="50" maxlength="100" name="invoiceNote" id="invoiceNote" rel="4"></textarea><br />
 								<br />
 								<button id="btnAddInvoiceCancel" value="cancel">Cancel Invoice</button>
 								<button id="btnAddInvoiceOk" value="Ok">Add Invoice</button>	
@@ -169,9 +169,9 @@
 								<input type="hidden" name="id" id="id" rel="0" value="DATAROWID" />
 								<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />
 								<label for="qualityTarget">Quality Target</label><br />
-								<input type="text" name="qualityTarget" id="qualityTarget" rel="2" class="required" /><br />
+								<input type="text" name="qualityTarget" id="qualityTarget" rel="2" class="required" maxlength="2000" /><br />
 								<label for="qualityMeasurementProcess">Quality Measurement Process</label><br />								
-								<textarea rows="4" cols="50" maxlength="120" name="qualityMeasurementProcess" id="qualityMeasurementProcess" rel="3" class="required"></textarea><br />
+								<textarea rows="4" cols="50" maxlength="2000" name="qualityMeasurementProcess" id="qualityMeasurementProcess" rel="3" class="required"></textarea><br />
                                  <label for="qualityMet">Quality Met</label>
                                  <input type="checkBox" name="qualityMet" id="qualityMet" rel="4"  value="true" /><br />
 								<br />
@@ -199,9 +199,9 @@
 								<input type="hidden" name="id" id="id" rel="0" value="DATAROWID" />
 								<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />
 								<label for="risk">Risk</label><br />
-								<input type="text" name="risk" id="risk" rel="2" class="required maxLength#5" /><br />
+								<input type="text" name="risk" id="risk" rel="2" class="required" maxlength="1000" /><br />
 								<label for="riskMitigationStrategy">Risk Mitigation Strategy</label><br />
-								<textarea rows="4" cols="50" maxlength="120" name="riskMitigationStrategy" id="riskMitigationStrategy" rel="3" class="required"></textarea><br />
+								<textarea rows="4" cols="50" maxlength="1000" name="riskMitigationStrategy" id="riskMitigationStrategy" rel="3" class="required"></textarea><br />
 								<br />
 								<button id="btnAddRiskCancel" value="cancel">Cancel Risk</button>
 								<button id="btnAddRiskOk" value="Ok">Add Risk</button>	
@@ -227,9 +227,9 @@
 							<input type="hidden" name="id" id="id" rel="0" value="DATAROWID" />
 							<g:hiddenField name="projectInfo.id" value="${projectInfoInstance?.id}" rel="1" />
 							<label for="impediment">Impediment</label><br />
-							<input type="text" name="impediment" id="impediment" rel="2" class="required" /><br />
+							<input type="text" name="impediment" id="impediment" rel="2" class="required" maxlength="1000"/><br />
 							<label for="remediationPlan">Remediation Plan</label><br />							
-							<textarea rows="4" cols="50" maxlength="120" name="remediationPlan" id="remediationPlan" rel="3" class="required"></textarea><br />
+							<textarea rows="4" cols="50" maxlength="1000" name="remediationPlan" id="remediationPlan" rel="3" class="required"></textarea><br />
 							<br />
 							<button id="btnAddImpedimentCancel" value="cancel">Cancel Impediment</button>
 							<button id="btnAddImpedimentOk" value="Ok">Add Impediment</button>	

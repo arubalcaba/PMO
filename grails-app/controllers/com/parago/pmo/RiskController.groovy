@@ -184,7 +184,7 @@ class RiskController {
 			jsonRiskResponse.aaData << [risk.id,
 										risk.projectInfo.id,
 										risk.risk,
-										risk.riskMigrationStrategy]
+										risk.riskMitigationStrategy]
 		}
 
 		render jsonRiskResponse as JSON

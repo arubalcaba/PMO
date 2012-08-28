@@ -69,7 +69,7 @@
 					    <g:if test="${projectInfoInstance?.billable_flag.equalsIgnoreCase("Y")}">
 						<tr>
 						
-							<td>${fieldValue(bean: projectInfoInstance, field: "projectName")}</td>
+							<td><g:link action="show" id="${projectInfoInstance.id}" >${fieldValue(bean: projectInfoInstance, field: "projectName")}</g:link></td>
 						
 							<td>${fieldValue(bean: projectInfoInstance, field: "projectType")}</td>
 						

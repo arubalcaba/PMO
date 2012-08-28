@@ -200,8 +200,8 @@ class ProjectInvoiceController {
 	  projectInvoiceList?.each{ projectInvoice ->
 		  jsonResponse.aaData << [projectInvoice.id,
 								  projectInvoice.projectInfo.id,
+                                    projectInvoice.billableAmount,
 								  projectInvoice.invoiceStatus.status,
-								  projectInvoice.billableAmount,
 								  projectInvoice.invoiceNote]
 	  }
 	  

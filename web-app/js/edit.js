@@ -142,14 +142,14 @@ function createQualityTargetTable(){
                                                     hide: "explode"
                                     },
                                     "aoColumns": [
-                                                   {cssclass:"required",tooltip: 'Double Click to edit'},
+                                                   {cssclass:"required",tooltip: 'Double Click to edit',maxlength: 2000},
                                                   {
                                                     cssclass:"required",
                                                     type:   'textarea',
                                                     cancel: 'Cancel',
                                                     submit: 'OK',
                                                     tooltip: 'Double Click to edit',
-                                                    maxlength: 200
+                                                    maxlength: 2000
                                                 },
                                         {
                                             type:   'checkbox',
@@ -272,7 +272,7 @@ function createImpedimentTable(){
                                                     cancel: 'Cancel',
                                                     submit: 'OK',
                                                     tooltip: 'Double Click to edit',
-                                                    maxlength: 120
+                                                    maxlength: 1000
                                                 }
                                                  ]
                                         });
@@ -280,6 +280,7 @@ function createImpedimentTable(){
 }
 function createRiskTabel()
 {
+
     $('#riskTable').dataTable( {
                     "bPaginate": true,
                     "bJQueryUI": true,
@@ -329,7 +330,7 @@ function createRiskTabel()
                                                     cancel: 'Cancel',
                                                     submit: 'OK',
                                                     tooltip: 'Double Click to edit',
-                                                    maxlength: 120
+                                                    maxlength: 1000
                                                 }
                                                  ]
                                         });
@@ -409,7 +410,7 @@ function createMilestoneTabel()
                                                     cancel: 'Cancel',
                                                     submit: 'OK',
                                                     tooltip: 'Double Click to edit',
-                                                    maxlength: 120
+                                                    maxlength: 1000
                                                 }
                                                  ]
                                         });
@@ -477,7 +478,7 @@ function createInvoiceTabel()
                                                     cancel: 'Cancel',
                                                     submit: 'OK',
                                                     tooltip: 'Double Click to edit',
-                                                    maxlength: 120
+                                                    maxlength: 1000
                                                 }
                                                  ]
                                         });
